@@ -1,0 +1,63 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/Navbar.astro";
+import Hero from "@/components/Hero.astro";
+import About from "@/components/About.astro";
+import Skills from "@/components/Skills.astro";
+import Experience from "@/components/Experience.astro";
+import Certifications from "@/components/Certifications.astro";
+import Contact from "@/components/Contact.astro";
+import Footer from "@/components/Footer.astro";
+import ParticleBackground from "@/components/ParticleBackground";
+
+const locale = "en" as const;
+---
+
+<Layout
+  locale={locale}
+  title="Alessio Brunello — Frontend Tech Lead | Portfolio"
+  description="Frontend Tech Lead with 10+ years of experience. React, TypeScript, UI Architecture. Building scalable frontend systems with a passion for AI-augmented development."
+>
+  <Navbar locale={locale} />
+
+  <main>
+    <!-- Hero with particles -->
+    <div class="relative">
+      <div class="absolute inset-0 z-0">
+        <ParticleBackground client:load />
+      </div>
+      <Hero locale={locale} />
+    </div>
+
+    <About locale={locale} />
+    <Skills locale={locale} />
+    <Experience locale={locale} />
+    <Certifications locale={locale} />
+    <Contact locale={locale} />
+  </main>
+
+  <Footer locale={locale} />
+
+  <!-- GSAP animations -->
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animate all fade-in elements
+    gsap.utils.toArray<HTMLElement>(".fade-in").forEach((el) => {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+          once: true,
+        },
+      });
+    });
+  </script>
+</Layout>

@@ -1,0 +1,80 @@
+---
+import type { Locale } from "@/i18n/utils";
+import { t } from "@/i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const i18n = t(locale);
+---
+
+<section id="hero" class="relative flex min-h-screen items-center overflow-hidden">
+  <!-- Particle Background container -->
+  <div id="particles-container" class="absolute inset-0 z-0"></div>
+
+  <!-- Gradient overlay for readability -->
+  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-bg-primary/30 via-transparent to-bg-primary"></div>
+
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col items-center gap-12 lg:flex-row lg:justify-between">
+      <!-- Left: Text content -->
+      <div class="max-w-2xl text-center lg:text-left">
+        <p class="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-accent-soft">
+          {i18n.hero.greeting}
+        </p>
+        <h1 class="text-gradient mb-4 text-5xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">
+          {i18n.hero.name}
+        </h1>
+        <div class="mb-6 flex items-center justify-center gap-3 lg:justify-start">
+          <div class="h-px w-8 bg-accent-soft"></div>
+          <p id="typing-role" class="typing-cursor text-xl font-semibold text-text-primary sm:text-2xl">
+            {i18n.hero.role}
+          </p>
+        </div>
+        <p class="mx-auto mb-8 max-w-lg text-base leading-relaxed text-text-secondary sm:text-lg lg:mx-0">
+          {i18n.hero.tagline}
+        </p>
+        <div class="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
+          <a
+            href="#about"
+            class="glass hover-glow inline-flex items-center justify-center rounded-xl px-8 py-3 text-sm font-semibold text-text-primary transition-all hover:bg-white/10"
+          >
+            {i18n.hero.cta_primary}
+            <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </a>
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center rounded-xl border border-accent/30 px-8 py-3 text-sm font-semibold text-accent transition-all hover:bg-accent/10 hover:border-accent/60"
+          >
+            {i18n.hero.cta_secondary}
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Photo -->
+      <div class="relative">
+        <!-- Glow ring -->
+        <div class="absolute -inset-4 rounded-full bg-accent opacity-10 blur-2xl"></div>
+        <div class="relative h-64 w-64 overflow-hidden rounded-full border-2 border-glass-border sm:h-80 sm:w-80">
+          <img
+            src="/photo.jpg"
+            alt="Alessio Brunello"
+            class="h-full w-full object-cover object-[center_30%]"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
+    <div class="flex h-8 w-5 items-start justify-center rounded-full border-2 border-text-secondary/30 p-1">
+      <div class="h-2 w-1 animate-bounce rounded-full bg-accent"></div>
+    </div>
+  </div>
+</section>

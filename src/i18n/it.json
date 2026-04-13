@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "about": "Chi Sono",
+    "skills": "Competenze",
+    "experience": "Esperienza",
+    "certifications": "Certificazioni",
+    "contact": "Contatti"
+  },
+  "hero": {
+    "greeting": "Ciao, sono",
+    "name": "Alessio Brunello",
+    "role": "Frontend Tech Lead",
+    "tagline": "Creo sistemi frontend scalabili e guido team di sviluppo con passione per l'AI-augmented development.",
+    "cta_primary": "Scopri di più",
+    "cta_secondary": "Contattami"
+  },
+  "about": {
+    "title": "Chi Sono",
+    "description": "Sono un Frontend Tech Lead con oltre 10 anni di esperienza nello sviluppo di applicazioni web e mobile moderne, performanti e scalabili. Mi concentro sulla progettazione di soluzioni digitali intuitive, sulla guida dei team e sulle decisioni architetturali per garantire prodotti di alta qualità.",
+    "description2": "Lavoro quotidianamente con React, TypeScript e le tecnologie web più moderne. Credo fermamente che l'intelligenza artificiale sia un moltiplicatore di produttività: integro AI-assisted development nel mio workflow quotidiano, utilizzando strumenti come Claude con agent personalizzati, custom skills e workflow automatizzati.",
+    "stats": {
+      "years": "10+",
+      "years_label": "Anni di Esperienza",
+      "role": "Tech Lead",
+      "role_label": "Frontend & UI Architecture"
+    }
+  },
+  "skills": {
+    "title": "Competenze",
+    "subtitle": "Le tecnologie e gli strumenti con cui lavoro quotidianamente",
+    "categories": {
+      "core": "Core",
+      "styling": "Styling",
+      "frameworks": "Framework",
+      "mobile": "Mobile",
+      "dataviz": "Data Visualization",
+      "ai": "AI & Tooling",
+      "tools": "Tools & Metodologie"
+    }
+  },
+  "experience": {
+    "title": "Esperienza",
+    "subtitle": "Il mio percorso professionale",
+    "bludata": {
+      "company": "Bludata S.r.l.",
+      "role": "Frontend Tech Lead",
+      "period": "Dicembre 2015 — Presente",
+      "location": "Paese (TV), Veneto, Italia",
+      "points": [
+        "Lead di un team frontend di 2-3 sviluppatori, coordinando progetti web e mobile con focus su qualità, performance e delivery",
+        "Responsabile tecnico della piattaforma gestionale cloud-based per il settore retail specializzato, in Bludata — azienda riconosciuta in Italia con oltre 5000 clienti",
+        "Guidata la migrazione tecnologica dalla piattaforma web legacy (600+ utenti attivi) alla nuova architettura cloud moderna e scalabile",
+        "Progettazione e sviluppo dell'architettura frontend di applicazioni enterprise con React, TypeScript e le più moderne best practice",
+        "Sviluppo di applicazioni mobile cross-platform con React Native e Flutter per iOS e Android",
+        "Implementazione di dashboard interattive per l'analisi dati real-time e PWA conformi al GDPR",
+        "Integrazione di AI-assisted development nel workflow del team, utilizzando Claude con custom agents, skills e workflow automatizzati per accelerare sviluppo e code review",
+        "Sessioni di formazione interna su intelligenza artificiale e AI-augmented development",
+        "Contributo alle decisioni architetturali, code review sistematiche e mentorship per la crescita del team",
+        "Collaborazione interfunzionale con team di prodotto, backend e design in ambienti Agile"
+      ]
+    }
+  },
+  "certifications": {
+    "title": "Certificazioni",
+    "subtitle": "Formazione continua e aggiornamento professionale",
+    "items": [
+      {
+        "name": "Blockchain, Bitcoin e Criptovalute",
+        "description": "Corso pratico completo su tecnologie blockchain e criptovalute",
+        "icon": "blockchain"
+      },
+      {
+        "name": "UX Design Process",
+        "description": "Empathize, Define, and Ideate — Google UX Design",
+        "icon": "ux"
+      },
+      {
+        "name": "React — The Complete Guide",
+        "description": "Hooks, React Router, Redux — Certificazione avanzata React",
+        "icon": "react"
+      },
+      {
+        "name": "Foundations of Project Management",
+        "description": "Google Project Management Professional Certificate",
+        "icon": "pm"
+      },
+      {
+        "name": "Project Planning",
+        "description": "Putting It All Together — Google Project Management",
+        "icon": "planning"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contatti",
+    "subtitle": "Sono sempre aperto a nuove sfide e opportunità",
+    "email": {
+      "label": "Email",
+      "value": "orecchia.mobiletto.0h@icloud.com",
+      "cta": "Copia email"
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "value": "alessio-brunello-dev",
+      "url": "https://www.linkedin.com/in/alessio-brunello-dev",
+      "cta": "Apri profilo"
+    },
+    "github": {
+      "label": "GitHub",
+      "value": "brunelloalessio-dev",
+      "url": "https://github.com/brunelloalessio-dev",
+      "cta": "Apri profilo"
+    }
+  },
+  "footer": {
+    "built_with": "Realizzato con",
+    "rights": "Tutti i diritti riservati."
+  }
+}

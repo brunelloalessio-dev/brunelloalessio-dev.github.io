@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #09090b;
+  --color-bg-secondary: #18181b;
+  --color-bg-card: #1c1c1f;
+  --color-accent: #ffffff;
+  --color-accent-soft: #d4d4d8;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-glass-bg: rgba(255, 255, 255, 0.04);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ===== Dark / Light mode via .dark class on <html> ===== */
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+/* Dark mode (default) */
+html.dark {
+  --color-bg-primary: #09090b;
+  --color-bg-secondary: #18181b;
+  --color-bg-card: #1c1c1f;
+  --color-accent: #ffffff;
+  --color-accent-soft: #d4d4d8;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-glass-bg: rgba(255, 255, 255, 0.04);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  background-color: #09090b;
+  color: #fafafa;
+}
+
+/* Light mode */
+html.light {
+  --color-bg-primary: #fafafa;
+  --color-bg-secondary: #f4f4f5;
+  --color-bg-card: #ffffff;
+  --color-accent: #09090b;
+  --color-accent-soft: #3f3f46;
+  --color-text-primary: #09090b;
+  --color-text-secondary: #52525b;
+  --color-glass-bg: rgba(0, 0, 0, 0.03);
+  --color-glass-border: rgba(0, 0, 0, 0.08);
+  background-color: #fafafa;
+  color: #09090b;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-glass-border);
+}
+
+.glass-strong {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--color-glass-border);
+}
+
+/* Text gradient — subtle B/W */
+.dark .text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.light .text-gradient {
+  background: linear-gradient(135deg, #09090b 0%, #52525b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glow effect — unified */
+.glow {
+  box-shadow: 0 0 20px var(--color-glass-border), 0 0 40px var(--color-glass-bg);
+}
+
+/* Neon border glow on hover */
+.hover-glow {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .hover-glow:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 0 40px rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.light .hover-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.06), 0 0 40px rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Section fade-in (GSAP target) */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Timeline glow line */
+.dark .timeline-line {
+  background: linear-gradient(180deg, #ffffff, #a1a1aa, #52525b);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.light .timeline-line {
+  background: linear-gradient(180deg, #09090b, #52525b, #a1a1aa);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Typing cursor */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.typing-cursor::after {
+  content: "|";
+  animation: blink 1s infinite;
+  color: var(--color-accent);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+.dark ::-webkit-scrollbar-thumb,
+html.dark::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover,
+html.dark::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.light ::-webkit-scrollbar-thumb,
+html.light::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+.light ::-webkit-scrollbar-thumb:hover,
+html.light::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile nav open */
+.nav-open {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+}
