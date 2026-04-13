@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://brunelloalessio-dev.github.io",
+  outDir: "docs",
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

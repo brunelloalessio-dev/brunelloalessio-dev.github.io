@@ -1,0 +1,1 @@
+import{g as r,S as o}from"./ScrollTrigger.B2uKOqL4.js";r.registerPlugin(o);r.utils.toArray(".fade-in").forEach(t=>{r.to(t,{opacity:1,y:0,duration:.8,ease:"power3.out",scrollTrigger:{trigger:t,start:"top 85%",once:!0}})});
