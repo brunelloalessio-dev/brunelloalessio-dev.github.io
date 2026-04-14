@@ -14,27 +14,54 @@ const skillCategories = [
     name: i18n.skills.categories.core,
     color: "",
     skills: [
-      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-      { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-      { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+      {
+        name: "React",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "TypeScript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "JavaScript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      },
+      {
+        name: "HTML5",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      },
+      {
+        name: "CSS3",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+      },
     ],
   },
   {
     name: i18n.skills.categories.styling,
     color: "",
     skills: [
-      { name: "SCSS/SASS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" },
-      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      {
+        name: "SCSS/SASS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg",
+      },
+      {
+        name: "Tailwind CSS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
     ],
   },
   {
     name: i18n.skills.categories.frameworks,
     color: "",
     skills: [
-      { name: "Vue.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
-      { name: "AngularJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
+      {
+        name: "Vue.js",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+      },
+      {
+        name: "AngularJS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+      },
       { name: "ExtJS", icon: "" },
     ],
   },
@@ -42,31 +69,46 @@ const skillCategories = [
     name: i18n.skills.categories.mobile,
     color: "",
     skills: [
-      { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" },
-      { name: "React Native", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      {
+        name: "Flutter",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+      },
+      {
+        name: "React Native",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
     ],
   },
   {
     name: i18n.skills.categories.dataviz,
     color: "",
     skills: [
-      { name: "D3.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg" },
+      {
+        name: "D3.js",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg",
+      },
     ],
   },
   {
     name: i18n.skills.categories.ai,
     color: "",
     skills: [
-      { name: "Claude AI", icon: "" },
+      { name: "Claude Code", icon: "" },
+      { name: "MCP", icon: "" },
       { name: "AI Agents", icon: "" },
+      { name: "Subagents", icon: "" },
       { name: "Prompt Eng.", icon: "" },
+      { name: "OpenAI API", icon: "" },
     ],
   },
   {
     name: i18n.skills.categories.tools,
     color: "",
     skills: [
-      { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+      {
+        name: "Git",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      },
       { name: "Agile/Scrum", icon: "" },
     ],
   },
@@ -77,34 +119,43 @@ const skillCategories = [
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <!-- Section header -->
     <div class="fade-in mb-16 text-center">
-      <h2 class="text-gradient mb-4 text-3xl font-bold sm:text-4xl">{i18n.skills.title}</h2>
+      <h2 class="text-gradient mb-4 text-3xl font-bold sm:text-4xl">
+        {i18n.skills.title}
+      </h2>
       <p class="text-text-secondary">{i18n.skills.subtitle}</p>
       <div class="mx-auto mt-4 h-1 w-20 rounded-full bg-accent-soft"></div>
     </div>
 
     <!-- Skills grid -->
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {skillCategories.map((category) => (
-        <div class="fade-in glass hover-glow rounded-2xl p-6">
-          <div class="mb-4 inline-block rounded-lg bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent">
-            {category.name}
+      {
+        skillCategories.map((category) => (
+          <div class="fade-in glass hover-glow rounded-2xl p-6">
+            <div class="mb-4 inline-block rounded-lg bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent">
+              {category.name}
+            </div>
+            <div class="flex flex-wrap gap-3">
+              {category.skills.map((skill) => (
+                <div class="glass flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-text-secondary transition-colors hover:text-text-primary">
+                  {skill.icon ? (
+                    <img
+                      src={skill.icon}
+                      alt={skill.name}
+                      class="h-5 w-5"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span class="flex h-5 w-5 items-center justify-center rounded bg-accent/10 text-[10px] font-bold text-accent">
+                      {skill.name.charAt(0)}
+                    </span>
+                  )}
+                  <span>{skill.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <div class="flex flex-wrap gap-3">
-            {category.skills.map((skill) => (
-              <div class="glass flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-text-secondary transition-colors hover:text-text-primary">
-                {skill.icon ? (
-                  <img src={skill.icon} alt={skill.name} class="h-5 w-5" loading="lazy" />
-                ) : (
-                  <span class="flex h-5 w-5 items-center justify-center rounded bg-accent/10 text-[10px] font-bold text-accent">
-                    {skill.name.charAt(0)}
-                  </span>
-                )}
-                <span>{skill.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>

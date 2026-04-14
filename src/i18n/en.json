@@ -10,14 +10,14 @@
     "greeting": "Hi, I'm",
     "name": "Alessio Brunello",
     "role": "Frontend Tech Lead",
-    "tagline": "I build scalable frontend systems and lead development teams with a passion for AI-augmented development.",
+    "tagline": "I build scalable frontend systems and lead delivery teams, integrating Claude Code, MCP, and agentic workflows into everyday engineering.",
     "cta_primary": "Learn More",
     "cta_secondary": "Get in Touch"
   },
   "about": {
     "title": "About Me",
     "description": "I'm a Frontend Tech Lead with over 10 years of experience building modern, performant, and scalable web and mobile applications. I focus on designing intuitive digital solutions, leading development teams, and contributing to architectural decisions to ensure high-quality products.",
-    "description2": "I work daily with React, TypeScript, and cutting-edge web technologies. I firmly believe AI is a productivity multiplier: I integrate AI-assisted development into my daily workflow, using tools like Claude with custom agents, skills, and automated workflows.",
+    "description2": "I work daily with React, TypeScript, and modern web technologies. I treat AI as an engineering multiplier: I integrate Claude Code, Model Context Protocol, and agentic workflows into delivery, prototyping, and code review.",
     "stats": {
       "years": "10+",
       "years_label": "Years of Experience",
@@ -53,7 +53,7 @@
         "Designing and developing enterprise frontend architecture with React, TypeScript, and modern best practices",
         "Building cross-platform mobile applications with React Native and Flutter for iOS and Android",
         "Implementing interactive real-time data dashboards and GDPR-compliant PWAs",
-        "Integrating AI-assisted development into team workflow, using Claude with custom agents, skills, and automated workflows to accelerate development and code review",
+        "Integrating AI-assisted development into team workflow, experimenting with Claude Code, MCP, and agent/subagent workflows to accelerate development and code review",
         "Internal training sessions on artificial intelligence and AI-augmented development",
         "Contributing to architectural decisions, systematic code reviews, and mentorship for team growth",
         "Cross-functional collaboration with product, backend, and design teams in Agile environments"
@@ -61,33 +61,57 @@
     }
   },
   "certifications": {
-    "title": "Certifications",
-    "subtitle": "Continuous learning and professional development",
+    "title": "Selected Certifications",
+    "subtitle": "A curated selection across AI engineering, delivery, and frontend specialization.",
+    "view_all": "View the full LinkedIn profile",
     "items": [
       {
-        "name": "Blockchain, Bitcoin & Cryptocurrencies",
-        "description": "Complete hands-on course on blockchain technologies and cryptocurrencies",
-        "icon": "blockchain"
+        "name": "Claude Code in Action",
+        "issuer": "Anthropic",
+        "issuedAt": "Apr 2026",
+        "description": "Hands-on certification focused on Claude Code for agentic development, automation, and productive workflows."
       },
       {
-        "name": "UX Design Process",
-        "description": "Empathize, Define, and Ideate — Google UX Design",
-        "icon": "ux"
+        "name": "Introduction to Model Context Protocol",
+        "issuer": "Anthropic",
+        "issuedAt": "Apr 2026",
+        "description": "Introduction to Model Context Protocol for connecting tools, context, and agents inside AI workflows."
       },
       {
-        "name": "React — The Complete Guide",
-        "description": "Hooks, React Router, Redux — Advanced React Certification",
-        "icon": "react"
+        "name": "Introduction to agent skills",
+        "issuer": "Anthropic",
+        "issuedAt": "Apr 2026",
+        "description": "Foundations for designing reusable, specialized skills in Claude-based ecosystems."
       },
       {
-        "name": "Foundations of Project Management",
-        "description": "Google Project Management Professional Certificate",
-        "icon": "pm"
+        "name": "Introduction to subagents",
+        "issuer": "Anthropic",
+        "issuedAt": "Apr 2026",
+        "description": "Using subagents to delegate tasks, explore codebases, and structure multi-step AI workflows."
       },
       {
-        "name": "Project Planning",
-        "description": "Putting It All Together — Google Project Management",
-        "icon": "planning"
+        "name": "Google Project Management",
+        "issuer": "Google",
+        "issuedAt": "Mar 2025",
+        "description": "Google program covering planning, execution, and project coordination in Agile environments."
+      },
+      {
+        "name": "OpenAI API (ChatGPT, Whisper, DALL-E) - Complete Course",
+        "issuer": "Udemy",
+        "issuedAt": "Jun 2024",
+        "description": "Practical use of OpenAI APIs, prompt design, and LLM capability integration in real applications."
+      },
+      {
+        "name": "React - The Complete Guide (incl Hooks, React Router, Redux)",
+        "issuer": "Udemy",
+        "issuedAt": "Feb 2022",
+        "description": "Advanced track on modern React, Hooks, routing, and state management for complex applications."
+      },
+      {
+        "name": "Start the UX Design Process: Empathize, Define, and Ideate",
+        "issuer": "Google",
+        "issuedAt": "Aug 2021",
+        "description": "UX process focused on research, problem framing, and ideation for digital product work."
       }
     ]
   },
