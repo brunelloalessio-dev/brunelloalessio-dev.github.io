@@ -1,4 +1,5 @@
 ---
+import { ClientRouter, fade } from "astro:transitions";
 import "@/styles/global.css";
 import SiteBackdrop from "@/components/SiteBackdrop.astro";
 import type { Locale } from "@/i18n/utils";
@@ -19,12 +20,15 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
 ---
 
 <!doctype html>
-<html lang={locale} class="dark">
+<html lang={locale} class="dark" transition:animate={fade({ duration: "0.22s" })}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
 
-    <!-- Browser chrome: tab / status bar / form controls -->
+    <!-- Browser chrome: tab / toolbar tint + native controls -->
     <meta name="color-scheme" content="dark light" />
     <meta
       name="theme-color"
@@ -37,12 +41,8 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
       media="(prefers-color-scheme: light)"
     />
     <meta name="theme-color" content="#09090b" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Alessio Brunello" />
 
-    <!-- Dark mode: prevent flash + always start at top on reload -->
+    <!-- Dark mode: prevent flash + restore theme after view transitions -->
     <script is:inline>
       (function() {
         var THEME_COLORS = { dark: '#09090b', light: '#fafafa' };
@@ -56,25 +56,27 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
               metas[i].setAttribute('content', THEME_COLORS[theme] || THEME_COLORS.dark);
             }
           }
-          var statusBar = document.querySelector(
-            'meta[name="apple-mobile-web-app-status-bar-style"]'
-          );
-          if (statusBar) {
-            statusBar.setAttribute(
-              'content',
-              theme === 'light' ? 'default' : 'black-translucent'
-            );
-          }
+        }
+
+        function applyTheme(theme) {
+          document.documentElement.classList.remove('dark', 'light');
+          document.documentElement.classList.add(theme);
+          applyBrowserChrome(theme);
         }
 
         var saved = localStorage.getItem('theme');
         var theme = saved || 'dark';
-        document.documentElement.classList.remove('dark', 'light');
-        document.documentElement.classList.add(theme);
-        applyBrowserChrome(theme);
+        applyTheme(theme);
+
         window.addEventListener('themechange', function (event) {
           var next = event && event.detail;
           if (next === 'dark' || next === 'light') applyBrowserChrome(next);
+        });
+
+        // ClientRouter swaps can reset <html class> from the fetched page
+        document.addEventListener('astro:after-swap', function () {
+          var next = localStorage.getItem('theme') || 'dark';
+          applyTheme(next);
         });
 
         if ('scrollRestoration' in history) {
@@ -130,9 +132,8 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
     <meta name="twitter:image" content={ogImageURL.href} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
 
-    <!-- Favicon / home screen -->
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -143,11 +144,16 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
     />
 
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body class="relative text-text-primary antialiased">
     <SiteBackdrop />
     <div class="relative z-10">
       <slot />
     </div>
+    <script>
+      import { bootSiteBackdrop } from "@/scripts/site-backdrop";
+      bootSiteBackdrop();
+    </script>
   </body>
 </html>

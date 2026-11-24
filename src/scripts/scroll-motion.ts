@@ -1,8 +1,10 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export function initScrollMotion() {
-  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isMobile = window.matchMedia("(max-width: 767px)").matches;

@@ -153,7 +153,16 @@ function createHyperspaceController(root: HTMLElement) {
   };
 }
 
+let dispose: (() => void) | null = null;
+
+export function teardownBackToTop() {
+  dispose?.();
+  dispose = null;
+}
+
 export function initBackToTop() {
+  teardownBackToTop();
+
   const button = document.getElementById("back-to-top");
   const hyperspaceRoot = document.getElementById("hyperspace");
   if (!(button instanceof HTMLButtonElement) || !hyperspaceRoot) return;
@@ -161,6 +170,8 @@ export function initBackToTop() {
   const progress = button.querySelector<SVGCircleElement>(".elevator__progress");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hyperspace = reduceMotion ? null : createHyperspaceController(hyperspaceRoot);
+  const ac = new AbortController();
+  const { signal } = ac;
 
   let visible = false;
   let scrolling = false;
@@ -292,15 +303,22 @@ export function initBackToTop() {
       );
   };
 
-  button.addEventListener("click", goTop);
-  window.addEventListener("scroll", update, { passive: true });
+  button.addEventListener("click", goTop, { signal });
+  window.addEventListener("scroll", update, { passive: true, signal });
   window.addEventListener(
     "resize",
     () => {
       update();
       hyperspace?.resize();
     },
-    { passive: true },
+    { passive: true, signal },
   );
   update();
+
+  dispose = () => {
+    ac.abort();
+    window.clearTimeout(launchTimer);
+    activeTween?.kill();
+    hyperspace?.stop();
+  };
 }

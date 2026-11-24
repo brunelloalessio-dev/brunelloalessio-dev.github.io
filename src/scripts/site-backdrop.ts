@@ -10,7 +10,22 @@ type OrbState = {
 const CARD_SELECTOR =
   ".stagger-item, .about-card, .experience-card, .hero-photo, .card-surface, .card-action, .glass.hover-glow";
 
+let dispose: (() => void) | null = null;
+let booted = false;
+
+/** Register once; init re-runs on every ClientRouter page load. */
+export function bootSiteBackdrop() {
+  if (booted) return;
+  booted = true;
+  document.addEventListener("astro:page-load", () => {
+    initSiteBackdrop();
+  });
+}
+
 export function initSiteBackdrop() {
+  dispose?.();
+  dispose = null;
+
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) return;
 
@@ -28,6 +43,9 @@ export function initSiteBackdrop() {
   }));
 
   const finePointer = window.matchMedia("(pointer: fine)").matches;
+  const ac = new AbortController();
+  const { signal } = ac;
+
   let mouseX = 0;
   let mouseY = 0;
   let currentX = 0;
@@ -52,7 +70,7 @@ export function initSiteBackdrop() {
         gridX = (event.clientX / window.innerWidth) * 100;
         gridY = (event.clientY / window.innerHeight) * 100;
       },
-      { passive: true },
+      { passive: true, signal },
     );
 
     window.addEventListener(
@@ -62,7 +80,7 @@ export function initSiteBackdrop() {
         mouseY = 0;
         attractStrength = 0;
       },
-      { passive: true },
+      { passive: true, signal },
     );
 
     document.addEventListener(
@@ -77,7 +95,7 @@ export function initSiteBackdrop() {
         attractY = ((rect.top + rect.height / 2) / window.innerHeight - 0.5) * 2;
         attractStrength = 1;
       },
-      { passive: true },
+      { passive: true, signal },
     );
 
     document.addEventListener(
@@ -91,7 +109,7 @@ export function initSiteBackdrop() {
         if (related instanceof Node && card.contains(related)) return;
         attractStrength = 0;
       },
-      { passive: true },
+      { passive: true, signal },
     );
   }
 
@@ -104,7 +122,7 @@ export function initSiteBackdrop() {
         scrolling = false;
       }, 120);
     },
-    { passive: true },
+    { passive: true, signal },
   );
 
   const tick = (time: number) => {
@@ -150,12 +168,10 @@ export function initSiteBackdrop() {
 
   rafId = window.requestAnimationFrame(tick);
 
-  window.addEventListener(
-    "pagehide",
-    () => {
-      window.cancelAnimationFrame(rafId);
-      window.clearTimeout(scrollIdleTimer);
-    },
-    { once: true },
-  );
+  dispose = () => {
+    ac.abort();
+    window.cancelAnimationFrame(rafId);
+    window.clearTimeout(scrollIdleTimer);
+    dispose = null;
+  };
 }

@@ -25,7 +25,7 @@ const homePath = `/${locale}/`;
   <article class="cv-sheet" aria-label={cv.meta_title}>
     <header class="cv-header">
       <div class="cv-brand">
-        <span class="cv-logo" aria-hidden="true">AB</span>
+        <span class="cv-logo" aria-hidden="true" transition:name="brand-logo">AB</span>
         <div>
           <h1 class="cv-name">Alessio Brunello</h1>
           <p class="cv-role">{cv.role}</p>
@@ -145,7 +145,11 @@ const homePath = `/${locale}/`;
     position: relative;
     z-index: 1;
     min-height: 100vh;
-    padding: 1.25rem 1rem 3rem;
+    padding:
+      calc(1.25rem + env(safe-area-inset-top))
+      max(1rem, env(safe-area-inset-right))
+      max(3rem, env(safe-area-inset-bottom))
+      max(1rem, env(safe-area-inset-left));
   }
 
   .cv-toolbar {
@@ -446,7 +450,11 @@ const homePath = `/${locale}/`;
 
   @media (min-width: 640px) {
     .cv-page {
-      padding: 2rem 1.5rem 4rem;
+      padding:
+        calc(2rem + env(safe-area-inset-top))
+        max(1.5rem, env(safe-area-inset-right))
+        max(4rem, env(safe-area-inset-bottom))
+        max(1.5rem, env(safe-area-inset-left));
     }
 
     .cv-sheet {
@@ -541,7 +549,13 @@ const homePath = `/${locale}/`;
 </style>
 
 <script>
-  document.getElementById("cv-print")?.addEventListener("click", () => {
-    window.print();
+  document.addEventListener("astro:page-load", () => {
+    document.getElementById("cv-print")?.addEventListener(
+      "click",
+      () => {
+        window.print();
+      },
+      { once: true },
+    );
   });
 </script>

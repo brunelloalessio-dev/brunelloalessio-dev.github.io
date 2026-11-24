@@ -10,10 +10,13 @@ async function typeInto(el: HTMLElement, text: string, msPerChar: number) {
   }
 }
 
+let heroRunId = 0;
+
 function startPhotoFloat(isMobile: boolean) {
   const floatEl = document.querySelector<HTMLElement>(".hero-photo-float");
   if (!floatEl) return;
 
+  gsap.killTweensOf(floatEl);
   gsap.to(floatEl, {
     y: isMobile ? -8 : -14,
     duration: isMobile ? 3.2 : 3.6,
@@ -55,6 +58,9 @@ function revealStaticHero() {
 }
 
 export async function initHeroChat() {
+  const runId = ++heroRunId;
+  const stillActive = () => runId === heroRunId;
+
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
@@ -112,6 +118,7 @@ export async function initHeroChat() {
     typing.style.display = "inline-flex";
     gsap.fromTo(typing, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" });
     await wait(650);
+    if (!stillActive()) return;
     gsap.to(typing, {
       opacity: 0,
       duration: 0.22,
@@ -128,23 +135,28 @@ export async function initHeroChat() {
     { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" },
   );
   await wait(150);
+  if (!stillActive()) return;
 
   for (const line of lines) {
+    if (!stillActive()) return;
     const isRoleLine = line.dataset.chatLine === "2";
     if (isRoleLine && caret) gsap.set(caret, { opacity: 1 });
     await typeInto(line, line.dataset.full || "", msPerChar);
     await wait(100);
   }
+  if (!stillActive()) return;
 
   // 3) Tagline typed inside the same chat bubble
   if (tagline) {
     gsap.to(tagline, { opacity: 1, duration: 0.25 });
     await typeInto(tagline, tagline.dataset.full || "", Math.max(10, msPerChar - 6));
   }
+  if (!stillActive()) return;
 
   if (caret) gsap.to(caret, { opacity: 0, duration: 0.2 });
   if (sent) gsap.to(sent, { opacity: 1, duration: 0.35, ease: "power2.out" });
   await wait(320);
+  if (!stillActive()) return;
 
   // 4) Photo appears on the right
   gsap.fromTo(
@@ -184,6 +196,7 @@ export async function initHeroChat() {
   }
 
   await wait(700);
+  if (!stillActive()) return;
   startPhotoFloat(isMobile);
 
   // 5) CTAs + scroll hint

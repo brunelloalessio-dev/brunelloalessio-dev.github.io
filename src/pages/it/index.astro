@@ -37,13 +37,7 @@ const locale = "it" as const;
   <BackToTop locale={locale} />
 
   <script>
-    import { initScrollMotion } from "@/scripts/scroll-motion";
-    import { initSiteBackdrop } from "@/scripts/site-backdrop";
-    import { initHeroChat } from "@/scripts/hero-chat";
-    import { initBackToTop } from "@/scripts/back-to-top";
-    initScrollMotion();
-    initSiteBackdrop();
-    initHeroChat();
-    initBackToTop();
+    import { bootHomePage } from "@/scripts/boot-home";
+    bootHomePage();
   </script>
 </Layout>
