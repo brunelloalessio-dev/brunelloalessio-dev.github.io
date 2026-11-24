@@ -21,20 +21,20 @@ const altPath = getLocalePath(altLocale);
       <!-- Logo -->
       <a
         href={`/${locale}/`}
-        class="text-gradient text-xl font-extrabold tracking-tight md:text-2xl"
+        class="nav-logo text-gradient text-xl font-extrabold tracking-tight md:text-2xl"
       >
         AB
       </a>
 
       <!-- Desktop Nav Links -->
       <div class="hidden items-center gap-5 lg:gap-7 md:flex">
-        <a href="#about" class="nav-link text-sm font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.about}</a>
-        <a href="#skills" class="nav-link text-sm font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.skills}</a>
-        <a href="#experience" class="nav-link text-sm font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.experience}</a>
-        <a href="#teaching" class="nav-link text-sm font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.teaching}</a>
-        <a href="#certifications" class="nav-link text-sm font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.certifications}</a>
-        <a href="#beyond" class="nav-link text-sm font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.beyond}</a>
-        <a href="#contact" class="nav-link text-sm font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.contact}</a>
+        <a href="#about" class="nav-link">{i18n.nav.about}</a>
+        <a href="#skills" class="nav-link">{i18n.nav.skills}</a>
+        <a href="#experience" class="nav-link">{i18n.nav.experience}</a>
+        <a href="#teaching" class="nav-link">{i18n.nav.teaching}</a>
+        <a href="#certifications" class="nav-link">{i18n.nav.certifications}</a>
+        <a href="#beyond" class="nav-link">{i18n.nav.beyond}</a>
+        <a href="#contact" class="nav-link">{i18n.nav.contact}</a>
       </div>
 
       <!-- Right side: Theme toggle + Lang switch + GitHub + Mobile menu -->
@@ -42,7 +42,7 @@ const altPath = getLocalePath(altLocale);
         <!-- Theme Toggle -->
         <button
           id="theme-toggle"
-          class="text-text-secondary transition-colors hover:text-text-primary"
+          class="nav-icon"
           aria-label="Toggle theme"
         >
           <!-- Sun icon (shown in dark mode) -->
@@ -58,7 +58,7 @@ const altPath = getLocalePath(altLocale);
         <!-- Language Switch -->
         <a
           href={altPath}
-          class="glass hover-glow rounded-lg px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-text-secondary transition-all hover:text-text-primary"
+          class="nav-lang glass rounded-lg px-3 py-1.5 text-xs font-semibold uppercase tracking-wider"
         >
           {altLocale.toUpperCase()}
         </a>
@@ -68,7 +68,7 @@ const altPath = getLocalePath(altLocale);
           href="https://github.com/brunelloalessio-dev"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-text-secondary transition-colors hover:text-text-primary"
+          class="nav-icon"
           aria-label="GitHub"
         >
           <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -79,7 +79,7 @@ const altPath = getLocalePath(altLocale);
         <!-- Mobile Menu Button -->
         <button
           id="mobile-menu-btn"
-          class="text-text-secondary transition-colors hover:text-text-primary md:hidden"
+          class="nav-icon md:hidden"
           aria-label="Menu"
         >
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,16 +96,216 @@ const altPath = getLocalePath(altLocale);
     class="glass-strong fixed inset-0 top-16 -translate-x-full opacity-0 transition-all duration-300 md:hidden"
   >
     <div class="flex flex-col gap-6 p-8">
-      <a href="#about" class="mobile-nav-link text-lg font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.about}</a>
-      <a href="#skills" class="mobile-nav-link text-lg font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.skills}</a>
-      <a href="#experience" class="mobile-nav-link text-lg font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.experience}</a>
-      <a href="#teaching" class="mobile-nav-link text-lg font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.teaching}</a>
-      <a href="#certifications" class="mobile-nav-link text-lg font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.certifications}</a>
-      <a href="#beyond" class="mobile-nav-link text-lg font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.beyond}</a>
-      <a href="#contact" class="mobile-nav-link text-lg font-medium text-text-secondary transition-colors hover:text-text-primary">{i18n.nav.contact}</a>
+      <a href="#about" class="mobile-nav-link">{i18n.nav.about}</a>
+      <a href="#skills" class="mobile-nav-link">{i18n.nav.skills}</a>
+      <a href="#experience" class="mobile-nav-link">{i18n.nav.experience}</a>
+      <a href="#teaching" class="mobile-nav-link">{i18n.nav.teaching}</a>
+      <a href="#certifications" class="mobile-nav-link">{i18n.nav.certifications}</a>
+      <a href="#beyond" class="mobile-nav-link">{i18n.nav.beyond}</a>
+      <a href="#contact" class="mobile-nav-link">{i18n.nav.contact}</a>
     </div>
   </div>
 </nav>
+
+<style>
+  .nav-link,
+  .mobile-nav-link {
+    position: relative;
+    display: inline-block;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      color 0.28s ease,
+      text-shadow 0.35s ease,
+      transform 0.28s ease;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.125rem;
+    width: fit-content;
+  }
+
+  .nav-link::after,
+  .mobile-nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.35rem;
+    width: 100%;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      rgba(56, 189, 248, 0.95),
+      rgba(217, 70, 239, 0.9),
+      rgba(96, 165, 250, 0.95)
+    );
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease,
+      opacity 0.35s ease;
+    opacity: 0.85;
+    box-shadow:
+      0 0 8px rgba(56, 189, 248, 0.55),
+      0 0 18px rgba(217, 70, 239, 0.35);
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible,
+  .mobile-nav-link:hover,
+  .mobile-nav-link:focus-visible {
+    color: var(--color-text-primary);
+    outline: none;
+  }
+
+  :global(html.dark) .nav-link:hover,
+  :global(html.dark) .nav-link:focus-visible,
+  :global(html.dark) .mobile-nav-link:hover,
+  :global(html.dark) .mobile-nav-link:focus-visible {
+    text-shadow:
+      0 0 10px rgba(56, 189, 248, 0.55),
+      0 0 22px rgba(217, 70, 239, 0.35),
+      0 0 36px rgba(96, 165, 250, 0.2);
+  }
+
+  :global(html.light) .nav-link:hover,
+  :global(html.light) .nav-link:focus-visible,
+  :global(html.light) .mobile-nav-link:hover,
+  :global(html.light) .mobile-nav-link:focus-visible {
+    text-shadow:
+      0 0 8px rgba(14, 165, 233, 0.35),
+      0 0 18px rgba(192, 38, 211, 0.22);
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after,
+  .mobile-nav-link:hover::after,
+  .mobile-nav-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: 0;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition:
+      color 0.28s ease,
+      filter 0.35s ease,
+      transform 0.28s ease,
+      background-color 0.28s ease;
+  }
+
+  .nav-icon:hover,
+  .nav-icon:focus-visible {
+    color: var(--color-text-primary);
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  :global(html.dark) .nav-icon:hover,
+  :global(html.dark) .nav-icon:focus-visible {
+    filter:
+      drop-shadow(0 0 6px rgba(56, 189, 248, 0.75))
+      drop-shadow(0 0 14px rgba(217, 70, 239, 0.45));
+  }
+
+  :global(html.light) .nav-icon:hover,
+  :global(html.light) .nav-icon:focus-visible {
+    filter:
+      drop-shadow(0 0 5px rgba(14, 165, 233, 0.45))
+      drop-shadow(0 0 12px rgba(192, 38, 211, 0.28));
+  }
+
+  .nav-lang {
+    color: var(--color-text-secondary);
+    transition:
+      color 0.28s ease,
+      border-color 0.35s ease,
+      box-shadow 0.35s ease,
+      text-shadow 0.35s ease,
+      transform 0.28s ease;
+  }
+
+  .nav-lang:hover,
+  .nav-lang:focus-visible {
+    color: var(--color-text-primary);
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  :global(html.dark) .nav-lang:hover,
+  :global(html.dark) .nav-lang:focus-visible {
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow:
+      0 0 0 1px rgba(217, 70, 239, 0.2),
+      0 0 16px rgba(56, 189, 248, 0.28),
+      0 0 28px rgba(217, 70, 239, 0.18);
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.45);
+  }
+
+  :global(html.light) .nav-lang:hover,
+  :global(html.light) .nav-lang:focus-visible {
+    border-color: rgba(14, 165, 233, 0.4);
+    box-shadow:
+      0 0 0 1px rgba(192, 38, 211, 0.15),
+      0 0 14px rgba(14, 165, 233, 0.18),
+      0 0 24px rgba(192, 38, 211, 0.12);
+  }
+
+  .nav-logo {
+    transition:
+      filter 0.4s ease,
+      transform 0.3s ease;
+  }
+
+  .nav-logo:hover,
+  .nav-logo:focus-visible {
+    outline: none;
+    transform: scale(1.04);
+  }
+
+  :global(html.dark) .nav-logo:hover,
+  :global(html.dark) .nav-logo:focus-visible {
+    filter:
+      drop-shadow(0 0 8px rgba(56, 189, 248, 0.55))
+      drop-shadow(0 0 18px rgba(217, 70, 239, 0.35));
+  }
+
+  :global(html.light) .nav-logo:hover,
+  :global(html.light) .nav-logo:focus-visible {
+    filter:
+      drop-shadow(0 0 6px rgba(14, 165, 233, 0.35))
+      drop-shadow(0 0 14px rgba(192, 38, 211, 0.22));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link,
+    .mobile-nav-link,
+    .nav-icon,
+    .nav-lang,
+    .nav-logo,
+    .nav-link::after,
+    .mobile-nav-link::after {
+      transition: none;
+    }
+
+    .nav-icon:hover,
+    .nav-lang:hover,
+    .nav-logo:hover {
+      transform: none;
+    }
+  }
+</style>
 
 <script>
   const navbar = document.getElementById("navbar");
