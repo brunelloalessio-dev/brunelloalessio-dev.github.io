@@ -192,5 +192,8 @@
   },
   "footer": {
     "rights": "All rights reserved."
+  },
+  "elevator": {
+    "label": "Back to top"
   }
 }

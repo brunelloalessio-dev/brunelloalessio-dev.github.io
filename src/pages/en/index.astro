@@ -10,6 +10,7 @@ import Certifications from "@/components/Certifications.astro";
 import Beyond from "@/components/Beyond.astro";
 import Contact from "@/components/Contact.astro";
 import Footer from "@/components/Footer.astro";
+import BackToTop from "@/components/BackToTop.astro";
 
 const locale = "en" as const;
 ---
@@ -33,13 +34,16 @@ const locale = "en" as const;
   </main>
 
   <Footer locale={locale} />
+  <BackToTop locale={locale} />
 
   <script>
     import { initScrollMotion } from "@/scripts/scroll-motion";
     import { initSiteBackdrop } from "@/scripts/site-backdrop";
     import { initHeroChat } from "@/scripts/hero-chat";
+    import { initBackToTop } from "@/scripts/back-to-top";
     initScrollMotion();
     initSiteBackdrop();
     initHeroChat();
+    initBackToTop();
   </script>
 </Layout>

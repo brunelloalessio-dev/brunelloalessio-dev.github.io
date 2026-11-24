@@ -1,0 +1,224 @@
+---
+import type { Locale } from "@/i18n/utils";
+import { t } from "@/i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const label = t(locale).elevator.label;
+---
+
+<button
+  id="back-to-top"
+  type="button"
+  class="elevator"
+  aria-label={label}
+  aria-hidden="true"
+  hidden
+>
+  <svg class="elevator__ring" viewBox="0 0 56 56" aria-hidden="true">
+    <circle class="elevator__track" cx="28" cy="28" r="24" />
+    <circle
+      class="elevator__progress"
+      cx="28"
+      cy="28"
+      r="24"
+      pathLength="100"
+    />
+  </svg>
+  <span class="elevator__core glass hover-glow">
+    <svg class="elevator__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.75"
+        d="M12 19V5m0 0l-6 6m6-6l6 6"
+      />
+    </svg>
+  </span>
+</button>
+
+<div id="hyperspace" class="hyperspace" aria-hidden="true">
+  <canvas class="hyperspace__canvas" data-hyperspace-canvas></canvas>
+  <div class="hyperspace__vignette"></div>
+  <div class="hyperspace__flash" data-hyperspace-flash></div>
+</div>
+
+<style>
+  .elevator {
+    --elevator-size: 3.25rem;
+    position: fixed;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1.25rem, env(safe-area-inset-bottom));
+    z-index: 40;
+    width: var(--elevator-size);
+    height: var(--elevator-size);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-text-primary);
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+    pointer-events: none;
+    transition:
+      opacity 0.35s ease,
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .elevator.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .elevator.is-launching .elevator__core {
+    transform: translateY(-3px) scale(0.94);
+  }
+
+  .elevator.is-launching .elevator__arrow {
+    animation: elevator-arrow-lift 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .elevator__ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  .elevator__track,
+  .elevator__progress {
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .elevator__track {
+    stroke: var(--color-glass-border);
+  }
+
+  .elevator__progress {
+    stroke: var(--color-accent);
+    stroke-linecap: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.12s linear;
+    opacity: 0.85;
+  }
+
+  .elevator__core {
+    position: absolute;
+    inset: 6px;
+    display: grid;
+    place-items: center;
+    border-radius: 9999px;
+    transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .elevator:hover .elevator__core,
+  .elevator:focus-visible .elevator__core {
+    transform: translateY(-2px);
+  }
+
+  .elevator:focus-visible {
+    outline: none;
+  }
+
+  .elevator:focus-visible .elevator__core {
+    box-shadow: 0 0 0 2px var(--color-bg-primary), 0 0 0 4px var(--color-accent-soft);
+  }
+
+  .elevator__arrow {
+    width: 1.15rem;
+    height: 1.15rem;
+    display: block;
+  }
+
+  .hyperspace {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .hyperspace.is-active {
+    visibility: visible;
+  }
+
+  .hyperspace__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .hyperspace__vignette {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 12%, rgba(125, 211, 252, 0.08), transparent 55%),
+      radial-gradient(ellipse at center, transparent 8%, rgba(0, 0, 0, 0.78) 100%);
+    opacity: 1;
+  }
+
+  :global(html.light) .hyperspace__vignette {
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 12%, rgba(56, 189, 248, 0.1), transparent 55%),
+      radial-gradient(ellipse at center, transparent 5%, rgba(2, 4, 12, 0.72) 100%);
+  }
+
+  .hyperspace__flash {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 50% 18%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(125, 211, 252, 0.55) 24%,
+      rgba(56, 189, 248, 0.12) 50%,
+      transparent 70%
+    );
+    opacity: 0;
+  }
+
+  @keyframes elevator-arrow-lift {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    45% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    46% {
+      transform: translateY(8px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .elevator,
+    .elevator__core,
+    .elevator__progress {
+      transition: none;
+    }
+
+    .elevator.is-launching .elevator__arrow {
+      animation: none;
+    }
+
+    .hyperspace {
+      display: none;
+    }
+  }
+</style>
