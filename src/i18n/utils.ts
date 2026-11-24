@@ -23,3 +23,11 @@ export function getAlternateLocale(locale: Locale): Locale {
 export function getLocalePath(locale: Locale): string {
   return `/${locale}/`;
 }
+
+/** Same path under another locale. Home stays `/it/` or `/en/`. */
+export function withLocale(pathname: string, locale: Locale): string {
+  const parts = pathname.split("?")[0].split("#")[0].split("/").filter(Boolean);
+  if (parts[0] === "it" || parts[0] === "en") parts[0] = locale;
+  else parts.unshift(locale);
+  return `/${parts.join("/")}/`;
+}

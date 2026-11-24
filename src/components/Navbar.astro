@@ -1,6 +1,6 @@
 ---
 import type { Locale } from "@/i18n/utils";
-import { t, getAlternateLocale, getLocalePath } from "@/i18n/utils";
+import { t, getAlternateLocale, withLocale } from "@/i18n/utils";
 
 interface Props {
   locale: Locale;
@@ -10,7 +10,20 @@ const { locale } = Astro.props;
 const i18n = t(locale);
 const tip = i18n.nav.tooltips;
 const altLocale = getAlternateLocale(locale);
-const altPath = getLocalePath(altLocale);
+const altPath = withLocale(Astro.url.pathname, altLocale);
+const homePath = `/${locale}/`;
+const onHome = Astro.url.pathname.replace(/\/$/, "") === `/${locale}`;
+const sectionHref = (id: string) => (onHome ? `#${id}` : `${homePath}#${id}`);
+const navItems = [
+  { id: "about", label: i18n.nav.about },
+  { id: "skills", label: i18n.nav.skills },
+  { id: "experience", label: i18n.nav.experience },
+  { id: "impact", label: i18n.nav.impact },
+  { id: "teaching", label: i18n.nav.teaching },
+  { id: "certifications", label: i18n.nav.certifications },
+  { id: "beyond", label: i18n.nav.beyond },
+  { id: "contact", label: i18n.nav.contact },
+];
 ---
 
 <nav
@@ -39,14 +52,9 @@ const altPath = getLocalePath(altLocale);
 
       <!-- Desktop Nav Links -->
       <div class="desktop-nav hidden items-center gap-5 lg:gap-7 md:flex">
-        <a href="#about" class="nav-link">{i18n.nav.about}</a>
-        <a href="#skills" class="nav-link">{i18n.nav.skills}</a>
-        <a href="#experience" class="nav-link">{i18n.nav.experience}</a>
-        <a href="#impact" class="nav-link">{i18n.nav.impact}</a>
-        <a href="#teaching" class="nav-link">{i18n.nav.teaching}</a>
-        <a href="#certifications" class="nav-link">{i18n.nav.certifications}</a>
-        <a href="#beyond" class="nav-link">{i18n.nav.beyond}</a>
-        <a href="#contact" class="nav-link">{i18n.nav.contact}</a>
+        {navItems.map((item) => (
+          <a href={sectionHref(item.id)} class="nav-link">{item.label}</a>
+        ))}
       </div>
 
       <!-- Right side: Theme toggle + Lang switch + GitHub + Mobile menu -->
@@ -124,14 +132,9 @@ const altPath = getLocalePath(altLocale);
     class="mobile-drawer glass-strong"
   >
     <div class="mobile-drawer__inner flex flex-col gap-6 p-8">
-      <a href="#about" class="mobile-nav-link">{i18n.nav.about}</a>
-      <a href="#skills" class="mobile-nav-link">{i18n.nav.skills}</a>
-      <a href="#experience" class="mobile-nav-link">{i18n.nav.experience}</a>
-      <a href="#impact" class="mobile-nav-link">{i18n.nav.impact}</a>
-      <a href="#teaching" class="mobile-nav-link">{i18n.nav.teaching}</a>
-      <a href="#certifications" class="mobile-nav-link">{i18n.nav.certifications}</a>
-      <a href="#beyond" class="mobile-nav-link">{i18n.nav.beyond}</a>
-      <a href="#contact" class="mobile-nav-link">{i18n.nav.contact}</a>
+      {navItems.map((item) => (
+        <a href={sectionHref(item.id)} class="mobile-nav-link">{item.label}</a>
+      ))}
     </div>
   </div>
 </nav>

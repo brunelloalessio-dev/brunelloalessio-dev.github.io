@@ -350,7 +350,53 @@
     "footnote": "Web version · use “Print / Save PDF” to download the resume (Junior role omitted in the PDF)."
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "privacy": "Privacy"
+  },
+  "privacy": {
+    "meta_title": "Privacy — Alessio Brunello",
+    "meta_description": "How this portfolio handles visitor data: no analytics, no profiling cookies, hosted on GitHub Pages.",
+    "title": "Privacy",
+    "updated": "Updated 24 November 2026",
+    "sections": [
+      {
+        "heading": "In short",
+        "paragraphs": [
+          "This is my personal portfolio. I don’t use analytics, ads, or profiling cookies, and there is no consent banner because there is nothing to accept."
+        ]
+      },
+      {
+        "heading": "Controller",
+        "paragraphs": [
+          "Alessio Brunello. To ask what I keep about you, or to have it deleted, write to {email}."
+        ]
+      },
+      {
+        "heading": "Visiting the site",
+        "paragraphs": [
+          "Pages are static files published on GitHub Pages. GitHub receives connection data, including the IP address, in order to deliver the page. I don’t read those logs and I don’t use them to recognize you.",
+          "The typeface and icons are served from this same domain. The browser does not contact Google Fonts or any other CDN."
+        ]
+      },
+      {
+        "heading": "On your device",
+        "paragraphs": [
+          "Light or dark theme is stored in localStorage. A sessionStorage flag remembers whether the intro animation already played in this tab. They stay in the browser and don’t identify you. You can clear them from the browser’s site settings."
+        ]
+      },
+      {
+        "heading": "If you email me",
+        "paragraphs": [
+          "There is no form. The message goes from your mail app to my iCloud inbox. I use it only to reply. I don’t pass it on and I don’t add you to a newsletter. I keep it while the conversation is relevant, and I delete it if you ask."
+        ]
+      },
+      {
+        "heading": "Your rights",
+        "paragraphs": [
+          "You can ask for access, correction, or deletion of the messages you sent me. You can also contact the Italian data protection authority: https://www.garanteprivacy.it."
+        ]
+      }
+    ]
   },
   "elevator": {
     "label": "Back to top",

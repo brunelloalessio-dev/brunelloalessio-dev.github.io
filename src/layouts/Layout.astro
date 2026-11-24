@@ -3,7 +3,7 @@ import { ClientRouter, fade } from "astro:transitions";
 import "@/styles/global.css";
 import SiteBackdrop from "@/components/SiteBackdrop.astro";
 import type { Locale } from "@/i18n/utils";
-import { getAlternateLocale, getLocalePath } from "@/i18n/utils";
+import { getAlternateLocale, withLocale } from "@/i18n/utils";
 
 interface Props {
   title: string;
@@ -14,7 +14,8 @@ interface Props {
 const { title, description, locale } = Astro.props;
 const altLocale = getAlternateLocale(locale);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const altURL = new URL(getLocalePath(altLocale), Astro.site);
+const altURL = new URL(withLocale(Astro.url.pathname, altLocale), Astro.site);
+const xDefaultURL = new URL(withLocale(Astro.url.pathname, "it"), Astro.site);
 const ogImageURL = new URL("/og-image.jpg", Astro.site);
 const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
 ---
@@ -108,7 +109,7 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
     <link
       rel="alternate"
       hreflang="x-default"
-      href={new URL(getLocalePath("it"), Astro.site).href}
+      href={xDefaultURL.href}
     />
 
     <!-- Open Graph -->
@@ -136,14 +137,6 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#09090b" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
 
     <title>{title}</title>
     <ClientRouter />

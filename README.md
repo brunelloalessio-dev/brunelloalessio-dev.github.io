@@ -10,7 +10,7 @@
 [![Astro](https://img.shields.io/badge/Astro-v7-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Codice MIT](https://img.shields.io/badge/codice-MIT-16a34a)](LICENSE)
 
 [**🔗 Live →**](https://brunelloalessio-dev.github.io) · [**🇮🇹 Italiano**](https://brunelloalessio-dev.github.io/it/) · [**🇬🇧 English**](https://brunelloalessio-dev.github.io/en/)
 
@@ -162,7 +162,12 @@ Il workflow [Build site](.github/workflows/deploy.yml) verifica solo che `npm ru
 
 ## 📄 Licenza
 
-Questo progetto è distribuito sotto licenza [MIT](LICENSE).
+Il sito è un portfolio personale, non una libreria.
+
+- **Contenuti** (testi, CV, immagini, biografia): © Alessio Brunello, tutti i diritti riservati.
+- **Codice sorgente** (Astro, componenti, stili, script, configurazione): [MIT](LICENSE).
+
+Inter è sotto SIL Open Font License 1.1. Le icone Devicon sono MIT. I testi sono in `public/licenses/`.
 
 ---
 

@@ -17,6 +17,11 @@ const year = new Date().getFullYear();
       <div class="flex items-center gap-2 text-sm text-text-secondary">
         <span>© {year} Alessio Brunello.</span>
         <span>{i18n.footer.rights}</span>
+        <span aria-hidden="true">·</span>
+        <a
+          href={`/${locale}/privacy/`}
+          class="underline-offset-4 transition-colors hover:text-accent hover:underline"
+        >{i18n.footer.privacy}</a>
       </div>
       <p class="flex items-center gap-1.5 text-sm text-text-secondary">
         <span>Developed with</span>

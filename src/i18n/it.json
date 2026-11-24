@@ -350,7 +350,53 @@
     "footnote": "Versione web · usa «Stampa / Salva PDF» per scaricare il curriculum (il ruolo Junior è omesso nel PDF)."
   },
   "footer": {
-    "rights": "Tutti i diritti riservati."
+    "rights": "Tutti i diritti riservati.",
+    "privacy": "Privacy"
+  },
+  "privacy": {
+    "meta_title": "Privacy — Alessio Brunello",
+    "meta_description": "Come questo portfolio tratta i dati di chi lo visita: niente analytics, niente cookie di profilazione, hosting su GitHub Pages.",
+    "title": "Privacy",
+    "updated": "Aggiornata il 24 novembre 2026",
+    "sections": [
+      {
+        "heading": "In breve",
+        "paragraphs": [
+          "Questo è il mio portfolio personale. Non uso analytics, pubblicità o cookie di profilazione, e non chiedo un consenso perché non c’è nulla da accettare."
+        ]
+      },
+      {
+        "heading": "Titolare",
+        "paragraphs": [
+          "Alessio Brunello. Se vuoi sapere cosa conservo di te, o chiederne la cancellazione, scrivimi a {email}."
+        ]
+      },
+      {
+        "heading": "Visita al sito",
+        "paragraphs": [
+          "Le pagine sono file statici pubblicati su GitHub Pages. GitHub riceve i dati tecnici della connessione, compreso l’indirizzo IP, per consegnare la pagina. Io non leggo quei log e non li uso per riconoscerti.",
+          "Carattere e icone arrivano da questo stesso dominio. Il browser non contatta Google Fonts né altre CDN."
+        ]
+      },
+      {
+        "heading": "Sul tuo dispositivo",
+        "paragraphs": [
+          "Il tema chiaro o scuro resta in localStorage. Un valore in sessionStorage ricorda se l’introduzione animata è già stata mostrata in questa scheda. Non escono dal browser e non ti identificano. Li cancelli dalle impostazioni del sito nel browser."
+        ]
+      },
+      {
+        "heading": "Se mi scrivi",
+        "paragraphs": [
+          "Non c’è un modulo. Il messaggio parte dal tuo programma di posta verso la mia casella iCloud. Lo uso solo per risponderti, non lo cedo e non lo metto in una newsletter. Lo tengo finché la conversazione serve, poi lo cancello se me lo chiedi."
+        ]
+      },
+      {
+        "heading": "Diritti",
+        "paragraphs": [
+          "Puoi chiedermi accesso, correzione o cancellazione dei messaggi che mi hai inviato. Puoi anche rivolgerti al Garante per la protezione dei dati personali: https://www.garanteprivacy.it."
+        ]
+      }
+    ]
   },
   "elevator": {
     "label": "Torna su",
