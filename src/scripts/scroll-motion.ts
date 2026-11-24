@@ -18,104 +18,111 @@ export function initScrollMotion() {
     return;
   }
 
-  // Site-wide backdrop parallax (softer on mobile)
-  const parallaxScale = isMobile ? 0.35 : 1;
-  gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
-    const speed = Number.parseFloat(el.dataset.parallax || "0.1") * parallaxScale;
-    gsap.to(el, {
-      y: () => speed * (isMobile ? 120 : 220),
-      ease: "none",
-      scrollTrigger: {
-        trigger: document.documentElement,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true,
-      },
-    });
+  ScrollTrigger.config({
+    ignoreMobileResize: true,
+    limitCallbacks: true,
   });
 
-  // Hero photo parallax while leaving the first viewport
-  gsap.utils.toArray<HTMLElement>("[data-parallax-hero]").forEach((el) => {
-    const speed = Number.parseFloat(el.dataset.parallaxHero || "0.1") * parallaxScale;
-    gsap.to(el, {
-      y: () => speed * (isMobile ? 60 : 120),
-      ease: "none",
-      scrollTrigger: {
-        trigger: "#hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
+  // Soft parallax only on desktop — scrub lag avoids 1:1 scroll stutter
+  if (!isMobile) {
+    gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
+      const speed = Number.parseFloat(el.dataset.parallax || "0.1");
+      gsap.to(el, {
+        y: speed * 120,
+        ease: "none",
+        force3D: true,
+        scrollTrigger: {
+          trigger: document.documentElement,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1.2,
+        },
+      });
     });
-  });
 
-  // Section fade / slide reveals
+    gsap.utils.toArray<HTMLElement>("[data-parallax-hero]").forEach((el) => {
+      const speed = Number.parseFloat(el.dataset.parallaxHero || "0.1");
+      gsap.to(el, {
+        y: speed * 70,
+        ease: "none",
+        force3D: true,
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.1,
+        },
+      });
+    });
+  }
+
+  // Lighter reveals — less travel, fewer paint spikes while scrolling
   gsap.utils.toArray<HTMLElement>(".fade-in").forEach((el) => {
     gsap.fromTo(
       el,
-      { opacity: 0, y: 40 },
+      { opacity: 0, y: 22 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.85,
-        ease: "power3.out",
-        clearProps: "transform",
+        duration: 0.65,
+        ease: "power2.out",
+        force3D: true,
         scrollTrigger: {
           trigger: el,
-          start: "top 88%",
+          start: "top 90%",
           once: true,
+          fastScrollEnd: true,
         },
       },
     );
   });
 
-  // Staggered card grids
   gsap.utils.toArray<HTMLElement>(".stagger-grid").forEach((grid) => {
     const items = grid.querySelectorAll<HTMLElement>(".stagger-item");
     if (!items.length) return;
 
     gsap.fromTo(
       items,
-      { opacity: 0, y: 44 },
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.7,
-        stagger: 0.08,
-        ease: "power3.out",
-        clearProps: "transform",
+        duration: 0.55,
+        stagger: 0.05,
+        ease: "power2.out",
+        force3D: true,
         scrollTrigger: {
           trigger: grid,
-          start: "top 85%",
+          start: "top 88%",
           once: true,
+          fastScrollEnd: true,
         },
       },
     );
   });
 
-  // About stats after main card
   const aboutStats = document.querySelectorAll<HTMLElement>("#about .about-stat");
   if (aboutStats.length) {
     gsap.fromTo(
       aboutStats,
-      { opacity: 0, y: 24, scale: 0.96 },
+      { opacity: 0, y: 14 },
       {
         opacity: 1,
         y: 0,
-        scale: 1,
-        duration: 0.6,
-        stagger: 0.12,
-        ease: "power3.out",
+        duration: 0.5,
+        stagger: 0.08,
+        ease: "power2.out",
+        force3D: true,
         scrollTrigger: {
           trigger: "#about .about-card",
-          start: "top 70%",
+          start: "top 72%",
           once: true,
+          fastScrollEnd: true,
         },
       },
     );
   }
 
-  // Experience timeline draw + card
   const timelineLine = document.querySelector<HTMLElement>("[data-timeline-line]");
   if (timelineLine) {
     gsap.fromTo(
@@ -124,12 +131,13 @@ export function initScrollMotion() {
       {
         scaleY: 1,
         transformOrigin: "top center",
-        duration: 1.15,
+        duration: 0.9,
         ease: "power2.out",
         scrollTrigger: {
           trigger: "#experience",
-          start: "top 72%",
+          start: "top 75%",
           once: true,
+          fastScrollEnd: true,
         },
       },
     );
@@ -139,17 +147,19 @@ export function initScrollMotion() {
   if (experienceCard) {
     gsap.fromTo(
       experienceCard,
-      { opacity: 0, x: isMobile ? 0 : 28, y: isMobile ? 32 : 0 },
+      { opacity: 0, y: isMobile ? 18 : 0, x: isMobile ? 0 : 16 },
       {
         opacity: 1,
         x: 0,
         y: 0,
-        duration: 0.9,
-        ease: "power3.out",
+        duration: 0.7,
+        ease: "power2.out",
+        force3D: true,
         scrollTrigger: {
           trigger: experienceCard,
-          start: "top 85%",
+          start: "top 88%",
           once: true,
+          fastScrollEnd: true,
         },
       },
     );
@@ -159,16 +169,17 @@ export function initScrollMotion() {
   if (experienceDot) {
     gsap.fromTo(
       experienceDot,
-      { scale: 0, opacity: 0 },
+      { scale: 0.6, opacity: 0 },
       {
         scale: 1,
         opacity: 1,
-        duration: 0.5,
-        ease: "back.out(1.6)",
+        duration: 0.4,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: "#experience",
-          start: "top 72%",
+          start: "top 75%",
           once: true,
+          fastScrollEnd: true,
         },
       },
     );

@@ -334,14 +334,25 @@ const altPath = getLocalePath(altLocale);
     window.dispatchEvent(new CustomEvent("themechange", { detail: newTheme }));
   });
 
-  // Glassmorphism on scroll
-  window.addEventListener("scroll", () => {
+  // Glassmorphism on scroll (rAF-throttled to avoid scroll jank)
+  let navScrollTicking = false;
+  const syncNavbarGlass = () => {
+    navScrollTicking = false;
     if (window.scrollY > 50) {
       navbar?.classList.add("glass");
     } else {
       navbar?.classList.remove("glass");
     }
-  });
+  };
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (navScrollTicking) return;
+      navScrollTicking = true;
+      window.requestAnimationFrame(syncNavbarGlass);
+    },
+    { passive: true },
+  );
 
   // Mobile menu toggle
   mobileMenuBtn?.addEventListener("click", () => {

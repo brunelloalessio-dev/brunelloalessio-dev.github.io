@@ -128,13 +128,17 @@ npm run dev
 
 ## 🚢 Deploy
 
-Il sito viene deployato automaticamente su **GitHub Pages** ad ogni push sul branch `main` tramite [GitHub Actions](.github/workflows/deploy.yml).
+GitHub Pages pubblica la cartella **`docs/`** dal branch `main` (deploy nativo `pages-build-deployment`).
 
-Il workflow:
-1. Checkout del codice
-2. Setup Node.js 20 + cache npm
-3. `npm ci` → `npm run build`
-4. Upload e deploy dell'artifact da `./docs`
+Prima di pushare su `main`, rigenera l’output statico:
+
+```bash
+npm run build
+git add docs
+git commit -m "Rebuild docs"
+```
+
+Il workflow [Build site](.github/workflows/deploy.yml) verifica solo che `npm run build` passi (non pubblica Pages: quello lo fa già il deploy dalla cartella `docs/`).
 
 ---
 

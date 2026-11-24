@@ -8,7 +8,7 @@ type OrbState = {
 };
 
 const CARD_SELECTOR =
-  ".stagger-item, .about-card, .experience-card, .hero-photo, .glass.hover-glow";
+  ".stagger-item, .about-card, .experience-card, .hero-photo, .card-surface, .card-action, .glass.hover-glow";
 
 export function initSiteBackdrop() {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -39,6 +39,9 @@ export function initSiteBackdrop() {
   let rafId = 0;
   let gridX = 50;
   let gridY = 40;
+  let scrolling = false;
+  let scrollIdleTimer = 0;
+  let lastTick = 0;
 
   if (finePointer) {
     window.addEventListener(
@@ -92,25 +95,47 @@ export function initSiteBackdrop() {
     );
   }
 
+  window.addEventListener(
+    "scroll",
+    () => {
+      scrolling = true;
+      window.clearTimeout(scrollIdleTimer);
+      scrollIdleTimer = window.setTimeout(() => {
+        scrolling = false;
+      }, 120);
+    },
+    { passive: true },
+  );
+
   const tick = (time: number) => {
+    // Cap backdrop work while scrolling to keep wheel/trackpad smooth
+    if (scrolling && time - lastTick < 32) {
+      rafId = window.requestAnimationFrame(tick);
+      return;
+    }
+    lastTick = time;
+
     const t = time * 0.001;
+    const ease = scrolling ? 0.035 : 0.06;
     const targetX = mouseX * 0.72 + attractX * 0.55 * attractStrength;
     const targetY = mouseY * 0.72 + attractY * 0.55 * attractStrength;
 
-    currentX += (targetX - currentX) * 0.06;
-    currentY += (targetY - currentY) * 0.06;
-    currentAttract += (attractStrength - currentAttract) * 0.08;
+    currentX += (targetX - currentX) * ease;
+    currentY += (targetY - currentY) * ease;
+    currentAttract += (attractStrength - currentAttract) * (scrolling ? 0.04 : 0.08);
+
+    const motionScale = scrolling ? 0.55 : 1;
 
     for (const orb of orbs) {
-      const floatX = Math.sin(t * orb.speed + orb.phase) * orb.amp;
-      const floatY = Math.cos(t * orb.speed * 0.85 + orb.phase) * orb.amp;
+      const floatX = Math.sin(t * orb.speed + orb.phase) * orb.amp * motionScale;
+      const floatY = Math.cos(t * orb.speed * 0.85 + orb.phase) * orb.amp * motionScale;
       const pull = 1 + currentAttract * 0.35;
-      const moveX = currentX * orb.strength * orb.invert * pull;
-      const moveY = currentY * orb.strength * orb.invert * pull;
+      const moveX = currentX * orb.strength * orb.invert * pull * motionScale;
+      const moveY = currentY * orb.strength * orb.invert * pull * motionScale;
       orb.el.style.transform = `translate3d(${floatX + moveX}px, ${floatY + moveY}px, 0)`;
     }
 
-    if (grid) {
+    if (grid && !scrolling) {
       const driftX = (t * 4) % 100;
       const driftY = (t * 2.2) % 100;
       grid.style.setProperty("--grid-x", `${gridX}%`);
@@ -129,6 +154,7 @@ export function initSiteBackdrop() {
     "pagehide",
     () => {
       window.cancelAnimationFrame(rafId);
+      window.clearTimeout(scrollIdleTimer);
     },
     { once: true },
   );
