@@ -8,6 +8,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const i18n = t(locale);
+const tip = i18n.nav.tooltips;
 const altLocale = getAlternateLocale(locale);
 const altPath = getLocalePath(altLocale);
 ---
@@ -15,6 +16,11 @@ const altPath = getLocalePath(altLocale);
 <nav
   id="navbar"
   class="site-header fixed top-0 left-0 right-0 z-50 pt-[env(safe-area-inset-top)] transition-[border-color,box-shadow,background-color] duration-300"
+  data-locale={locale}
+  data-tip-theme-light={tip.theme_to_light}
+  data-tip-theme-dark={tip.theme_to_dark}
+  data-tip-menu-open={tip.menu_open}
+  data-tip-menu-close={tip.menu_close}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between md:h-20">
@@ -28,7 +34,7 @@ const altPath = getLocalePath(altLocale);
       </a>
 
       <!-- Desktop Nav Links -->
-      <div class="hidden items-center gap-5 lg:gap-7 md:flex">
+      <div class="desktop-nav hidden items-center gap-5 lg:gap-7 md:flex">
         <a href="#about" class="nav-link">{i18n.nav.about}</a>
         <a href="#skills" class="nav-link">{i18n.nav.skills}</a>
         <a href="#experience" class="nav-link">{i18n.nav.experience}</a>
@@ -39,57 +45,69 @@ const altPath = getLocalePath(altLocale);
       </div>
 
       <!-- Right side: Theme toggle + Lang switch + GitHub + Mobile menu -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-1 sm:gap-2">
         <!-- Theme Toggle -->
         <button
           id="theme-toggle"
-          class="nav-icon inline-flex"
-          aria-label="Toggle theme"
+          type="button"
+          class="nav-icon nav-tip-host inline-flex"
+          aria-label={tip.theme_to_light}
+          data-tooltip={tip.theme_to_light}
         >
-          <!-- Sun icon (shown in dark mode) -->
-          <svg id="icon-sun" class="hidden h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <svg id="icon-sun" class="hidden h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
           </svg>
-          <!-- Moon icon (shown in light mode) -->
-          <svg id="icon-moon" class="hidden h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <svg id="icon-moon" class="hidden h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
           </svg>
+          <span class="nav-tip" role="tooltip">{tip.theme_to_light}</span>
         </button>
 
         <!-- Language Switch -->
         <a
+          id="lang-switch"
           href={altPath}
-          class="nav-lang nav-icon inline-flex text-xs font-semibold uppercase tracking-wider"
-          aria-label={`Switch to ${altLocale.toUpperCase()}`}
+          class="nav-lang nav-icon nav-tip-host inline-flex text-xs font-semibold uppercase tracking-wider"
+          aria-label={tip.lang}
+          data-tooltip={tip.lang}
+          data-target-locale={altLocale}
         >
-          {altLocale.toUpperCase()}
+          <span class="nav-lang__label">{altLocale.toUpperCase()}</span>
+          <span class="nav-tip" role="tooltip">{tip.lang}</span>
         </a>
 
         <!-- GitHub -->
         <a
+          id="github-link"
           href="https://github.com/brunelloalessio-dev"
           target="_blank"
           rel="noopener noreferrer"
-          class="nav-icon inline-flex"
-          aria-label="GitHub"
+          class="nav-icon nav-tip-host inline-flex"
+          aria-label={tip.github}
+          data-tooltip={tip.github}
         >
-          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
           </svg>
+          <span class="nav-tip" role="tooltip">{tip.github}</span>
         </a>
 
-        <!-- Mobile Menu Button -->
+        <!-- Mobile Menu Button — only below md, when desktop tabs are hidden -->
         <button
           id="mobile-menu-btn"
           type="button"
-          class="nav-icon relative z-[60] inline-flex md:hidden"
-          aria-label="Menu"
+          class="nav-icon nav-tip-host mobile-menu-btn inline-flex"
+          aria-label={tip.menu_open}
           aria-controls="mobile-menu"
           aria-expanded="false"
+          data-tooltip={tip.menu_open}
         >
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
+          <span class="burger" aria-hidden="true">
+            <span class="burger__line"></span>
+            <span class="burger__line"></span>
+            <span class="burger__line"></span>
+          </span>
+          <span class="nav-tip" role="tooltip">{tip.menu_open}</span>
         </button>
       </div>
     </div>
@@ -98,9 +116,9 @@ const altPath = getLocalePath(altLocale);
   <!-- Mobile Menu: pointer-events-none when closed so it cannot steal burger taps -->
   <div
     id="mobile-menu"
-    class="mobile-drawer glass-strong md:hidden"
+    class="mobile-drawer glass-strong"
   >
-    <div class="flex flex-col gap-6 p-8">
+    <div class="mobile-drawer__inner flex flex-col gap-6 p-8">
       <a href="#about" class="mobile-nav-link">{i18n.nav.about}</a>
       <a href="#skills" class="mobile-nav-link">{i18n.nav.skills}</a>
       <a href="#experience" class="mobile-nav-link">{i18n.nav.experience}</a>
@@ -112,6 +130,14 @@ const altPath = getLocalePath(altLocale);
   </div>
 </nav>
 
+<!-- FX overlays (outside nav so they can cover the whole viewport) -->
+<div id="theme-radiance" class="theme-radiance" aria-hidden="true">
+  <div class="theme-radiance__burst" data-theme-burst></div>
+  <div class="theme-radiance__glow" data-theme-glow></div>
+</div>
+<div id="lang-warp" class="lang-warp" aria-hidden="true">
+  <div class="lang-warp__stream" data-lang-stream></div>
+</div>
 <style>
   /*
     Solid header band into the iOS status-bar safe area.
@@ -132,6 +158,22 @@ const altPath = getLocalePath(altLocale);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
   }
 
+  /* Hard hide mobile chrome when desktop tabs are present */
+  .mobile-menu-btn,
+  .mobile-drawer {
+    display: none;
+  }
+
+  @media (max-width: 767.98px) {
+    .mobile-menu-btn {
+      display: inline-flex;
+    }
+
+    .mobile-drawer {
+      display: block;
+    }
+  }
+
   .mobile-drawer {
     position: fixed;
     top: calc(4rem + env(safe-area-inset-top));
@@ -140,24 +182,99 @@ const altPath = getLocalePath(altLocale);
     left: 0;
     z-index: 55;
     opacity: 0;
-    transform: translate3d(-100%, 0, 0);
+    transform: translate3d(0, -12px, 0) scale(0.985);
     pointer-events: none;
     visibility: hidden;
     transition:
-      transform 0.3s ease,
-      opacity 0.3s ease,
-      visibility 0.3s ease;
+      transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.32s ease,
+      visibility 0.32s ease;
   }
 
   .mobile-drawer.nav-open {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0) scale(1);
     pointer-events: auto;
     visibility: visible;
   }
 
+  .mobile-drawer__inner {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.28s ease 0.05s,
+      transform 0.36s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
+  }
+
+  .mobile-drawer.nav-open .mobile-drawer__inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-nav-link {
+    opacity: 0;
+    transform: translateX(-14px);
+    transition:
+      opacity 0.32s ease,
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.28s ease,
+      text-shadow 0.35s ease;
+  }
+
+  .mobile-drawer.nav-open .mobile-nav-link {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .mobile-drawer.nav-open .mobile-nav-link:nth-child(1) { transition-delay: 0.06s; }
+  .mobile-drawer.nav-open .mobile-nav-link:nth-child(2) { transition-delay: 0.1s; }
+  .mobile-drawer.nav-open .mobile-nav-link:nth-child(3) { transition-delay: 0.14s; }
+  .mobile-drawer.nav-open .mobile-nav-link:nth-child(4) { transition-delay: 0.18s; }
+  .mobile-drawer.nav-open .mobile-nav-link:nth-child(5) { transition-delay: 0.22s; }
+  .mobile-drawer.nav-open .mobile-nav-link:nth-child(6) { transition-delay: 0.26s; }
+  .mobile-drawer.nav-open .mobile-nav-link:nth-child(7) { transition-delay: 0.3s; }
+
   :global(body.nav-menu-open) {
     overflow: hidden;
+  }
+
+  .burger {
+    position: relative;
+    display: block;
+    width: 1.25rem;
+    height: 1rem;
+  }
+
+  .burger__line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.25s ease,
+      top 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .burger__line:nth-child(1) { top: 0; }
+  .burger__line:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .burger__line:nth-child(3) { top: 100%; transform: translateY(-100%); }
+
+  .mobile-menu-btn[aria-expanded="true"] .burger__line:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .mobile-menu-btn[aria-expanded="true"] .burger__line:nth-child(2) {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0.4);
+  }
+
+  .mobile-menu-btn[aria-expanded="true"] .burger__line:nth-child(3) {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
   }
 
   .nav-link,
@@ -241,6 +358,7 @@ const altPath = getLocalePath(altLocale);
   }
 
   .nav-icon {
+    position: relative;
     align-items: center;
     justify-content: center;
     color: var(--color-text-secondary);
@@ -283,6 +401,10 @@ const altPath = getLocalePath(altLocale);
     text-decoration: none;
   }
 
+  .nav-lang__label {
+    display: inline-block;
+  }
+
   .nav-logo {
     transition:
       filter 0.4s ease,
@@ -309,6 +431,153 @@ const altPath = getLocalePath(altLocale);
       drop-shadow(0 0 14px rgba(192, 38, 211, 0.22));
   }
 
+  /* ---- Tooltips ---- */
+  .nav-tip {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    left: 50%;
+    z-index: 70;
+    max-width: 14rem;
+    padding: 0.4rem 0.65rem;
+    border-radius: 0.65rem;
+    border: 1px solid var(--color-glass-border);
+    background: color-mix(in oklab, var(--color-bg-secondary) 90%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+    color: var(--color-text-primary);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -4px) scale(0.96);
+    transition:
+      opacity 0.2s ease,
+      transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav-tip::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-left: 1px solid var(--color-glass-border);
+    border-top: 1px solid var(--color-glass-border);
+    background: color-mix(in oklab, var(--color-bg-secondary) 90%, transparent);
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .nav-tip-host:hover .nav-tip,
+    .nav-tip-host:focus-visible .nav-tip {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+    }
+  }
+
+  .nav-tip-host.is-busy .nav-tip {
+    opacity: 0 !important;
+  }
+
+  /* ---- Theme radiance ---- */
+  :global(.theme-radiance) {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    display: none;
+    overflow: hidden;
+  }
+
+  :global(.theme-radiance.is-active) {
+    display: block;
+  }
+
+  :global(.theme-radiance__burst) {
+    position: absolute;
+    left: var(--tr-x, 90%);
+    top: var(--tr-y, 5%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+    background: radial-gradient(
+      circle,
+      rgba(255, 250, 235, 0.98) 0%,
+      rgba(255, 236, 179, 0.72) 18%,
+      rgba(253, 224, 171, 0.35) 36%,
+      rgba(255, 255, 255, 0.08) 58%,
+      transparent 72%
+    );
+    mix-blend-mode: screen;
+  }
+
+  :global(.theme-radiance__glow) {
+    position: absolute;
+    left: var(--tr-x, 90%);
+    top: var(--tr-y, 5%);
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0;
+    background: radial-gradient(
+      circle,
+      rgba(253, 224, 171, 0.85) 0%,
+      rgba(56, 189, 248, 0.35) 40%,
+      transparent 70%
+    );
+    filter: blur(8px);
+    mix-blend-mode: screen;
+  }
+
+  /* ---- Language letter stream ---- */
+  :global(.lang-warp) {
+    position: fixed;
+    inset: 0;
+    z-index: 9997;
+    pointer-events: none;
+    display: none;
+    overflow: hidden;
+  }
+
+  :global(.lang-warp.is-active) {
+    display: block;
+  }
+
+  :global(.lang-warp__stream) {
+    position: absolute;
+    inset: 0;
+  }
+
+  :global(.lang-letter) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+    opacity: 0;
+    will-change: transform, opacity;
+    text-shadow:
+      0 0 10px rgba(56, 189, 248, 0.55),
+      0 0 22px rgba(217, 70, 239, 0.35);
+    user-select: none;
+  }
+
+  :global(html.light .lang-letter) {
+    text-shadow:
+      0 0 8px rgba(14, 165, 233, 0.4),
+      0 0 18px rgba(192, 38, 211, 0.25);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .nav-link,
     .mobile-nav-link,
@@ -316,7 +585,11 @@ const altPath = getLocalePath(altLocale);
     .nav-lang,
     .nav-logo,
     .nav-link::after,
-    .mobile-nav-link::after {
+    .mobile-nav-link::after,
+    .mobile-drawer,
+    .mobile-drawer__inner,
+    .burger__line,
+    .nav-tip {
       transition: none;
     }
 
@@ -324,6 +597,12 @@ const altPath = getLocalePath(altLocale);
     .nav-lang:hover,
     .nav-logo:hover {
       transform: none;
+    }
+
+    .mobile-drawer.nav-open .mobile-nav-link {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 </style>

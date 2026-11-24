@@ -45,8 +45,8 @@ button,
   min-width: 44px;
 }
 
+/* display comes from utility classes (inline-flex / md:hidden) — don't override */
 .nav-icon {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
 }

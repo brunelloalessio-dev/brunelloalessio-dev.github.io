@@ -6,7 +6,15 @@
     "teaching": "Teaching",
     "certifications": "Certifications",
     "beyond": "Beyond code",
-    "contact": "Contact"
+    "contact": "Contact",
+    "tooltips": {
+      "theme_to_light": "Turn on the lights",
+      "theme_to_dark": "Turn off the lights",
+      "lang": "Read in Italian",
+      "github": "Peek at the source",
+      "menu_open": "Open the menu",
+      "menu_close": "Close the menu"
+    }
   },
   "hero": {
     "greeting": "Hi, I'm",

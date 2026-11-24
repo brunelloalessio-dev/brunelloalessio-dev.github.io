@@ -1,0 +1,1 @@
+import{t as e}from"./boot-home.D7nb267K.js";e();

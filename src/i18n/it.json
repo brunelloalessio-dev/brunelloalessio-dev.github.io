@@ -6,7 +6,15 @@
     "teaching": "Formazione",
     "certifications": "Certificazioni",
     "beyond": "Oltre al codice",
-    "contact": "Contatti"
+    "contact": "Contatti",
+    "tooltips": {
+      "theme_to_light": "Accendi la luce",
+      "theme_to_dark": "Spegni la luce",
+      "lang": "Leggi in inglese",
+      "github": "Dai un'occhiata al codice",
+      "menu_open": "Apri il menu",
+      "menu_close": "Chiudi il menu"
+    }
   },
   "hero": {
     "greeting": "Ciao, sono",
