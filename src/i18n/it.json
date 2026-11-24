@@ -53,16 +53,12 @@
       "period": "Dicembre 2015 — Presente",
       "location": "Paese (TV), Veneto, Italia",
       "points": [
-        "Lead di un team frontend di 2-3 sviluppatori, coordinando progetti web e mobile con focus su qualità, performance e delivery",
-        "Responsabile tecnico della piattaforma gestionale cloud-based per il settore retail specializzato, in Bludata — azienda riconosciuta in Italia con oltre 5000 clienti",
-        "Guidata la migrazione tecnologica dalla piattaforma web legacy (600+ utenti attivi) alla nuova architettura cloud moderna e scalabile",
-        "Progettazione e sviluppo dell'architettura frontend di applicazioni enterprise con React, TypeScript e le più moderne best practice",
-        "Sviluppo di applicazioni mobile cross-platform con React Native e Flutter per iOS e Android",
-        "Implementazione di dashboard interattive per l'analisi dati real-time e PWA conformi al GDPR",
-        "Integrazione di AI-assisted development nel workflow del team con Cursor, Claude Code, Grok, Grok Bots, MCP e workflow con agenti e subagenti",
-        "Sessioni di formazione interna e mentorship su intelligenza artificiale applicata allo sviluppo e al lavoro quotidiano",
-        "Contributo alle decisioni architetturali, code review sistematiche e crescita del team",
-        "Collaborazione interfunzionale con team di prodotto, backend e design in ambienti Agile"
+        "Lead di un team frontend di 2-3 sviluppatori su progetti web e mobile, con focus su qualità, performance e delivery",
+        "Responsabile tecnico della piattaforma gestionale cloud per il retail specializzato (Bludata, 5000+ clienti in Italia)",
+        "Guidata la migrazione da piattaforma legacy (600+ utenti) a un'architettura cloud moderna e scalabile",
+        "Architettura frontend enterprise con React/TypeScript e app mobile cross-platform (React Native, Flutter)",
+        "Dashboard real-time e PWA conformi al GDPR",
+        "AI-assisted development nel team (Cursor, Claude Code, Grok, MCP, agenti), con formazione interna, code review e collaborazione Agile"
       ]
     }
   },
@@ -175,7 +171,8 @@
     "email": {
       "label": "Email",
       "value": "orecchia.mobiletto.0h@icloud.com",
-      "cta": "Copia email"
+      "cta": "Copia email",
+      "copied": "✓ Copiata!"
     },
     "linkedin": {
       "label": "LinkedIn",

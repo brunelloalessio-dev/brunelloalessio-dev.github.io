@@ -34,7 +34,11 @@ const i18n = t(locale);
         </div>
         <h3 class="mb-1 text-lg font-semibold text-text-primary">{i18n.contact.email.label}</h3>
         <p class="mb-3 text-sm text-text-secondary">{i18n.contact.email.value}</p>
-        <span id="copy-email-text" class="text-xs font-medium text-accent">{i18n.contact.email.cta}</span>
+        <span
+          id="copy-email-text"
+          class="text-xs font-medium text-accent"
+          data-copied={i18n.contact.email.copied}
+        >{i18n.contact.email.cta}</span>
       </button>
 
       <!-- LinkedIn -->
@@ -84,7 +88,8 @@ const i18n = t(locale);
     if (email && navigator.clipboard) {
       await navigator.clipboard.writeText(email);
       if (copyText) {
-        copyText.textContent = "✓ Copied!";
+        const copied = copyText.getAttribute("data-copied") || "✓ Copied!";
+        copyText.textContent = copied;
         setTimeout(() => {
           copyText.textContent = originalText || "";
         }, 2000);

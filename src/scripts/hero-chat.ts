@@ -73,17 +73,44 @@ export async function initHeroChat() {
 
   if (!textBubble || !photoBubble || lines.length === 0) return;
 
-  if (reduceMotion) {
+  const shouldAnimate =
+    !reduceMotion && document.documentElement.classList.contains("hero-chat-pending");
+
+  if (!shouldAnimate) {
+    document.documentElement.classList.remove("hero-chat-pending");
     revealStaticHero();
+    startPhotoFloat(isMobile);
     return;
   }
 
   const msPerChar = isMobile ? 26 : 20;
 
+  // Progressive enhancement: full copy is in the HTML for SEO / no-JS.
+  // First visit only — clear and replay the chat intro.
+  document.documentElement.classList.remove("hero-chat-pending");
+  try {
+    sessionStorage.setItem("heroChatPlayed", "1");
+  } catch (_) {}
+
+  lines.forEach((line) => {
+    line.style.visibility = "visible";
+    line.textContent = "";
+  });
+  if (tagline) {
+    tagline.style.visibility = "visible";
+    tagline.textContent = "";
+  }
+
+  gsap.set(
+    [header, textBubble, photoBubble, followup, scrollHint, sent, tagline].filter(Boolean),
+    { opacity: 0 },
+  );
+
   // 1) Online + typing
   if (header) gsap.to(header, { opacity: 1, duration: 0.4, ease: "power2.out" });
   if (typing) {
-    gsap.to(typing, { opacity: 1, duration: 0.35, ease: "power2.out" });
+    typing.style.display = "inline-flex";
+    gsap.fromTo(typing, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" });
     await wait(650);
     gsap.to(typing, {
       opacity: 0,
@@ -109,7 +136,7 @@ export async function initHeroChat() {
     await wait(100);
   }
 
-  // 3) Tagline typed inside the same chat bubble (caret stays beside the role)
+  // 3) Tagline typed inside the same chat bubble
   if (tagline) {
     gsap.to(tagline, { opacity: 1, duration: 0.25 });
     await typeInto(tagline, tagline.dataset.full || "", Math.max(10, msPerChar - 6));
@@ -119,7 +146,7 @@ export async function initHeroChat() {
   if (sent) gsap.to(sent, { opacity: 1, duration: 0.35, ease: "power2.out" });
   await wait(320);
 
-  // 4) Photo appears on the right (classic hero side)
+  // 4) Photo appears on the right
   gsap.fromTo(
     photoBubble,
     {

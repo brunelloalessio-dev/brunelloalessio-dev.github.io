@@ -12,15 +12,26 @@ const i18n = t(locale);
 const chatLines = [i18n.hero.greeting, i18n.hero.name, i18n.hero.role];
 ---
 
+<script is:inline>
+  (() => {
+    try {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce && !sessionStorage.getItem("heroChatPlayed")) {
+        document.documentElement.classList.add("hero-chat-pending");
+      }
+    } catch (_) {}
+  })();
+</script>
+
 <section
   id="hero"
   class="relative flex min-h-dvh items-start overflow-hidden pt-24 pb-16 sm:pt-28 md:items-center md:pt-28 md:pb-20"
 >
   <div class="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
-      <!-- Left: chat with all text -->
+      <!-- Left: chat with all text (visible by default; JS enhances with typewriter) -->
       <div class="hero-chat w-full max-w-xl text-left lg:max-w-2xl">
-        <div class="hero-chat-header mb-4 flex items-center gap-3 opacity-0" data-chat-header>
+        <div class="hero-chat-header mb-4 flex items-center gap-3" data-chat-header>
           <span class="relative flex h-2.5 w-2.5">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/60"></span>
             <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
@@ -32,7 +43,7 @@ const chatLines = [i18n.hero.greeting, i18n.hero.name, i18n.hero.role];
 
         <div class="hero-chat-thread flex flex-col items-start gap-4">
           <div
-            class="hero-chat-typing glass inline-flex items-center gap-1.5 rounded-2xl rounded-bl-md px-4 py-3 opacity-0"
+            class="hero-chat-typing glass hidden items-center gap-1.5 rounded-2xl rounded-bl-md px-4 py-3"
             data-chat-typing
             aria-hidden="true"
           >
@@ -42,32 +53,38 @@ const chatLines = [i18n.hero.greeting, i18n.hero.name, i18n.hero.role];
           </div>
 
           <div
-            class="hero-chat-bubble hero-chat-bubble--text glass relative max-w-full rounded-3xl rounded-bl-md px-5 py-4 sm:px-6 sm:py-5 opacity-0"
+            class="hero-chat-bubble hero-chat-bubble--text glass relative max-w-full rounded-3xl rounded-bl-md px-5 py-4 sm:px-6 sm:py-5"
             data-chat-text
           >
             <p
               class="min-h-[1.25rem] text-sm font-medium uppercase tracking-[0.18em] text-accent-soft"
               data-chat-line="0"
               data-full={chatLines[0]}
-            ></p>
+            >
+              {chatLines[0]}
+            </p>
             <h1
               class="text-gradient mt-2 min-h-[1.1em] text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl"
               data-chat-line="1"
               data-full={chatLines[1]}
-            ></h1>
+            >
+              {chatLines[1]}
+            </h1>
             <p class="mt-3 flex min-h-[1.5rem] items-baseline text-lg font-semibold text-text-primary sm:text-xl">
-              <span data-chat-line="2" data-full={chatLines[2]}></span>
+              <span data-chat-line="2" data-full={chatLines[2]}>{chatLines[2]}</span>
               <span class="chat-caret ml-1 inline-block text-accent opacity-0" data-chat-caret aria-hidden="true">|</span>
             </p>
 
             <p
-              class="mt-5 min-h-[4.5rem] text-base leading-relaxed text-text-secondary sm:text-lg opacity-0"
+              class="mt-5 min-h-[4.5rem] text-base leading-relaxed text-text-secondary sm:text-lg"
               data-chat-tagline
               data-full={i18n.hero.tagline}
-            ></p>
+            >
+              {i18n.hero.tagline}
+            </p>
 
             <div
-              class="hero-chat-sent mt-3 flex items-center gap-1.5 text-[11px] text-text-secondary opacity-0"
+              class="hero-chat-sent mt-3 flex items-center gap-1.5 text-[11px] text-text-secondary"
               data-chat-sent
             >
               <span>{i18n.hero.chat_delivered}</span>
@@ -78,7 +95,7 @@ const chatLines = [i18n.hero.greeting, i18n.hero.name, i18n.hero.role];
           </div>
         </div>
 
-        <div class="hero-chat-followup mt-8 flex flex-col gap-4 opacity-0 sm:flex-row" data-chat-followup>
+        <div class="hero-chat-followup mt-8 flex flex-col gap-4 sm:flex-row" data-chat-followup>
           <a
             href="#about"
             class="glass hover-glow inline-flex items-center justify-center rounded-xl px-8 py-3 text-sm font-semibold text-text-primary transition-all hover:bg-white/10"
@@ -97,8 +114,8 @@ const chatLines = [i18n.hero.greeting, i18n.hero.name, i18n.hero.role];
         </div>
       </div>
 
-      <!-- Right: photo appears here -->
-      <div class="hero-photo relative opacity-0" data-chat-photo>
+      <!-- Right: photo -->
+      <div class="hero-photo relative" data-chat-photo>
         <div class="hero-photo-float">
           <div data-parallax-hero="0.12" class="relative">
             <div class="hero-photo-aura absolute -inset-8 rounded-full"></div>
@@ -121,7 +138,7 @@ const chatLines = [i18n.hero.greeting, i18n.hero.name, i18n.hero.role];
     </div>
   </div>
 
-  <div class="hero-scroll-hint absolute bottom-8 left-1/2 z-10 -translate-x-1/2 opacity-0" data-chat-scroll>
+  <div class="hero-scroll-hint absolute bottom-8 left-1/2 z-10 -translate-x-1/2" data-chat-scroll>
     <div class="flex h-8 w-5 items-start justify-center rounded-full border-2 border-text-secondary/30 p-1">
       <div class="h-2 w-1 animate-bounce rounded-full bg-accent"></div>
     </div>

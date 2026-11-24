@@ -53,16 +53,12 @@
       "period": "December 2015 — Present",
       "location": "Paese (TV), Veneto, Italy",
       "points": [
-        "Leading a frontend team of 2-3 developers, coordinating web and mobile projects with focus on quality, performance, and delivery",
-        "Technical lead for the cloud-based management platform in the specialized retail sector, at Bludata — a leading Italian company with over 5000 clients",
-        "Led the technology migration from legacy web platform (600+ active users) to a modern, scalable cloud architecture",
-        "Designing and developing enterprise frontend architecture with React, TypeScript, and modern best practices",
-        "Building cross-platform mobile applications with React Native and Flutter for iOS and Android",
-        "Implementing interactive real-time data dashboards and GDPR-compliant PWAs",
-        "Integrating AI-assisted development into the team workflow with Cursor, Claude Code, Grok, Grok Bots, MCP, and agent/subagent workflows",
-        "Internal training and mentorship on artificial intelligence applied to software development and everyday work",
-        "Contributing to architectural decisions, systematic code reviews, and team growth",
-        "Cross-functional collaboration with product, backend, and design teams in Agile environments"
+        "Leading a frontend team of 2-3 developers on web and mobile projects, with focus on quality, performance, and delivery",
+        "Technical lead for the cloud management platform in specialized retail (Bludata, 5000+ clients in Italy)",
+        "Led the migration from a legacy platform (600+ users) to a modern, scalable cloud architecture",
+        "Enterprise frontend architecture with React/TypeScript and cross-platform mobile apps (React Native, Flutter)",
+        "Real-time dashboards and GDPR-compliant PWAs",
+        "AI-assisted development in the team (Cursor, Claude Code, Grok, MCP, agents), with internal training, code review, and Agile collaboration"
       ]
     }
   },
@@ -175,7 +171,8 @@
     "email": {
       "label": "Email",
       "value": "orecchia.mobiletto.0h@icloud.com",
-      "cta": "Copy email"
+      "cta": "Copy email",
+      "copied": "✓ Copied!"
     },
     "linkedin": {
       "label": "LinkedIn",

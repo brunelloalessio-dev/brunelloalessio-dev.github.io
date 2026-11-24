@@ -58,6 +58,11 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
     <link rel="canonical" href={canonicalURL.href} />
     <link rel="alternate" hreflang={locale} href={canonicalURL.href} />
     <link rel="alternate" hreflang={altLocale} href={altURL.href} />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(getLocalePath("it"), Astro.site).href}
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

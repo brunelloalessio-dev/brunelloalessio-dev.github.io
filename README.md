@@ -7,7 +7,7 @@
 **Portfolio personale** | **Bilingue IT/EN** | **Web3 Aesthetic**
 
 [![Deploy to GitHub Pages](https://github.com/brunelloalessio-dev/brunelloalessio-dev.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/brunelloalessio-dev/brunelloalessio-dev.github.io/actions/workflows/deploy.yml)
-[![Astro](https://img.shields.io/badge/Astro-v6-BC52EE?logo=astro&logoColor=white)](https://astro.build)
+[![Astro](https://img.shields.io/badge/Astro-v7-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -20,18 +20,19 @@
 
 ## ✨ Overview
 
-Portfolio personale di **Alessio Brunello**, Frontend Tech Lead con 10+ anni di esperienza nello sviluppo di applicazioni web e mobile enterprise. Il sito presenta un'estetica moderna ispirata al mondo Web3, con glassmorphism, particelle animate e animazioni scroll.
+Portfolio personale di **Alessio Brunello**, Frontend Tech Lead con 10+ anni di esperienza nello sviluppo di applicazioni web e mobile enterprise. Il sito presenta un'estetica moderna ispirata al mondo Web3, con glassmorphism, backdrop animato e animazioni scroll.
 
 ### Caratteristiche principali
 
 - 🌍 **Bilingue** — Italiano e Inglese con switch lingua nel navbar
 - 🎨 **Web3 Aesthetic** — Dark/Light mode, glassmorphism, B/W monochrome palette
-- ✨ **Particelle animate** — Sfondo interattivo con tsParticles (constellation), theme-aware
+- ✨ **Backdrop animato** — Orbs e griglia parallax theme-aware
 - 🌓 **Dark/Light mode** — Toggle nel navbar con persistenza localStorage
 - 🎬 **Animazioni scroll** — Fade-in, stagger e parallax con GSAP + ScrollTrigger
+- 💬 **Hero chat** — Intro typewriter progressive-enhancement (contenuto già nel HTML)
 - 📱 **Fully responsive** — Desktop, tablet e mobile con design mobile-first
-- ⚡ **Performance** — Zero JS di default (Astro Islands), React solo per le particelle
-- 🔍 **SEO ottimizzato** — Meta tags, Open Graph, sitemap, robots.txt, hreflang
+- ⚡ **Performance** — Zero JS di default (Astro Islands), GSAP solo dove serve
+- 🔍 **SEO ottimizzato** — Meta tags, Open Graph, sitemap, robots.txt, hreflang + x-default
 - 🚀 **Deploy automatico** — GitHub Actions su ogni push a `main`
 
 ---
@@ -40,11 +41,9 @@ Portfolio personale di **Alessio Brunello**, Frontend Tech Lead con 10+ anni di 
 
 | Categoria         | Tecnologia                                                             |
 | ----------------- | ---------------------------------------------------------------------- |
-| **Framework**     | [Astro v6](https://astro.build) — Static Site Generation               |
+| **Framework**     | [Astro v7](https://astro.build) — Static Site Generation               |
 | **Styling**       | [Tailwind CSS v4](https://tailwindcss.com) — Utility-first CSS         |
-| **Interattività** | [React](https://react.dev) — Islands architecture                      |
-| **Particelle**    | [tsParticles](https://particles.js.org) — Animated particle background |
-| **Animazioni**    | [GSAP](https://gsap.com) + ScrollTrigger — Scroll animations           |
+| **Animazioni**    | [GSAP](https://gsap.com) + ScrollTrigger — Scroll / hero animations    |
 | **Linguaggio**    | [TypeScript](https://www.typescriptlang.org) — Strict mode             |
 | **Deploy**        | [GitHub Pages](https://pages.github.com) + GitHub Actions              |
 
@@ -59,18 +58,22 @@ Portfolio personale di **Alessio Brunello**, Frontend Tech Lead con 10+ anni di 
 ├── public/
 │   ├── favicon.svg                 # Favicon SVG con logo "AB"
 │   ├── photo.jpg                   # Foto profilo
+│   ├── og-image.jpg                # Open Graph preview
 │   └── robots.txt                  # SEO robots
 ├── src/
 │   ├── components/
 │   │   ├── Navbar.astro            # Navbar sticky glassmorphism + hamburger mobile
-│   │   ├── Hero.astro              # Hero section fullscreen
+│   │   ├── Hero.astro              # Hero section fullscreen (chat + foto)
 │   │   ├── About.astro             # Chi sono + stats
 │   │   ├── Skills.astro            # Tech stack grid con icone devicon
 │   │   ├── Experience.astro        # Timeline esperienza lavorativa
+│   │   ├── Teaching.astro          # Formazione & sharing AI
 │   │   ├── Certifications.astro    # Grid certificazioni
+│   │   ├── Beyond.astro            # Oltre al codice
 │   │   ├── Contact.astro           # Card contatti (email, LinkedIn, GitHub)
 │   │   ├── Footer.astro            # Footer con links social
-│   │   └── ParticleBackground.tsx  # React island — tsParticles
+│   │   ├── SiteBackdrop.astro      # Backdrop orbs + griglia
+│   │   └── BackToTop.astro         # Elevator back-to-top
 │   ├── i18n/
 │   │   ├── it.json                 # Testi italiani
 │   │   ├── en.json                 # Testi inglesi
@@ -78,12 +81,14 @@ Portfolio personale di **Alessio Brunello**, Frontend Tech Lead con 10+ anni di 
 │   ├── layouts/
 │   │   └── Layout.astro            # Layout base (<head>, fonts, meta SEO/OG)
 │   ├── pages/
-│   │   ├── index.astro             # Root redirect → /it/
+│   │   ├── index.astro             # Root redirect immediato → /it/
 │   │   ├── it/index.astro          # Pagina italiana
 │   │   └── en/index.astro          # Pagina inglese
+│   ├── scripts/                    # GSAP motion modules
 │   └── styles/
 │       └── global.css              # Tailwind directives + glassmorphism + glow utilities
-├── astro.config.mjs                # Astro config (i18n, React, Sitemap, Tailwind)
+├── docs/                           # Build output (GitHub Pages)
+├── astro.config.mjs                # Astro config (i18n, sitemap, Tailwind, outDir: docs)
 ├── tsconfig.json                   # TypeScript strict + path aliases
 └── package.json
 ```
@@ -116,7 +121,7 @@ npm run dev
 | Comando           | Descrizione                          |
 | ----------------- | ------------------------------------ |
 | `npm run dev`     | Avvia dev server su `localhost:4321` |
-| `npm run build`   | Build di produzione in `./dist/`     |
+| `npm run build`   | Build di produzione in `./docs/`     |
 | `npm run preview` | Preview della build di produzione    |
 
 ---
@@ -129,7 +134,7 @@ Il workflow:
 1. Checkout del codice
 2. Setup Node.js 20 + cache npm
 3. `npm ci` → `npm run build`
-4. Upload e deploy dell'artifact su GitHub Pages
+4. Upload e deploy dell'artifact da `./docs`
 
 ---
 
@@ -139,7 +144,7 @@ Il workflow:
 
 - 🏗️ Architettura frontend enterprise con React e TypeScript
 - 👥 Lead di un team frontend su progetti web e mobile
-- 🤖 AI-augmented development con Claude (agents, skills, workflows)
+- 🤖 AI-augmented development con Cursor, Claude Code, Grok e workflow agentici
 - 📱 App mobile cross-platform con React Native e Flutter
 - 🎯 Piattaforma cloud-based per il settore retail specializzato, in Bludata — azienda leader in Italia
 
@@ -158,5 +163,5 @@ Questo progetto è distribuito sotto licenza [MIT](LICENSE).
 ---
 
 <div align="center">
-  <sub>Realizzato con ❤️ usando Astro, Tailwind CSS, GSAP e tsParticles</sub>
+  <sub>Realizzato con ❤️ usando Astro, Tailwind CSS e GSAP</sub>
 </div>

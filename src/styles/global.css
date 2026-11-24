@@ -349,6 +349,22 @@ html.light .hero-photo-aura {
   }
 }
 
+/* First-visit hero intro: hide until GSAP starts (content still in HTML for SEO) */
+html.hero-chat-pending [data-chat-header],
+html.hero-chat-pending [data-chat-text],
+html.hero-chat-pending [data-chat-photo],
+html.hero-chat-pending [data-chat-followup],
+html.hero-chat-pending [data-chat-scroll],
+html.hero-chat-pending [data-chat-sent],
+html.hero-chat-pending [data-chat-tagline] {
+  opacity: 0;
+}
+
+html.hero-chat-pending [data-chat-line],
+html.hero-chat-pending [data-chat-tagline] {
+  visibility: hidden;
+}
+
 @media (scripting: none) {
   .fade-in,
   .stagger-item,
@@ -358,14 +374,16 @@ html.light .hero-photo-aura {
     transform: none;
   }
 
-  [data-chat-header],
-  [data-chat-text],
-  [data-chat-photo],
-  [data-chat-followup],
-  [data-chat-scroll],
-  [data-chat-sent],
-  [data-chat-photo-label] {
+  html.hero-chat-pending [data-chat-header],
+  html.hero-chat-pending [data-chat-text],
+  html.hero-chat-pending [data-chat-photo],
+  html.hero-chat-pending [data-chat-followup],
+  html.hero-chat-pending [data-chat-scroll],
+  html.hero-chat-pending [data-chat-sent],
+  html.hero-chat-pending [data-chat-tagline],
+  html.hero-chat-pending [data-chat-line] {
     opacity: 1 !important;
+    visibility: visible !important;
   }
 
   [data-chat-typing],

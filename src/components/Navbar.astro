@@ -42,7 +42,7 @@ const altPath = getLocalePath(altLocale);
         <!-- Theme Toggle -->
         <button
           id="theme-toggle"
-          class="nav-icon"
+          class="nav-icon inline-flex"
           aria-label="Toggle theme"
         >
           <!-- Sun icon (shown in dark mode) -->
@@ -68,7 +68,7 @@ const altPath = getLocalePath(altLocale);
           href="https://github.com/brunelloalessio-dev"
           target="_blank"
           rel="noopener noreferrer"
-          class="nav-icon"
+          class="nav-icon inline-flex"
           aria-label="GitHub"
         >
           <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -79,7 +79,7 @@ const altPath = getLocalePath(altLocale);
         <!-- Mobile Menu Button -->
         <button
           id="mobile-menu-btn"
-          class="nav-icon md:hidden"
+          class="nav-icon inline-flex md:hidden"
           aria-label="Menu"
         >
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -189,7 +189,6 @@ const altPath = getLocalePath(altLocale);
   }
 
   .nav-icon {
-    display: inline-flex;
     align-items: center;
     justify-content: center;
     color: var(--color-text-secondary);
