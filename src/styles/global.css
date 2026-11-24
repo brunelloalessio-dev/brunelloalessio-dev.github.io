@@ -40,8 +40,7 @@ button,
 }
 
 button,
-.nav-icon,
-.nav-lang {
+.nav-icon {
   min-height: 44px;
   min-width: 44px;
 }

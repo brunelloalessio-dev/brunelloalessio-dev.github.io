@@ -59,7 +59,7 @@ const altPath = getLocalePath(altLocale);
         <!-- Language Switch -->
         <a
           href={altPath}
-          class="nav-lang glass rounded-lg px-3 py-1.5 text-xs font-semibold uppercase tracking-wider"
+          class="nav-lang glass inline-flex items-center justify-center rounded-lg px-3 text-xs font-semibold uppercase tracking-wider"
         >
           {altLocale.toUpperCase()}
         </a>
@@ -277,6 +277,12 @@ const altPath = getLocalePath(altLocale);
   }
 
   .nav-lang {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+    line-height: 1;
     color: var(--color-text-secondary);
     transition:
       color 0.28s ease,
