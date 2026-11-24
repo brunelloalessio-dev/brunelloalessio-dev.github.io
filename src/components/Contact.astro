@@ -11,12 +11,6 @@ const i18n = t(locale);
 ---
 
 <section id="contact" class="relative py-24 sm:py-32">
-  <!-- Background gradient mesh -->
-  <div class="absolute inset-0 -z-10 overflow-hidden">
-    <div class="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-accent/5 blur-3xl"></div>
-    <div class="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-accent/3 blur-3xl"></div>
-  </div>
-
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <!-- Section header -->
     <div class="fade-in mb-16 text-center">
@@ -26,11 +20,11 @@ const i18n = t(locale);
     </div>
 
     <!-- Contact cards -->
-    <div class="fade-in mx-auto grid max-w-4xl gap-6 sm:grid-cols-3">
+    <div class="stagger-grid mx-auto grid max-w-4xl gap-6 sm:grid-cols-3">
       <!-- Email -->
       <button
         id="copy-email"
-        class="glass hover-glow group flex flex-col items-center rounded-2xl p-8 text-center transition-all hover:scale-105"
+        class="stagger-item glass hover-glow group flex flex-col items-center rounded-2xl p-8 text-center transition-all hover:scale-105"
         data-email={i18n.contact.email.value}
       >
         <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 transition-colors group-hover:bg-accent/20">
@@ -48,7 +42,7 @@ const i18n = t(locale);
         href={i18n.contact.linkedin.url}
         target="_blank"
         rel="noopener noreferrer"
-        class="glass hover-glow group flex flex-col items-center rounded-2xl p-8 text-center transition-all hover:scale-105"
+        class="stagger-item glass hover-glow group flex flex-col items-center rounded-2xl p-8 text-center transition-all hover:scale-105"
       >
         <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 transition-colors group-hover:bg-accent/20">
           <svg class="h-8 w-8 text-accent" fill="currentColor" viewBox="0 0 24 24">
@@ -65,7 +59,7 @@ const i18n = t(locale);
         href={i18n.contact.github.url}
         target="_blank"
         rel="noopener noreferrer"
-        class="glass hover-glow group flex flex-col items-center rounded-2xl p-8 text-center transition-all hover:scale-105"
+        class="stagger-item glass hover-glow group flex flex-col items-center rounded-2xl p-8 text-center transition-all hover:scale-105"
       >
         <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 transition-colors group-hover:bg-accent/20">
           <svg class="h-8 w-8 text-accent" fill="currentColor" viewBox="0 0 24 24">

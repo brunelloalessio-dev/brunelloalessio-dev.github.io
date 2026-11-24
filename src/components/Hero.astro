@@ -8,38 +8,77 @@ interface Props {
 
 const { locale } = Astro.props;
 const i18n = t(locale);
+
+const chatLines = [i18n.hero.greeting, i18n.hero.name, i18n.hero.role];
 ---
 
 <section
   id="hero"
   class="relative flex min-h-dvh items-start overflow-hidden pt-24 pb-16 sm:pt-28 md:items-center md:pt-28 md:pb-20"
 >
-  <!-- Particle Background container -->
-  <div id="particles-container" class="absolute inset-0 z-0"></div>
-
-  <!-- Gradient overlay for readability -->
-  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-bg-primary/30 via-transparent to-bg-primary"></div>
-
   <div class="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col items-center gap-12 lg:flex-row lg:justify-between">
-      <!-- Left: Text content -->
-      <div class="max-w-2xl text-center lg:text-left">
-        <p class="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-accent-soft">
-          {i18n.hero.greeting}
-        </p>
-        <h1 class="text-gradient mb-4 text-5xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">
-          {i18n.hero.name}
-        </h1>
-        <div class="mb-6 flex items-center justify-center gap-3 lg:justify-start">
-          <div class="h-px w-8 bg-accent-soft"></div>
-          <p id="typing-role" class="typing-cursor text-xl font-semibold text-text-primary sm:text-2xl">
-            {i18n.hero.role}
-          </p>
+    <div class="flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+      <!-- Left: chat with all text -->
+      <div class="hero-chat w-full max-w-xl text-left lg:max-w-2xl">
+        <div class="hero-chat-header mb-4 flex items-center gap-3 opacity-0" data-chat-header>
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/60"></span>
+            <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+          </span>
+          <span class="text-xs font-medium uppercase tracking-[0.18em] text-text-secondary">
+            {i18n.hero.chat_status}
+          </span>
         </div>
-        <p class="mx-auto mb-8 max-w-lg text-base leading-relaxed text-text-secondary sm:text-lg lg:mx-0">
-          {i18n.hero.tagline}
-        </p>
-        <div class="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
+
+        <div class="hero-chat-thread flex flex-col items-start gap-4">
+          <div
+            class="hero-chat-typing glass inline-flex items-center gap-1.5 rounded-2xl rounded-bl-md px-4 py-3 opacity-0"
+            data-chat-typing
+            aria-hidden="true"
+          >
+            <span class="chat-dot"></span>
+            <span class="chat-dot"></span>
+            <span class="chat-dot"></span>
+          </div>
+
+          <div
+            class="hero-chat-bubble hero-chat-bubble--text glass relative max-w-full rounded-3xl rounded-bl-md px-5 py-4 sm:px-6 sm:py-5 opacity-0"
+            data-chat-text
+          >
+            <p
+              class="min-h-[1.25rem] text-sm font-medium uppercase tracking-[0.18em] text-accent-soft"
+              data-chat-line="0"
+              data-full={chatLines[0]}
+            ></p>
+            <h1
+              class="text-gradient mt-2 min-h-[1.1em] text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl"
+              data-chat-line="1"
+              data-full={chatLines[1]}
+            ></h1>
+            <p class="mt-3 flex min-h-[1.5rem] items-baseline text-lg font-semibold text-text-primary sm:text-xl">
+              <span data-chat-line="2" data-full={chatLines[2]}></span>
+              <span class="chat-caret ml-1 inline-block text-accent opacity-0" data-chat-caret aria-hidden="true">|</span>
+            </p>
+
+            <p
+              class="mt-5 min-h-[4.5rem] text-base leading-relaxed text-text-secondary sm:text-lg opacity-0"
+              data-chat-tagline
+              data-full={i18n.hero.tagline}
+            ></p>
+
+            <div
+              class="hero-chat-sent mt-3 flex items-center gap-1.5 text-[11px] text-text-secondary opacity-0"
+              data-chat-sent
+            >
+              <span>{i18n.hero.chat_delivered}</span>
+              <svg class="h-3.5 w-3.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-chat-followup mt-8 flex flex-col gap-4 opacity-0 sm:flex-row" data-chat-followup>
           <a
             href="#about"
             class="glass hover-glow inline-flex items-center justify-center rounded-xl px-8 py-3 text-sm font-semibold text-text-primary transition-all hover:bg-white/10"
@@ -58,25 +97,31 @@ const i18n = t(locale);
         </div>
       </div>
 
-      <!-- Right: Photo -->
-      <div class="relative">
-        <div class="absolute -inset-4 rounded-full bg-accent opacity-10 blur-2xl"></div>
-        <div class="relative h-72 w-72 overflow-hidden rounded-full border-2 border-glass-border sm:h-80 sm:w-80 lg:h-[22rem] lg:w-[22rem]">
-          <img
-            src="/photo.jpg"
-            alt="Alessio Brunello"
-            class="h-full w-full object-cover object-[center_62%]"
-            width="644"
-            height="1220"
-            loading="eager"
-          />
+      <!-- Right: photo appears here -->
+      <div class="hero-photo relative opacity-0" data-chat-photo>
+        <div class="hero-photo-float">
+          <div data-parallax-hero="0.12" class="relative">
+            <div class="hero-photo-aura absolute -inset-8 rounded-full"></div>
+            <div class="hero-photo-halo absolute -inset-4 rounded-full bg-accent opacity-10 blur-2xl"></div>
+            <div
+              class="hero-photo-frame relative h-72 w-72 overflow-hidden rounded-full border-2 border-glass-border sm:h-80 sm:w-80 lg:h-[22rem] lg:w-[22rem]"
+            >
+              <img
+                src="/photo.jpg"
+                alt="Alessio Brunello"
+                class="hero-photo-img h-full w-full object-cover object-[center_62%]"
+                width="644"
+                height="1220"
+                loading="eager"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
+  <div class="hero-scroll-hint absolute bottom-8 left-1/2 z-10 -translate-x-1/2 opacity-0" data-chat-scroll>
     <div class="flex h-8 w-5 items-start justify-center rounded-full border-2 border-text-secondary/30 p-1">
       <div class="h-2 w-1 animate-bounce rounded-full bg-accent"></div>
     </div>

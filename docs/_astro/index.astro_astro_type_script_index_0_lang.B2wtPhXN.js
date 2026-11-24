@@ -1,1 +1,0 @@
-import{n as e,t}from"./ScrollTrigger.Bp831EB6.js";e.registerPlugin(t),e.utils.toArray(`.fade-in`).forEach(t=>{e.to(t,{opacity:1,y:0,duration:.8,ease:`power3.out`,scrollTrigger:{trigger:t,start:`top 85%`,once:!0}})});

@@ -24,13 +24,16 @@ const exp = i18n.experience.bludata;
     <div class="relative mx-auto max-w-4xl">
       <!-- Timeline line -->
       <div class="absolute left-4 top-0 hidden h-full w-0.5 sm:left-8 md:block">
-        <div class="timeline-line h-full w-full rounded-full"></div>
+        <div data-timeline-line class="timeline-line h-full w-full rounded-full"></div>
       </div>
 
       <!-- Timeline card -->
-      <div class="fade-in relative md:pl-20">
+      <div class="experience-card relative md:pl-20">
         <!-- Timeline dot -->
-        <div class="absolute left-2.5 top-8 hidden h-4 w-4 rounded-full border-2 border-accent bg-bg-primary sm:left-6.5 md:block">
+        <div
+          data-timeline-dot
+          class="absolute left-2.5 top-8 hidden h-4 w-4 rounded-full border-2 border-accent bg-bg-primary sm:left-6.5 md:block"
+        >
           <div class="absolute inset-0 animate-ping rounded-full bg-accent/20"></div>
         </div>
 

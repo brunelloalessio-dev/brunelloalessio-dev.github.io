@@ -14,7 +14,10 @@
     "role": "Frontend Tech Lead",
     "tagline": "Creo sistemi frontend scalabili e guido team di sviluppo, integrando Cursor, Claude Code, Grok e workflow agentici nel delivery quotidiano.",
     "cta_primary": "Scopri di più",
-    "cta_secondary": "Contattami"
+    "cta_secondary": "Contattami",
+    "chat_status": "Online ora",
+    "chat_delivered": "Inviato",
+    "chat_photo": "Foto profilo · appena inviata"
   },
   "about": {
     "title": "Chi Sono",

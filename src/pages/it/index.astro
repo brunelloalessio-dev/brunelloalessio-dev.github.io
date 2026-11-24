@@ -10,7 +10,6 @@ import Certifications from "@/components/Certifications.astro";
 import Beyond from "@/components/Beyond.astro";
 import Contact from "@/components/Contact.astro";
 import Footer from "@/components/Footer.astro";
-import ParticleBackground from "@/components/ParticleBackground";
 
 const locale = "it" as const;
 ---
@@ -23,14 +22,7 @@ const locale = "it" as const;
   <Navbar locale={locale} />
 
   <main>
-    <!-- Hero with particles -->
-    <div class="relative">
-      <div class="absolute inset-0 z-0">
-        <ParticleBackground client:load />
-      </div>
-      <Hero locale={locale} />
-    </div>
-
+    <Hero locale={locale} />
     <About locale={locale} />
     <Skills locale={locale} />
     <Experience locale={locale} />
@@ -42,26 +34,12 @@ const locale = "it" as const;
 
   <Footer locale={locale} />
 
-  <!-- GSAP animations -->
   <script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Animate all fade-in elements
-    gsap.utils.toArray<HTMLElement>(".fade-in").forEach((el) => {
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 85%",
-          once: true,
-        },
-      });
-    });
+    import { initScrollMotion } from "@/scripts/scroll-motion";
+    import { initSiteBackdrop } from "@/scripts/site-backdrop";
+    import { initHeroChat } from "@/scripts/hero-chat";
+    initScrollMotion();
+    initSiteBackdrop();
+    initHeroChat();
   </script>
 </Layout>

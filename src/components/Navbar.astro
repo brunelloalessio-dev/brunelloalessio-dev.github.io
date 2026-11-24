@@ -132,7 +132,6 @@ const altPath = getLocalePath(altLocale);
     document.documentElement.classList.add(newTheme);
     localStorage.setItem("theme", newTheme);
     updateThemeIcons();
-    // Dispatch event for particles
     window.dispatchEvent(new CustomEvent("themechange", { detail: newTheme }));
   });
 

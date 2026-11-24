@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import SiteBackdrop from "@/components/SiteBackdrop.astro";
 import type { Locale } from "@/i18n/utils";
 import { getAlternateLocale, getLocalePath } from "@/i18n/utils";
 
@@ -21,13 +22,29 @@ const altURL = new URL(getLocalePath(altLocale), Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Dark mode: prevent flash -->
+    <!-- Dark mode: prevent flash + always start at top on reload -->
     <script is:inline>
       (function() {
         const saved = localStorage.getItem('theme');
         const theme = saved || 'dark';
         document.documentElement.classList.remove('dark', 'light');
         document.documentElement.classList.add(theme);
+
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+
+        var goTop = function () {
+          if (location.hash) return;
+          window.scrollTo(0, 0);
+        };
+
+        goTop();
+        window.addEventListener('DOMContentLoaded', goTop);
+        window.addEventListener('load', goTop);
+        window.addEventListener('pageshow', function (event) {
+          if (event.persisted) goTop();
+        });
       })();
     </script>
 
@@ -66,7 +83,10 @@ const altURL = new URL(getLocalePath(altLocale), Astro.site);
 
     <title>{title}</title>
   </head>
-  <body class="bg-bg-primary text-text-primary antialiased">
-    <slot />
+  <body class="relative text-text-primary antialiased">
+    <SiteBackdrop />
+    <div class="relative z-10">
+      <slot />
+    </div>
   </body>
 </html>
