@@ -191,6 +191,14 @@
       "value": "EN · printable PDF",
       "cta": "Open CV",
       "url": "/en/cv/"
+    },
+    "share": {
+      "label": "Share",
+      "value": "This portfolio",
+      "cta": "Share",
+      "copied": "✓ Link copied!",
+      "title": "Alessio Brunello — Portfolio",
+      "text": "Check out Alessio Brunello’s portfolio — Frontend Tech Lead."
     }
   },
   "cv": {

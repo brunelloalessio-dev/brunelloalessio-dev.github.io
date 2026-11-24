@@ -67,6 +67,7 @@ const chatLines = [i18n.hero.greeting, i18n.hero.name, i18n.hero.role];
               class="text-gradient mt-2 min-h-[1.1em] text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl"
               data-chat-line="1"
               data-full={chatLines[1]}
+              transition:name="hero-name"
             >
               {chatLines[1]}
             </h1>
@@ -115,7 +116,7 @@ const chatLines = [i18n.hero.greeting, i18n.hero.name, i18n.hero.role];
       </div>
 
       <!-- Right: photo -->
-      <div class="hero-photo relative" data-chat-photo>
+      <div class="hero-photo relative" data-chat-photo transition:name="hero-photo">
         <div class="hero-photo-float">
           <div data-parallax-hero="0.12" class="relative">
             <div class="hero-photo-aura absolute -inset-8 rounded-full"></div>

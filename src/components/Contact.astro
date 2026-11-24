@@ -8,6 +8,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const i18n = t(locale);
+const shareUrl = new URL(`/${locale}/`, Astro.site).href;
 ---
 
 <section id="contact" class="relative py-24 sm:py-32">
@@ -20,11 +21,12 @@ const i18n = t(locale);
     </div>
 
     <!-- Contact cards -->
-    <div class="stagger-grid mx-auto grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="stagger-grid mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <!-- Email -->
       <button
         id="copy-email"
-        class="stagger-item glass card-action group flex flex-col items-center rounded-2xl p-8 text-center"
+        type="button"
+        class="stagger-item glass card-action group flex min-h-[11rem] flex-col items-center rounded-2xl p-8 text-center"
         data-email={i18n.contact.email.value}
       >
         <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 transition-colors group-hover:bg-accent/20">
@@ -44,7 +46,7 @@ const i18n = t(locale);
       <!-- CV -->
       <a
         href={i18n.contact.cv.url}
-        class="stagger-item glass card-action group flex flex-col items-center rounded-2xl p-8 text-center"
+        class="stagger-item glass card-action group flex min-h-[11rem] flex-col items-center rounded-2xl p-8 text-center"
       >
         <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 transition-colors group-hover:bg-accent/20">
           <svg class="h-8 w-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
@@ -61,7 +63,7 @@ const i18n = t(locale);
         href={i18n.contact.linkedin.url}
         target="_blank"
         rel="noopener noreferrer"
-        class="stagger-item glass card-action group flex flex-col items-center rounded-2xl p-8 text-center"
+        class="stagger-item glass card-action group flex min-h-[11rem] flex-col items-center rounded-2xl p-8 text-center"
       >
         <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 transition-colors group-hover:bg-accent/20">
           <svg class="h-8 w-8 text-accent" fill="currentColor" viewBox="0 0 24 24">
@@ -78,7 +80,7 @@ const i18n = t(locale);
         href={i18n.contact.github.url}
         target="_blank"
         rel="noopener noreferrer"
-        class="stagger-item glass card-action group flex flex-col items-center rounded-2xl p-8 text-center"
+        class="stagger-item glass card-action group flex min-h-[11rem] flex-col items-center rounded-2xl p-8 text-center"
       >
         <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 transition-colors group-hover:bg-accent/20">
           <svg class="h-8 w-8 text-accent" fill="currentColor" viewBox="0 0 24 24">
@@ -89,26 +91,34 @@ const i18n = t(locale);
         <p class="mb-3 text-sm text-text-secondary">{i18n.contact.github.value}</p>
         <span class="text-xs font-medium text-accent">{i18n.contact.github.cta} →</span>
       </a>
+
+      <!-- Share: Web Share API on Safari/iOS/Android, clipboard fallback elsewhere -->
+      <button
+        id="share-site"
+        type="button"
+        class="stagger-item glass card-action group flex min-h-[11rem] flex-col items-center rounded-2xl p-8 text-center sm:col-span-2 lg:col-span-1"
+        data-share-title={i18n.contact.share.title}
+        data-share-text={i18n.contact.share.text}
+        data-share-url={shareUrl}
+      >
+        <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 transition-colors group-hover:bg-accent/20">
+          <svg class="h-8 w-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"/>
+          </svg>
+        </div>
+        <h3 class="mb-1 text-lg font-semibold text-text-primary">{i18n.contact.share.label}</h3>
+        <p class="mb-3 text-sm text-text-secondary">{i18n.contact.share.value}</p>
+        <span
+          id="share-site-text"
+          class="text-xs font-medium text-accent"
+          data-copied={i18n.contact.share.copied}
+        >{i18n.contact.share.cta}</span>
+      </button>
     </div>
   </div>
 </section>
 
 <script>
-  const copyBtn = document.getElementById("copy-email");
-  const copyText = document.getElementById("copy-email-text");
-  const originalText = copyText?.textContent;
-
-  copyBtn?.addEventListener("click", async () => {
-    const email = copyBtn.getAttribute("data-email");
-    if (email && navigator.clipboard) {
-      await navigator.clipboard.writeText(email);
-      if (copyText) {
-        const copied = copyText.getAttribute("data-copied") || "✓ Copied!";
-        copyText.textContent = copied;
-        setTimeout(() => {
-          copyText.textContent = originalText || "";
-        }, 2000);
-      }
-    }
-  });
+  import { bootContact } from "@/scripts/contact";
+  bootContact();
 </script>
