@@ -366,10 +366,12 @@ function initNavbar() {
   const iconSun = document.getElementById("icon-sun");
   const iconMoon = document.getElementById("icon-moon");
   const langSwitch = document.getElementById("lang-switch") as HTMLAnchorElement | null;
+  const navLogo = document.getElementById("nav-logo");
   const ac = new AbortController();
   const { signal } = ac;
   let isOpen = false;
   let navScrollTicking = false;
+  let logoGlitchTimer = 0;
 
   const updateThemeIcons = () => {
     const isDark = document.documentElement.classList.contains("dark");
@@ -394,6 +396,22 @@ function initNavbar() {
     (event) => {
       event.preventDefault();
       void handleLangSwitch(langSwitch);
+    },
+    { signal },
+  );
+
+  navLogo?.addEventListener(
+    "pointerdown",
+    () => {
+      if (reducedMotion()) return;
+      navLogo.classList.remove("is-glitching");
+      // Retrigger CSS animation
+      void navLogo.offsetWidth;
+      navLogo.classList.add("is-glitching");
+      window.clearTimeout(logoGlitchTimer);
+      logoGlitchTimer = window.setTimeout(() => {
+        navLogo.classList.remove("is-glitching");
+      }, 520);
     },
     { signal },
   );
@@ -450,6 +468,8 @@ function initNavbar() {
 
   dispose = () => {
     ac.abort();
+    window.clearTimeout(logoGlitchTimer);
+    navLogo?.classList.remove("is-glitching");
     setMenuOpen(mobileMenu, mobileMenuBtn, false);
     animating = false;
   };

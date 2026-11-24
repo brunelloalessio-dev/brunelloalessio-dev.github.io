@@ -188,48 +188,120 @@ body {
   border-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Card hover system — aesthetic vs actionable (shade only, no movement) */
+/* Card hover system — glow + accent line, no layout shift */
 .card-surface,
 .card-action {
+  position: relative;
+  isolation: isolate;
   transition:
-    box-shadow 0.3s ease,
-    border-color 0.3s ease,
-    background-color 0.3s ease;
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background-color 0.35s ease;
+}
+
+.card-surface::before,
+.card-action::before {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.95) 28%,
+    rgba(217, 70, 239, 0.9) 72%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: scaleX(0.35);
+  transform-origin: center;
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .card-action {
   cursor: pointer;
 }
 
+/* Skill chips — micro glow on hover */
+.skill-chip {
+  transition:
+    color 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.35s ease,
+    transform 0.28s ease,
+    background-color 0.28s ease;
+}
+
+@media (hover: hover) {
+  .skill-chip:hover {
+    color: var(--color-text-primary);
+    border-color: rgba(56, 189, 248, 0.35);
+    transform: translateY(-1px);
+    box-shadow:
+      0 0 0 1px rgba(56, 189, 248, 0.08),
+      0 0 16px rgba(56, 189, 248, 0.16),
+      0 0 28px rgba(217, 70, 239, 0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-chip:hover {
+    transform: none;
+  }
+}
+
 @media (hover: hover) {
   .dark .card-surface:hover {
-    border-color: rgba(255, 255, 255, 0.14);
+    border-color: rgba(125, 211, 252, 0.22);
     box-shadow:
-      0 8px 24px rgba(0, 0, 0, 0.28),
-      0 0 20px rgba(255, 255, 255, 0.04);
+      0 10px 28px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(125, 211, 252, 0.06),
+      0 0 28px rgba(56, 189, 248, 0.12),
+      0 0 48px rgba(217, 70, 239, 0.08);
   }
 
   .light .card-surface:hover {
-    border-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(2, 132, 199, 0.18);
     box-shadow:
-      0 10px 26px rgba(0, 0, 0, 0.08),
-      0 0 14px rgba(0, 0, 0, 0.03);
+      0 12px 28px rgba(0, 0, 0, 0.08),
+      0 0 0 1px rgba(2, 132, 199, 0.06),
+      0 0 22px rgba(14, 165, 233, 0.1),
+      0 0 36px rgba(192, 38, 211, 0.06);
   }
 
   .dark .card-action:hover {
-    border-color: rgba(125, 211, 252, 0.32);
+    border-color: rgba(125, 211, 252, 0.36);
     box-shadow:
-      0 10px 28px rgba(0, 0, 0, 0.32),
-      0 0 0 1px rgba(125, 211, 252, 0.1),
-      0 0 26px rgba(125, 211, 252, 0.14);
+      0 12px 30px rgba(0, 0, 0, 0.34),
+      0 0 0 1px rgba(125, 211, 252, 0.12),
+      0 0 30px rgba(56, 189, 248, 0.18),
+      0 0 46px rgba(217, 70, 239, 0.1);
   }
 
   .light .card-action:hover {
-    border-color: rgba(2, 132, 199, 0.26);
+    border-color: rgba(2, 132, 199, 0.3);
     box-shadow:
-      0 12px 28px rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(2, 132, 199, 0.08),
-      0 0 20px rgba(2, 132, 199, 0.1);
+      0 14px 30px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(2, 132, 199, 0.1),
+      0 0 24px rgba(14, 165, 233, 0.14),
+      0 0 40px rgba(192, 38, 211, 0.08);
+  }
+
+  .card-surface:hover::before,
+  .card-action:hover::before {
+    opacity: 1;
+    transform: scaleX(1);
+    box-shadow:
+      0 0 10px rgba(56, 189, 248, 0.55),
+      0 0 22px rgba(217, 70, 239, 0.3);
   }
 }
 

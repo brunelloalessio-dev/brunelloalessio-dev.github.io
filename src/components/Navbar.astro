@@ -27,10 +27,14 @@ const altPath = getLocalePath(altLocale);
       <!-- Logo -->
       <a
         href={`/${locale}/`}
-        class="nav-logo text-gradient text-xl font-extrabold tracking-tight md:text-2xl"
+        id="nav-logo"
+        class="nav-logo text-xl font-extrabold tracking-tight md:text-2xl"
         transition:name="brand-logo"
+        aria-label="AB — home"
       >
-        AB
+        <span class="nav-logo__layer nav-logo__layer--cyan" aria-hidden="true">AB</span>
+        <span class="nav-logo__layer nav-logo__layer--magenta" aria-hidden="true">AB</span>
+        <span class="nav-logo__label text-gradient">AB</span>
       </a>
 
       <!-- Desktop Nav Links -->
@@ -406,9 +410,37 @@ const altPath = getLocalePath(altLocale);
   }
 
   .nav-logo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
     transition:
       filter 0.4s ease,
       transform 0.3s ease;
+  }
+
+  .nav-logo__label {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nav-logo__layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .nav-logo__layer--cyan {
+    color: rgba(56, 189, 248, 0.95);
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+  }
+
+  .nav-logo__layer--magenta {
+    color: rgba(217, 70, 239, 0.95);
+    text-shadow: 0 0 10px rgba(217, 70, 239, 0.65);
   }
 
   .nav-logo:hover,
@@ -429,6 +461,96 @@ const altPath = getLocalePath(altLocale);
     filter:
       drop-shadow(0 0 6px rgba(14, 165, 233, 0.35))
       drop-shadow(0 0 14px rgba(192, 38, 211, 0.22));
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .nav-logo:hover .nav-logo__layer--cyan,
+    .nav-logo:focus-visible .nav-logo__layer--cyan {
+      animation: logo-glitch-cyan 0.55s steps(2, end) infinite;
+    }
+
+    .nav-logo:hover .nav-logo__layer--magenta,
+    .nav-logo:focus-visible .nav-logo__layer--magenta {
+      animation: logo-glitch-magenta 0.55s steps(2, end) infinite;
+    }
+  }
+
+  .nav-logo.is-glitching .nav-logo__layer--cyan {
+    animation: logo-glitch-cyan 0.42s steps(2, end) 3;
+  }
+
+  .nav-logo.is-glitching .nav-logo__layer--magenta {
+    animation: logo-glitch-magenta 0.42s steps(2, end) 3;
+  }
+
+  .nav-logo.is-glitching .nav-logo__label {
+    animation: logo-glitch-main 0.42s steps(2, end) 3;
+  }
+
+  @keyframes logo-glitch-cyan {
+    0%,
+    100% {
+      opacity: 0;
+      transform: translate(0, 0);
+      clip-path: inset(0 0 0 0);
+    }
+    20% {
+      opacity: 0.85;
+      transform: translate(-3px, 1px);
+      clip-path: inset(10% 0 55% 0);
+    }
+    45% {
+      opacity: 0.7;
+      transform: translate(3px, -2px);
+      clip-path: inset(40% 0 20% 0);
+    }
+    70% {
+      opacity: 0.9;
+      transform: translate(-2px, 0);
+      clip-path: inset(65% 0 5% 0);
+    }
+  }
+
+  @keyframes logo-glitch-magenta {
+    0%,
+    100% {
+      opacity: 0;
+      transform: translate(0, 0);
+      clip-path: inset(0 0 0 0);
+    }
+    25% {
+      opacity: 0.8;
+      transform: translate(3px, -1px);
+      clip-path: inset(55% 0 10% 0);
+    }
+    50% {
+      opacity: 0.65;
+      transform: translate(-3px, 2px);
+      clip-path: inset(15% 0 45% 0);
+    }
+    75% {
+      opacity: 0.85;
+      transform: translate(2px, 1px);
+      clip-path: inset(0 0 60% 0);
+    }
+  }
+
+  @keyframes logo-glitch-main {
+    0%,
+    100% {
+      transform: translate(0, 0);
+      filter: none;
+    }
+    30% {
+      transform: translate(1px, -1px);
+      filter: saturate(1.4);
+    }
+    55% {
+      transform: translate(-1px, 1px);
+    }
+    80% {
+      transform: translate(1px, 0);
+    }
   }
 
   /* ---- Tooltips ---- */
@@ -597,6 +719,13 @@ const altPath = getLocalePath(altLocale);
     .nav-lang:hover,
     .nav-logo:hover {
       transform: none;
+    }
+
+    .nav-logo:hover .nav-logo__layer,
+    .nav-logo:focus-visible .nav-logo__layer,
+    .nav-logo.is-glitching .nav-logo__layer,
+    .nav-logo.is-glitching .nav-logo__label {
+      animation: none;
     }
 
     .mobile-drawer.nav-open .mobile-nav-link {
