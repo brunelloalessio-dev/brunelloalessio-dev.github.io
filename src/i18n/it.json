@@ -5,6 +5,7 @@
     "experience": "Esperienza",
     "teaching": "Formazione",
     "certifications": "Certificazioni",
+    "beyond": "Oltre al codice",
     "contact": "Contatti"
   },
   "hero": {
@@ -76,6 +77,37 @@
         "level": "Avanzato",
         "title": "AI per lo sviluppo",
         "description": "Workflow pratici con Cursor, Claude Code, Grok e Grok Bots: coding agentico, prompt efficaci, MCP e integrazione dell'AI nel ciclo di delivery."
+      }
+    ]
+  },
+  "beyond": {
+    "title": "Oltre al codice",
+    "subtitle": "Cose che mi appassionano quando non sto costruendo software",
+    "intro": "Il lavoro è una parte importante della mia vita, ma non l'unica. Fuori dal codice ci sono curiosità, abitudini e persone che mi tengono con i piedi per terra — e lo sguardo sul futuro.",
+    "items": [
+      {
+        "title": "Tecnologia & gadget",
+        "description": "Sono appassionato di tecnologia in generale: mi piace capire come funzionano le cose, provare nuovi gadget e portarli nella quotidianità in modo utile, non solo per collezionarli."
+      },
+      {
+        "title": "Ecosistema Apple",
+        "description": "Amo la piattaforma Apple e la uso in modo completo ogni giorno: iPhone, Mac, Apple Watch, Apple TV e iPad, sia a casa e per le foto, sia al lavoro."
+      },
+      {
+        "title": "Mobilità elettrica",
+        "description": "Guido una Tesla Model 3 da quattro anni e sono sostenitore della mobilità elettrica. Non faccio prediche: quando me lo chiedono, racconto semplicemente le mie esperienze, senza odio e senza insistenza."
+      },
+      {
+        "title": "Finanza",
+        "description": "Studio finanza a tempo perso per passione e interesse personale: è un modo per capire meglio il mondo, non un secondo lavoro."
+      },
+      {
+        "title": "Sport",
+        "description": "Mi piace la pesca e pratico softair in squadra: due modi diversi di stare all'aria aperta, concentrarmi e divertirmi con gli altri."
+      },
+      {
+        "title": "Famiglia",
+        "description": "Ho una famiglia meravigliosa: vivo con una moglie straordinaria e una piccola bimba che è già molto più intelligente di me."
       }
     ]
   },
