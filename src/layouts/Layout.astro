@@ -9,9 +9,10 @@ interface Props {
   title: string;
   description: string;
   locale: Locale;
+  noindex?: boolean;
 }
 
-const { title, description, locale } = Astro.props;
+const { title, description, locale, noindex = false } = Astro.props;
 const altLocale = getAlternateLocale(locale);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const altURL = new URL(withLocale(Astro.url.pathname, altLocale), Astro.site);
@@ -99,6 +100,7 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
     </script>
 
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta name="author" content="Alessio Brunello" />
     <meta name="generator" content={Astro.generator} />
 
@@ -152,6 +154,35 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
     <script>
       import { bootSiteBackdrop } from "@/scripts/site-backdrop";
       bootSiteBackdrop();
+    </script>
+    <script is:inline>
+      (function () {
+        if (window.__alessioConsole) return;
+        window.__alessioConsole = true;
+        var en = document.documentElement.lang === "en";
+        var lines = en
+          ? [
+              "Hi from Treviso.",
+              "If you're reading the console, we understand each other.",
+              "No trackers, no analytics. The code is at https://github.com/brunelloalessio-dev",
+              "If you're inspecting the 2×, it's approximate. The rest is exact."
+            ]
+          : [
+              "Ciao da Treviso.",
+              "Se stai leggendo la console, ci capiamo.",
+              "Niente tracker, niente analytics. Il codice è su https://github.com/brunelloalessio-dev",
+              "Se stai ispezionando il 2×, è circa. Il resto è preciso."
+            ];
+        var lead = "font: 600 14px/1.55 Inter, system-ui, sans-serif; color: #7dd3fc;";
+        var quiet = "font: 13px/1.55 Inter, system-ui, sans-serif; color: #a1a1aa;";
+        console.log(
+          "%c" + lines[0] + "\n%c" + lines[1] + "\n%c" + lines[2] + "\n%c" + lines[3],
+          lead,
+          lead,
+          quiet,
+          quiet
+        );
+      })();
     </script>
   </body>
 </html>

@@ -36,7 +36,11 @@ const chatLines = [i18n.hero.greeting, i18n.hero.name, i18n.hero.role];
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/60"></span>
             <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
           </span>
-          <span class="text-xs font-medium uppercase tracking-[0.18em] text-text-secondary">
+          <span
+            class="text-xs font-medium tracking-[0.14em] text-text-secondary tabular-nums"
+            data-chat-status
+            data-place={i18n.hero.chat_status}
+          >
             {i18n.hero.chat_status}
           </span>
         </div>

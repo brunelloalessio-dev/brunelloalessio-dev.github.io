@@ -24,7 +24,7 @@
     "tagline": "Progetto sistemi frontend scalabili, guido il delivery del team e integro workflow agentici nel lavoro quotidiano — con impatto misurabile su velocità, qualità e UX.",
     "cta_primary": "Scopri di più",
     "cta_secondary": "Contattami",
-    "chat_status": "Online ora",
+    "chat_status": "Treviso",
     "chat_delivered": "Inviato",
     "chat_photo": "Foto profilo · appena inviata"
   },
@@ -103,6 +103,10 @@
     "title": "Impatto",
     "subtitle": "Un pezzo del lavoro, raccontato senza dettagli riservati",
     "eyebrow": "Case study",
+    "stat": {
+      "value": "≈ 2×",
+      "label": "storie e task chiusi per sprint"
+    },
     "case": {
       "title": "AI-augmented delivery nel team",
       "context": "Bludata · piattaforma gestionale cloud · team di sviluppo",

@@ -416,9 +416,46 @@ function initNavbar() {
     { signal },
   );
 
+  const sectionLinks = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>(".nav-link, .mobile-nav-link"),
+  );
+
+  const syncCurrentSection = () => {
+    const sections: { id: string; el: HTMLElement }[] = [];
+    const seen = new Set<string>();
+
+    for (const link of sectionLinks) {
+      const id = link.hash.replace(/^#/, "");
+      if (!id || seen.has(id)) continue;
+      const el = document.getElementById(id);
+      if (!el) continue;
+      seen.add(id);
+      sections.push({ id, el });
+    }
+
+    const marker = 120;
+    let current: string | null = null;
+    for (const section of sections) {
+      if (section.el.getBoundingClientRect().top <= marker) current = section.id;
+    }
+
+    const atBottom =
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    if (atBottom && sections.length > 0) current = sections[sections.length - 1].id;
+
+    for (const link of sectionLinks) {
+      const id = link.hash.replace(/^#/, "");
+      const on = id !== "" && id === current;
+      link.classList.toggle("is-current", on);
+      if (on) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    }
+  };
+
   const syncNavbarScroll = () => {
     navScrollTicking = false;
     navbar.classList.toggle("is-scrolled", window.scrollY > 50);
+    syncCurrentSection();
   };
 
   window.addEventListener(
@@ -431,6 +468,7 @@ function initNavbar() {
     { passive: true, signal },
   );
   syncNavbarScroll();
+  window.addEventListener("hashchange", syncCurrentSection, { signal });
 
   const closeIfDesktop = () => {
     if (!window.matchMedia(DESKTOP_MQ).matches) return;

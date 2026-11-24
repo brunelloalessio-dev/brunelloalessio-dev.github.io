@@ -11,6 +11,34 @@ async function typeInto(el: HTMLElement, text: string, msPerChar: number) {
 }
 
 let heroRunId = 0;
+let clockTimer = 0;
+
+function startTrevisoClock() {
+  window.clearInterval(clockTimer);
+  const el = document.querySelector<HTMLElement>("[data-chat-status]");
+  if (!el) return;
+
+  const place = el.dataset.place || "Treviso";
+  const fmt = new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+    timeZone: "Europe/Rome",
+  });
+
+  const tick = () => {
+    el.textContent = `${fmt.format(new Date())} · ${place}`;
+  };
+
+  tick();
+  clockTimer = window.setInterval(() => {
+    if (!el.isConnected) {
+      window.clearInterval(clockTimer);
+      return;
+    }
+    tick();
+  }, 30_000);
+}
 
 function startPhotoFloat(isMobile: boolean) {
   const floatEl = document.querySelector<HTMLElement>(".hero-photo-float");
@@ -58,6 +86,8 @@ function revealStaticHero() {
 }
 
 export async function initHeroChat() {
+  startTrevisoClock();
+
   const runId = ++heroRunId;
   const stillActive = () => runId === heroRunId;
 

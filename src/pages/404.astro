@@ -1,0 +1,54 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/Navbar.astro";
+import Footer from "@/components/Footer.astro";
+
+const locale = "it" as const;
+
+const homeLinkClass =
+  "glass hover-glow mt-6 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold text-text-primary transition-all hover:bg-white/10";
+---
+
+<Layout
+  locale={locale}
+  noindex
+  title="Pagina non trovata · Page not found — Alessio Brunello"
+  description="Questa pagina non c'è. This page isn't here. Torna al portfolio di Alessio Brunello."
+>
+  <Navbar locale={locale} bilingual />
+
+  <main class="flex min-h-dvh items-center px-4 pb-20 pt-[calc(7rem+env(safe-area-inset-top))] sm:px-6">
+    <div class="mx-auto w-full max-w-3xl">
+      <article class="glass card-surface rounded-3xl px-6 py-8 sm:px-10 sm:py-10">
+        <p class="text-xs font-medium uppercase tracking-[0.18em] text-accent-soft">404</p>
+
+        <div class="mt-6 grid gap-8 sm:grid-cols-2 sm:gap-0">
+          <section lang="it" class="sm:pr-10">
+            <h1 class="text-gradient text-balance text-3xl font-extrabold leading-tight sm:text-4xl">
+              Questa pagina non c'è
+            </h1>
+            <p class="mt-4 text-base leading-relaxed text-text-secondary">
+              Il messaggio non è arrivato. Forse il link è vecchio, o l'ho spostato io.
+            </p>
+            <a href="/it/" class={homeLinkClass}>Torna all'inizio</a>
+          </section>
+
+          <section
+            lang="en"
+            class="border-t border-[color:var(--color-glass-border)] pt-8 sm:border-t-0 sm:border-l sm:pt-0 sm:pl-10"
+          >
+            <h2 class="text-gradient text-balance text-3xl font-extrabold leading-tight sm:text-4xl">
+              This page isn't here
+            </h2>
+            <p class="mt-4 text-base leading-relaxed text-text-secondary">
+              The message didn't arrive. The link may be old, or I moved it.
+            </p>
+            <a href="/en/" class={homeLinkClass}>Back to the start</a>
+          </section>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <Footer locale={locale} bothLocales />
+</Layout>

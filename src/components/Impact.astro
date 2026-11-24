@@ -29,6 +29,15 @@ const steps = [impact.case.problem, impact.case.approach, impact.case.result];
         <p class="mt-2 text-sm text-text-secondary">{impact.case.context}</p>
       </div>
 
+      <div class="mb-8 flex flex-wrap items-end gap-x-5 gap-y-2 border-b border-[color:var(--color-glass-border)] pb-8">
+        <p class="text-6xl font-extrabold leading-none tracking-tight text-accent sm:text-7xl">
+          {impact.stat.value}
+        </p>
+        <p class="max-w-[16rem] pb-1 text-sm leading-snug text-text-secondary sm:text-base">
+          {impact.stat.label}
+        </p>
+      </div>
+
       <div class="stagger-grid grid gap-6">
         {
           steps.map((step) => (

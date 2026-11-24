@@ -24,7 +24,7 @@
     "tagline": "I design scalable frontend systems, lead team delivery, and fold agentic workflows into everyday engineering — with measurable impact on speed, quality, and UX.",
     "cta_primary": "Learn More",
     "cta_secondary": "Get in Touch",
-    "chat_status": "Online now",
+    "chat_status": "Treviso",
     "chat_delivered": "Delivered",
     "chat_photo": "Profile photo · just sent"
   },
@@ -103,6 +103,10 @@
     "title": "Impact",
     "subtitle": "One slice of the work, told without confidential detail",
     "eyebrow": "Case study",
+    "stat": {
+      "value": "≈ 2×",
+      "label": "stories and tasks closed per sprint"
+    },
     "case": {
       "title": "AI-augmented delivery in the team",
       "context": "Bludata · cloud management platform · engineering team",

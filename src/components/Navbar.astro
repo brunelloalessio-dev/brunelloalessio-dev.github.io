@@ -4,13 +4,15 @@ import { t, getAlternateLocale, withLocale } from "@/i18n/utils";
 
 interface Props {
   locale: Locale;
+  /** 404: no section links, language switch goes straight to the other home. */
+  bilingual?: boolean;
 }
 
-const { locale } = Astro.props;
+const { locale, bilingual = false } = Astro.props;
 const i18n = t(locale);
 const tip = i18n.nav.tooltips;
 const altLocale = getAlternateLocale(locale);
-const altPath = withLocale(Astro.url.pathname, altLocale);
+const altPath = bilingual ? `/${altLocale}/` : withLocale(Astro.url.pathname, altLocale);
 const homePath = `/${locale}/`;
 const onHome = Astro.url.pathname.replace(/\/$/, "") === `/${locale}`;
 const sectionHref = (id: string) => (onHome ? `#${id}` : `${homePath}#${id}`);
@@ -51,11 +53,13 @@ const navItems = [
       </a>
 
       <!-- Desktop Nav Links -->
-      <div class="desktop-nav hidden items-center gap-5 lg:gap-7 md:flex">
-        {navItems.map((item) => (
-          <a href={sectionHref(item.id)} class="nav-link">{item.label}</a>
-        ))}
-      </div>
+      {!bilingual && (
+        <div class="desktop-nav hidden items-center gap-5 lg:gap-7 md:flex">
+          {navItems.map((item) => (
+            <a href={sectionHref(item.id)} class="nav-link">{item.label}</a>
+          ))}
+        </div>
+      )}
 
       <!-- Right side: Theme toggle + Lang switch + GitHub + Mobile menu -->
       <div class="flex items-center gap-1 sm:gap-2">
@@ -106,37 +110,41 @@ const navItems = [
         </a>
 
         <!-- Mobile Menu Button — only below md, when desktop tabs are hidden -->
-        <button
-          id="mobile-menu-btn"
-          type="button"
-          class="nav-icon nav-tip-host mobile-menu-btn inline-flex"
-          aria-label={tip.menu_open}
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-          data-tooltip={tip.menu_open}
-        >
-          <span class="burger" aria-hidden="true">
-            <span class="burger__line"></span>
-            <span class="burger__line"></span>
-            <span class="burger__line"></span>
-          </span>
-          <span class="nav-tip" role="tooltip">{tip.menu_open}</span>
-        </button>
+        {!bilingual && (
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            class="nav-icon nav-tip-host mobile-menu-btn inline-flex"
+            aria-label={tip.menu_open}
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            data-tooltip={tip.menu_open}
+          >
+            <span class="burger" aria-hidden="true">
+              <span class="burger__line"></span>
+              <span class="burger__line"></span>
+              <span class="burger__line"></span>
+            </span>
+            <span class="nav-tip" role="tooltip">{tip.menu_open}</span>
+          </button>
+        )}
       </div>
     </div>
   </div>
 
   <!-- Mobile Menu: pointer-events-none when closed so it cannot steal burger taps -->
-  <div
-    id="mobile-menu"
-    class="mobile-drawer glass-strong"
-  >
-    <div class="mobile-drawer__inner flex flex-col gap-6 p-8">
-      {navItems.map((item) => (
-        <a href={sectionHref(item.id)} class="mobile-nav-link">{item.label}</a>
-      ))}
+  {!bilingual && (
+    <div
+      id="mobile-menu"
+      class="mobile-drawer glass-strong"
+    >
+      <div class="mobile-drawer__inner flex flex-col gap-6 p-8">
+        {navItems.map((item) => (
+          <a href={sectionHref(item.id)} class="mobile-nav-link">{item.label}</a>
+        ))}
+      </div>
     </div>
-  </div>
+  )}
 </nav>
 
 <!-- FX overlays (outside nav so they can cover the whole viewport) -->
@@ -363,8 +371,15 @@ const navItems = [
   .nav-link:hover::after,
   .nav-link:focus-visible::after,
   .mobile-nav-link:hover::after,
-  .mobile-nav-link:focus-visible::after {
+  .mobile-nav-link:focus-visible::after,
+  .nav-link.is-current::after,
+  .mobile-nav-link.is-current::after {
     transform: scaleX(1);
+  }
+
+  .nav-link.is-current,
+  .mobile-nav-link.is-current {
+    color: var(--color-text-primary);
   }
 
   .nav-icon {
