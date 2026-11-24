@@ -3,6 +3,7 @@
     "about": "About",
     "skills": "Skills",
     "experience": "Experience",
+    "teaching": "Teaching",
     "certifications": "Certifications",
     "contact": "Contact"
   },
@@ -10,14 +11,15 @@
     "greeting": "Hi, I'm",
     "name": "Alessio Brunello",
     "role": "Frontend Tech Lead",
-    "tagline": "I build scalable frontend systems and lead delivery teams, integrating Claude Code, MCP, and agentic workflows into everyday engineering.",
+    "tagline": "I build scalable frontend systems and lead delivery teams, integrating Cursor, Claude Code, Grok, and agentic workflows into everyday engineering.",
     "cta_primary": "Learn More",
     "cta_secondary": "Get in Touch"
   },
   "about": {
     "title": "About Me",
     "description": "I'm a Frontend Tech Lead with over 10 years of experience building modern, performant, and scalable web and mobile applications. I focus on designing intuitive digital solutions, leading development teams, and contributing to architectural decisions to ensure high-quality products.",
-    "description2": "I work daily with React, TypeScript, and modern web technologies. I treat AI as an engineering multiplier: I integrate Claude Code, Model Context Protocol, and agentic workflows into delivery, prototyping, and code review.",
+    "description2": "I work daily with React, TypeScript, and modern web technologies. I treat AI as an engineering multiplier: I use Cursor, Claude Code, Grok and Grok Bots, MCP, and agentic workflows in delivery, prototyping, and code review.",
+    "description3": "I'm deeply passionate about artificial intelligence and stay relentlessly up to date: I follow the latest releases, try them immediately, and bring them into real work—beyond the hype, with concrete impact.",
     "stats": {
       "years": "10+",
       "years_label": "Years of Experience",
@@ -53,12 +55,29 @@
         "Designing and developing enterprise frontend architecture with React, TypeScript, and modern best practices",
         "Building cross-platform mobile applications with React Native and Flutter for iOS and Android",
         "Implementing interactive real-time data dashboards and GDPR-compliant PWAs",
-        "Integrating AI-assisted development into team workflow, experimenting with Claude Code, MCP, and agent/subagent workflows to accelerate development and code review",
-        "Internal training sessions on artificial intelligence and AI-augmented development",
-        "Contributing to architectural decisions, systematic code reviews, and mentorship for team growth",
+        "Integrating AI-assisted development into the team workflow with Cursor, Claude Code, Grok, Grok Bots, MCP, and agent/subagent workflows",
+        "Internal training and mentorship on artificial intelligence applied to software development and everyday work",
+        "Contributing to architectural decisions, systematic code reviews, and team growth",
         "Cross-functional collaboration with product, backend, and design teams in Agile environments"
       ]
     }
+  },
+  "teaching": {
+    "title": "Teaching & Sharing",
+    "subtitle": "I love explaining things: turning AI novelty into skills people can actually use",
+    "intro": "Beyond building products, I love transferring know-how. I design and run beginner and advanced courses on using artificial intelligence—both for everyday life and for software development.",
+    "tracks": [
+      {
+        "level": "Beginner",
+        "title": "AI for everyday life",
+        "description": "How to use AI assistants practically to write better, organize work, research faster, and reclaim time without feeling overwhelmed by the tech."
+      },
+      {
+        "level": "Advanced",
+        "title": "AI for development",
+        "description": "Hands-on workflows with Cursor, Claude Code, Grok, and Grok Bots: agentic coding, effective prompting, MCP, and bringing AI into the delivery cycle."
+      }
+    ]
   },
   "certifications": {
     "title": "Selected Certifications",

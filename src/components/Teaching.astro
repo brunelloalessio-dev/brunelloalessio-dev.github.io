@@ -1,0 +1,46 @@
+---
+import type { Locale } from "@/i18n/utils";
+import { t } from "@/i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const i18n = t(locale);
+const tracks = i18n.teaching.tracks;
+---
+
+<section id="teaching" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="fade-in mb-16 text-center">
+      <h2 class="text-gradient mb-4 text-3xl font-bold sm:text-4xl">
+        {i18n.teaching.title}
+      </h2>
+      <p class="mx-auto max-w-2xl text-text-secondary">{i18n.teaching.subtitle}</p>
+      <div class="mx-auto mt-4 h-1 w-20 rounded-full bg-accent-soft"></div>
+    </div>
+
+    <div class="fade-in mx-auto mb-10 max-w-3xl text-center">
+      <p class="text-base leading-relaxed text-text-secondary sm:text-lg">
+        {i18n.teaching.intro}
+      </p>
+    </div>
+
+    <div class="fade-in mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
+      {
+        tracks.map((track) => (
+          <article class="glass hover-glow rounded-2xl p-6 sm:p-8">
+            <span class="mb-4 inline-block rounded-lg bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent">
+              {track.level}
+            </span>
+            <h3 class="mb-3 text-xl font-bold text-text-primary">{track.title}</h3>
+            <p class="text-sm leading-relaxed text-text-secondary sm:text-base">
+              {track.description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

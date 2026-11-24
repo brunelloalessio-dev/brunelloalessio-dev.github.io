@@ -3,6 +3,7 @@
     "about": "Chi Sono",
     "skills": "Competenze",
     "experience": "Esperienza",
+    "teaching": "Formazione",
     "certifications": "Certificazioni",
     "contact": "Contatti"
   },
@@ -10,14 +11,15 @@
     "greeting": "Ciao, sono",
     "name": "Alessio Brunello",
     "role": "Frontend Tech Lead",
-    "tagline": "Creo sistemi frontend scalabili e guido team di sviluppo, integrando Claude Code, MCP e workflow agentici nel delivery quotidiano.",
+    "tagline": "Creo sistemi frontend scalabili e guido team di sviluppo, integrando Cursor, Claude Code, Grok e workflow agentici nel delivery quotidiano.",
     "cta_primary": "Scopri di più",
     "cta_secondary": "Contattami"
   },
   "about": {
     "title": "Chi Sono",
     "description": "Sono un Frontend Tech Lead con oltre 10 anni di esperienza nello sviluppo di applicazioni web e mobile moderne, performanti e scalabili. Mi concentro sulla progettazione di soluzioni digitali intuitive, sulla guida dei team e sulle decisioni architetturali per garantire prodotti di alta qualità.",
-    "description2": "Lavoro quotidianamente con React, TypeScript e tecnologie web moderne. Considero l'AI un moltiplicatore ingegneristico: integro Claude Code, Model Context Protocol e workflow agentici in delivery, prototipazione e code review.",
+    "description2": "Lavoro quotidianamente con React, TypeScript e tecnologie web moderne. Considero l'AI un moltiplicatore ingegneristico: uso Cursor, Claude Code, Grok e Grok Bots, MCP e workflow agentici in delivery, prototipazione e code review.",
+    "description3": "Sono iper appassionato di intelligenza artificiale e resto costantemente sul pezzo: seguo le novità, le provo subito e le porto nel lavoro reale, oltre l'hype e con impatto concreto.",
     "stats": {
       "years": "10+",
       "years_label": "Anni di Esperienza",
@@ -53,12 +55,29 @@
         "Progettazione e sviluppo dell'architettura frontend di applicazioni enterprise con React, TypeScript e le più moderne best practice",
         "Sviluppo di applicazioni mobile cross-platform con React Native e Flutter per iOS e Android",
         "Implementazione di dashboard interattive per l'analisi dati real-time e PWA conformi al GDPR",
-        "Integrazione di AI-assisted development nel workflow del team, sperimentando Claude Code, MCP e workflow con agenti e subagenti per accelerare sviluppo e code review",
-        "Sessioni di formazione interna su intelligenza artificiale e AI-augmented development",
-        "Contributo alle decisioni architetturali, code review sistematiche e mentorship per la crescita del team",
+        "Integrazione di AI-assisted development nel workflow del team con Cursor, Claude Code, Grok, Grok Bots, MCP e workflow con agenti e subagenti",
+        "Sessioni di formazione interna e mentorship su intelligenza artificiale applicata allo sviluppo e al lavoro quotidiano",
+        "Contributo alle decisioni architetturali, code review sistematiche e crescita del team",
         "Collaborazione interfunzionale con team di prodotto, backend e design in ambienti Agile"
       ]
     }
+  },
+  "teaching": {
+    "title": "Formazione & Sharing",
+    "subtitle": "Mi piace spiegare: trasformo novità AI in competenze utili e usabili",
+    "intro": "Oltre a costruire prodotti, amo trasferire know-how. Progetto e tengo corsi base e avanzati sull'utilizzo dell'intelligenza artificiale, sia per la vita quotidiana sia per lo sviluppo software.",
+    "tracks": [
+      {
+        "level": "Base",
+        "title": "AI per la vita quotidiana",
+        "description": "Come usare concretamente assistenti AI per scrivere meglio, organizzare il lavoro, fare ricerca e guadagnare tempo senza sentirsi sopraffatti dalla tecnologia."
+      },
+      {
+        "level": "Avanzato",
+        "title": "AI per lo sviluppo",
+        "description": "Workflow pratici con Cursor, Claude Code, Grok e Grok Bots: coding agentico, prompt efficaci, MCP e integrazione dell'AI nel ciclo di delivery."
+      }
+    ]
   },
   "certifications": {
     "title": "Certificazioni Selezionate",

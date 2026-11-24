@@ -5,6 +5,7 @@ import Hero from "@/components/Hero.astro";
 import About from "@/components/About.astro";
 import Skills from "@/components/Skills.astro";
 import Experience from "@/components/Experience.astro";
+import Teaching from "@/components/Teaching.astro";
 import Certifications from "@/components/Certifications.astro";
 import Contact from "@/components/Contact.astro";
 import Footer from "@/components/Footer.astro";
@@ -16,7 +17,7 @@ const locale = "en" as const;
 <Layout
   locale={locale}
   title="Alessio Brunello — Frontend Tech Lead | Portfolio"
-  description="Frontend Tech Lead with 10+ years of experience. React, TypeScript, UI Architecture. Integrating Claude Code, MCP, and agentic workflows into scalable frontend systems."
+  description="Frontend Tech Lead with 10+ years of experience. React, TypeScript, UI Architecture. Integrating Cursor, Claude Code, Grok, and agentic workflows into scalable frontend systems."
 >
   <Navbar locale={locale} />
 
@@ -32,6 +33,7 @@ const locale = "en" as const;
     <About locale={locale} />
     <Skills locale={locale} />
     <Experience locale={locale} />
+    <Teaching locale={locale} />
     <Certifications locale={locale} />
     <Contact locale={locale} />
   </main>
