@@ -18,16 +18,18 @@ const year = new Date().getFullYear();
         <span>© {year} Alessio Brunello.</span>
         <span>{i18n.footer.rights}</span>
       </div>
-      <div class="flex items-center gap-2 text-sm text-text-secondary">
-        <span>{i18n.footer.built_with}</span>
-        <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="font-medium text-accent transition-colors hover:text-accent-soft">
-          Astro
-        </a>
-        <span>+</span>
-        <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="font-medium text-accent transition-colors hover:text-accent-soft">
-          Tailwind CSS
-        </a>
-      </div>
+      <p class="flex items-center gap-1.5 text-sm text-text-secondary">
+        <span>Developed with</span>
+        <svg class="h-3.5 w-3.5 text-accent" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span class="font-medium text-text-primary">Love</span>
+        <span>&amp;</span>
+        <svg class="h-3.5 w-3.5 text-accent" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M11 2l1.2 5.4L17 9l-4.8 1.6L11 16l-1.2-5.4L5 9l4.8-1.6L11 2zm7.5 9l.7 3.1L22 15l-2.8.9-.7 3.1-.7-3.1L15 15l2.8-.9.7-3.1zM6.5 15l.6 2.5L9.5 18l-2.4.7-.6 2.5-.6-2.5L3.5 18l2.4-.5.6-2.5z"/>
+        </svg>
+        <span class="font-medium text-text-primary">Passion</span>
+      </p>
       <!-- Social links -->
       <div class="flex items-center gap-4">
         <a href="https://www.linkedin.com/in/alessio-brunello-dev" target="_blank" rel="noopener noreferrer" class="text-text-secondary transition-colors hover:text-accent" aria-label="LinkedIn">
