@@ -66,7 +66,7 @@ const homePath = `/${locale}/`;
         <div class="cv-roles">
           {
             cv.roles.map((role) => (
-              <div class="cv-role-block">
+              <div class:list={["cv-role-block", { "cv-omit-print": "omitOnPrint" in role && role.omitOnPrint }]}>
                 <div class="cv-role-block__head">
                   <h4>{role.title}</h4>
                   <span class="cv-period">{role.period}</span>
@@ -91,6 +91,20 @@ const homePath = `/${locale}/`;
             <div class="cv-skill">
               <dt>{skill.label}</dt>
               <dd>{skill.items}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section class="cv-section">
+      <h2>{cv.languages_title}</h2>
+      <dl class="cv-skills">
+        {
+          cv.languages.map((lang) => (
+            <div class="cv-skill">
+              <dt>{lang.label}</dt>
+              <dd>{lang.level}</dd>
             </div>
           ))
         }
@@ -486,7 +500,8 @@ const homePath = `/${locale}/`;
     }
 
     :global(.site-backdrop),
-    .no-print {
+    .no-print,
+    .cv-omit-print {
       display: none !important;
     }
 

@@ -3,6 +3,7 @@
     "about": "About",
     "skills": "Skills",
     "experience": "Experience",
+    "impact": "Impact",
     "teaching": "Teaching",
     "certifications": "Certifications",
     "beyond": "Beyond code",
@@ -19,8 +20,8 @@
   "hero": {
     "greeting": "Hi, I'm",
     "name": "Alessio Brunello",
-    "role": "Frontend Tech Lead",
-    "tagline": "I build scalable frontend systems and lead delivery teams, integrating Cursor, Claude Code, Grok, and agentic workflows into everyday engineering.",
+    "role": "Frontend Tech Lead · AI-augmented delivery",
+    "tagline": "I design scalable frontend systems, lead team delivery, and fold agentic workflows into everyday engineering — with measurable impact on speed, quality, and UX.",
     "cta_primary": "Learn More",
     "cta_secondary": "Get in Touch",
     "chat_status": "Online now",
@@ -29,14 +30,14 @@
   },
   "about": {
     "title": "About Me",
-    "description": "I'm a Frontend Tech Lead with over 10 years of experience building modern, performant, and scalable web and mobile applications. I focus on designing intuitive digital solutions, leading development teams, and contributing to architectural decisions to ensure high-quality products.",
-    "description2": "I work daily with React, TypeScript, and modern web technologies. I treat AI as an engineering multiplier: I use Cursor, Claude Code, Grok and Grok Bots, MCP, and agentic workflows in delivery, prototyping, and code review.",
-    "description3": "I'm deeply passionate about artificial intelligence and stay relentlessly up to date: I follow the latest releases, try them immediately, and bring them into real work—beyond the hype, with concrete impact.",
+    "description": "I'm a Frontend Tech Lead with over 10 years of experience on enterprise web and mobile products. At Bludata I own roughly 80% of the frontend: UI architecture, a shared design system in a monorepo, and accessibility (especially keyboard navigation). I'm also starting to contribute on the backend.",
+    "description2": "I work daily with React and TypeScript. I treat AI as an engineering multiplier: Claude Code in agentic mode, shared skills and methods in the monorepo, code review, and automated tests (including Playwright e2e) so quality stays high while the team moves faster.",
+    "description3": "I'm deeply passionate about artificial intelligence and stay relentlessly up to date: I follow the latest releases, try them immediately, and bring them into real delivery — beyond the hype, with concrete results. Open to networking and interesting opportunities.",
     "stats": {
       "years": "10+",
       "years_label": "Years of Experience",
       "role": "Tech Lead",
-      "role_label": "Frontend & UI Architecture"
+      "role_label": "Frontend · AI-augmented delivery"
     }
   },
   "skills": {
@@ -57,33 +58,54 @@
     "subtitle": "My professional journey",
     "bludata": {
       "company": "Bludata S.r.l.",
-      "role": "Frontend Tech Lead",
+      "role": "Frontend Tech Lead · AI-augmented delivery",
       "period": "December 2015 — Present",
       "location": "Paese (TV), Veneto, Italy",
       "points": [
-        "Leading a frontend team of 2-3 developers on web and mobile projects, with focus on quality, performance, and delivery",
+        "Leading a frontend team of 2–3 developers; owning roughly 80% of the frontend across web and mobile products, focused on quality, performance, and delivery",
         "Technical lead for the cloud management platform in specialized retail (Bludata, 5000+ clients in Italy)",
-        "Led the migration from a legacy platform (600+ users) to a modern, scalable cloud architecture",
-        "Enterprise frontend architecture with React/TypeScript and cross-platform mobile apps (React Native, Flutter)",
-        "Real-time dashboards and GDPR-compliant PWAs",
-        "AI-assisted development in the team (Cursor, Claude Code, Grok, MCP, agents), with internal training, code review, and Agile collaboration"
+        "Legacy → cloud migration: started ~3 years ago on ExtJS, moved to React in under a year (pre-AI), then accelerated with AI; ~3–4 MB of compressed code; improvements in UX, cycle time, errors, and adoption (from 600+ legacy users)",
+        "Shared design system and monorepo with custom components; ~30% test coverage on a very large ERP; keyboard accessibility; production releases every 3 weeks and production-bug hotfixes by the next day",
+        "AI-augmented delivery: agentic Claude Code, shared skills and methods, internal training; ~2× stories/tasks closed per sprint for nearly the whole team, with review plus automated tests (AI-assisted + Playwright e2e) and faster prototypes",
+        "Agile cross-functional collaboration; junior onboarding productive in about a month, then paired growth; early backend contributions"
       ]
+    }
+  },
+  "impact": {
+    "title": "Impact",
+    "subtitle": "One slice of the work, told without confidential detail",
+    "eyebrow": "Case study",
+    "case": {
+      "title": "AI-augmented delivery in the team",
+      "context": "Bludata · cloud management platform · engineering team",
+      "problem": {
+        "label": "Problem",
+        "text": "We needed to speed up delivery on a large enterprise ERP without lowering the bar on review, testing, and UX — and without leaving AI as a one-off experiment."
+      },
+      "approach": {
+        "label": "Approach",
+        "text": "We made Claude Code and agentic workflows part of the daily method: skills and conventions in the monorepo, internal courses and end-of-sprint sharing (~10 people, 1–2 hours), AI-assisted automated tests, and a Playwright e2e suite."
+      },
+      "result": {
+        "label": "Result",
+        "text": "Roughly 2× stories and tasks closed per sprint for nearly every teammate, with quality and review kept high; faster mockups and prototypes; an AI ecosystem that keeps improving."
+      }
     }
   },
   "teaching": {
     "title": "Teaching & Sharing",
-    "subtitle": "I love explaining things: turning AI novelty into skills people can actually use",
-    "intro": "Beyond building products, I love transferring know-how. I design and run beginner and advanced courses on using artificial intelligence—both for everyday life and for software development.",
+    "subtitle": "I turn AI novelty into skills people can use — and I share them with the team",
+    "intro": "Beyond building products, I transfer know-how. I've already run internal company courses on AI, and at the end of every sprint we share what we learned (~10 people, 1–2 hours). Public courses I've completed are listed on my profile.",
     "tracks": [
       {
-        "level": "Beginner",
+        "level": "Internal",
         "title": "AI for everyday life",
-        "description": "How to use AI assistants practically to write better, organize work, research faster, and reclaim time without feeling overwhelmed by the tech."
+        "description": "Hands-on sessions on using AI assistants to write better, organize work, research faster, and reclaim time — without feeling overwhelmed by the tech."
       },
       {
-        "level": "Advanced",
+        "level": "Internal · Sprint",
         "title": "AI for development",
-        "description": "Hands-on workflows with Cursor, Claude Code, Grok, and Grok Bots: agentic coding, effective prompting, MCP, and bringing AI into the delivery cycle."
+        "description": "Workflows with Claude Code, Cursor, Grok, and MCP: agentic coding, shared skills, effective prompting, and bringing AI into the delivery cycle. Strong internal feedback."
       }
     ]
   },
@@ -181,7 +203,7 @@
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Always open to new challenges and opportunities",
+    "subtitle": "Open to networking and interesting career opportunities",
     "email": {
       "label": "Email",
       "value": "orecchia.mobiletto.0h@icloud.com",
@@ -212,16 +234,16 @@
       "cta": "Share",
       "copied": "✓ Link copied!",
       "title": "Alessio Brunello — Portfolio",
-      "text": "Check out Alessio Brunello’s portfolio — Frontend Tech Lead."
+      "text": "Check out Alessio Brunello’s portfolio — Frontend Tech Lead · AI-augmented delivery."
     }
   },
   "cv": {
     "meta_title": "Resume — Alessio Brunello",
-    "meta_description": "Resume of Alessio Brunello, Frontend Tech Lead. React, TypeScript, UI architecture, and AI-assisted delivery.",
+    "meta_description": "Resume of Alessio Brunello, Frontend Tech Lead · AI-augmented delivery. React, TypeScript, UI architecture, and AI-assisted delivery.",
     "back": "Back to portfolio",
     "print": "Print / Save PDF",
     "lang_switch": "IT",
-    "role": "Frontend Tech Lead",
+    "role": "Frontend Tech Lead · AI-augmented delivery",
     "location": "Treviso, Italy",
     "portfolio_label": "Portfolio",
     "portfolio_url": "https://brunelloalessio-dev.github.io/en/",
@@ -229,31 +251,32 @@
     "linkedin_url": "https://www.linkedin.com/in/alessio-brunello-dev",
     "github_url": "https://github.com/brunelloalessio-dev",
     "summary_title": "Profile",
-    "summary": "Frontend Tech Lead with 10+ years at Bludata. I design scalable web and mobile systems, lead a small high-impact team, and bring Cursor, Claude Code, Grok, and agentic workflows into everyday delivery — beyond the hype, with concrete results.",
+    "summary": "Frontend Tech Lead with 10+ years at Bludata. I design scalable web and mobile systems (owning ~80% of the frontend), lead a small high-impact team, and bring Claude Code, agentic workflows, and shared methods into everyday delivery. Concrete result: about 2× stories/tasks closed per sprint, with quality held by review and automated tests. Open to interesting opportunities.",
     "experience_title": "Experience",
     "company": "Bludata S.r.l.",
     "company_period": "December 2015 — Present",
     "company_location": "Treviso, Italy",
-    "company_intro": "Cloud management platform for specialized retail (5000+ clients in Italy). Internal path from internship/apprenticeship to Frontend Tech Lead.",
+    "company_intro": "Cloud management platform for specialized retail (5000+ clients in Italy). Internal path from internship/apprenticeship to Frontend Tech Lead. Legacy migration (~3–4 MB compressed code): ExtJS → React in under a year, then faster growth with AI.",
     "roles": [
       {
         "title": "Frontend Tech Lead",
         "period": "2023 — Present",
         "points": [
-          "Leading a frontend team of 2–3 developers on web and mobile products, focused on quality, performance, and delivery",
-          "Technical owner of the enterprise cloud platform and UI architecture decisions",
-          "Rolled out AI-assisted development (Cursor, Claude Code, Grok, MCP, agents) with internal training and code review",
-          "Agile cross-functional collaboration with product, backend, and design"
+          "Leading a frontend team of 2–3 developers; owning roughly 80% of the frontend across web and mobile products",
+          "Technical owner of the enterprise cloud platform, design system/monorepo, and UI architecture decisions",
+          "AI-augmented delivery (agentic Claude Code, shared skills, internal courses): ~2× stories/tasks per sprint, with Playwright e2e and AI-assisted tests",
+          "Releases every 3 weeks; production-bug hotfixes by the next day; keyboard accessibility; ~30% test coverage on a very large ERP",
+          "Agile cross-functional collaboration; early backend contributions"
         ]
       },
       {
         "title": "Senior Frontend Developer",
         "period": "2020 — 2023",
         "points": [
-          "Enterprise frontend architecture and development with React and TypeScript",
+          "Enterprise frontend architecture and development with React and TypeScript; kicked off the ExtJS → React migration",
           "Cross-platform mobile apps with React Native and Flutter",
           "Real-time dashboards, PWAs, and GDPR-compliant delivery",
-          "Mentorship and systematic code review to grow the team"
+          "Mentorship and code review; junior onboarding productive in about a month"
         ]
       },
       {
@@ -267,6 +290,7 @@
       {
         "title": "Junior Frontend Developer — Internship & Apprenticeship",
         "period": "2015 — 2018",
+        "omitOnPrint": true,
         "points": [
           "Joined through internship and apprenticeship right after graduating",
           "Built strong foundations in HTML, CSS, JavaScript, and legacy web apps (ExtJS / AngularJS)"
@@ -281,7 +305,7 @@
       },
       {
         "label": "UI & Styling",
-        "items": "SCSS/SASS, Tailwind CSS, design systems, UI architecture"
+        "items": "SCSS/SASS, Tailwind CSS, design systems, UI architecture, keyboard a11y"
       },
       {
         "label": "Mobile & Data",
@@ -289,11 +313,22 @@
       },
       {
         "label": "AI & Tooling",
-        "items": "Cursor, Claude Code, Grok, MCP, agentic workflows, Prompt Engineering"
+        "items": "Claude Code, Cursor, Grok, MCP, agentic workflows, Playwright, Prompt Engineering"
       },
       {
         "label": "Methods",
-        "items": "Agile/Scrum, code review, mentorship, Git"
+        "items": "Agile/Scrum, code review, mentorship, monorepo, Git"
+      }
+    ],
+    "languages_title": "Languages",
+    "languages": [
+      {
+        "label": "Italian",
+        "level": "Native"
+      },
+      {
+        "label": "English",
+        "level": "Strong technical proficiency"
       }
     ],
     "education_title": "Education",
@@ -333,8 +368,8 @@
       }
     ],
     "teaching_title": "Teaching & sharing",
-    "teaching": "I design and run beginner and advanced courses on using AI — from everyday productivity to development workflows with Cursor, Claude Code, Grok, and MCP.",
-    "footnote": "Web version · use “Print / Save PDF” to download the resume."
+    "teaching": "Internal AI courses already delivered, plus end-of-sprint sharing (~10 people, 1–2 hours) — from everyday productivity to agentic workflows with Claude Code, Cursor, Grok, and MCP.",
+    "footnote": "Web version · use “Print / Save PDF” to download the resume (Junior role omitted in the PDF)."
   },
   "footer": {
     "rights": "All rights reserved."
