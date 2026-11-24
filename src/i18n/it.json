@@ -318,6 +318,7 @@
     "rights": "Tutti i diritti riservati."
   },
   "elevator": {
-    "label": "Torna su"
+    "label": "Torna su",
+    "tooltip": "Ti teletrasporto all'inizio"
   }
 }

@@ -318,6 +318,7 @@
     "rights": "All rights reserved."
   },
   "elevator": {
-    "label": "Back to top"
+    "label": "Back to top",
+    "tooltip": "I'll teleport you to the top"
   }
 }

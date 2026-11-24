@@ -108,6 +108,71 @@ body {
   border-color: rgba(0, 0, 0, 0.15);
 }
 
+/* Card hover system — aesthetic vs actionable (shade only, no movement) */
+.card-surface,
+.card-action {
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.card-action {
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .dark .card-surface:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.28),
+      0 0 20px rgba(255, 255, 255, 0.04);
+  }
+
+  .light .card-surface:hover {
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 10px 26px rgba(0, 0, 0, 0.08),
+      0 0 14px rgba(0, 0, 0, 0.03);
+  }
+
+  .dark .card-action:hover {
+    border-color: rgba(125, 211, 252, 0.32);
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.32),
+      0 0 0 1px rgba(125, 211, 252, 0.1),
+      0 0 26px rgba(125, 211, 252, 0.14);
+  }
+
+  .light .card-action:hover {
+    border-color: rgba(2, 132, 199, 0.26);
+    box-shadow:
+      0 12px 28px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(2, 132, 199, 0.08),
+      0 0 20px rgba(2, 132, 199, 0.1);
+  }
+}
+
+.card-action:focus-visible {
+  outline: none;
+}
+
+.dark .card-action:focus-visible {
+  border-color: rgba(125, 211, 252, 0.45);
+  box-shadow:
+    0 0 0 2px var(--color-bg-primary),
+    0 0 0 4px rgba(125, 211, 252, 0.45),
+    0 0 24px rgba(125, 211, 252, 0.16);
+}
+
+.light .card-action:focus-visible {
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow:
+    0 0 0 2px var(--color-bg-primary),
+    0 0 0 4px rgba(2, 132, 199, 0.35),
+    0 0 18px rgba(2, 132, 199, 0.12);
+}
+
 /* Section / card motion targets (GSAP) */
 .fade-in,
 .stagger-item,

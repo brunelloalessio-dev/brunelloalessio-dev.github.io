@@ -59,6 +59,7 @@ export function initScrollMotion() {
         y: 0,
         duration: 0.85,
         ease: "power3.out",
+        clearProps: "transform",
         scrollTrigger: {
           trigger: el,
           start: "top 88%",
@@ -82,6 +83,7 @@ export function initScrollMotion() {
         duration: 0.7,
         stagger: 0.08,
         ease: "power3.out",
+        clearProps: "transform",
         scrollTrigger: {
           trigger: grid,
           start: "top 85%",
