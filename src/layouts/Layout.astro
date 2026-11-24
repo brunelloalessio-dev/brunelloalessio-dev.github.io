@@ -24,13 +24,58 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Browser chrome: tab / status bar / form controls -->
+    <meta name="color-scheme" content="dark light" />
+    <meta
+      name="theme-color"
+      content="#09090b"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#fafafa"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta name="theme-color" content="#09090b" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Alessio Brunello" />
+
     <!-- Dark mode: prevent flash + always start at top on reload -->
     <script is:inline>
       (function() {
-        const saved = localStorage.getItem('theme');
-        const theme = saved || 'dark';
+        var THEME_COLORS = { dark: '#09090b', light: '#fafafa' };
+
+        function applyBrowserChrome(theme) {
+          document.documentElement.style.colorScheme = theme;
+          var metas = document.querySelectorAll('meta[name="theme-color"]');
+          for (var i = 0; i < metas.length; i++) {
+            var media = metas[i].getAttribute('media');
+            if (!media) {
+              metas[i].setAttribute('content', THEME_COLORS[theme] || THEME_COLORS.dark);
+            }
+          }
+          var statusBar = document.querySelector(
+            'meta[name="apple-mobile-web-app-status-bar-style"]'
+          );
+          if (statusBar) {
+            statusBar.setAttribute(
+              'content',
+              theme === 'light' ? 'default' : 'black-translucent'
+            );
+          }
+        }
+
+        var saved = localStorage.getItem('theme');
+        var theme = saved || 'dark';
         document.documentElement.classList.remove('dark', 'light');
         document.documentElement.classList.add(theme);
+        applyBrowserChrome(theme);
+        window.addEventListener('themechange', function (event) {
+          var next = event && event.detail;
+          if (next === 'dark' || next === 'light') applyBrowserChrome(next);
+        });
 
         if ('scrollRestoration' in history) {
           history.scrollRestoration = 'manual';
@@ -85,8 +130,9 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
     <meta name="twitter:image" content={ogImageURL.href} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
 
-    <!-- Favicon -->
+    <!-- Favicon / home screen -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
