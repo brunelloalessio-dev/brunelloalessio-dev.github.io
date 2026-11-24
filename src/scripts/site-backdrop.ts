@@ -20,6 +20,7 @@ export function bootSiteBackdrop() {
   document.addEventListener("astro:page-load", () => {
     initSiteBackdrop();
   });
+  initSiteBackdrop();
 }
 
 export function initSiteBackdrop() {

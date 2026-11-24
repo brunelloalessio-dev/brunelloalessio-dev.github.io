@@ -80,8 +80,11 @@ const altPath = getLocalePath(altLocale);
         <!-- Mobile Menu Button -->
         <button
           id="mobile-menu-btn"
-          class="nav-icon inline-flex md:hidden"
+          type="button"
+          class="nav-icon relative z-[60] inline-flex md:hidden"
           aria-label="Menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
         >
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -91,10 +94,10 @@ const altPath = getLocalePath(altLocale);
     </div>
   </div>
 
-  <!-- Mobile Menu -->
+  <!-- Mobile Menu: pointer-events-none when closed so it cannot steal burger taps -->
   <div
     id="mobile-menu"
-    class="glass-strong fixed inset-0 top-[calc(4rem+env(safe-area-inset-top))] -translate-x-full opacity-0 transition-all duration-300 md:hidden"
+    class="mobile-drawer glass-strong md:hidden"
   >
     <div class="flex flex-col gap-6 p-8">
       <a href="#about" class="mobile-nav-link">{i18n.nav.about}</a>
@@ -126,6 +129,34 @@ const altPath = getLocalePath(altLocale);
 
   :global(html.light) .site-header.is-scrolled {
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .mobile-drawer {
+    position: fixed;
+    top: calc(4rem + env(safe-area-inset-top));
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 55;
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  .mobile-drawer.nav-open {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  :global(body.nav-menu-open) {
+    overflow: hidden;
   }
 
   .nav-link,

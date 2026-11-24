@@ -1,6 +1,12 @@
 let dispose: (() => void) | null = null;
 let booted = false;
 
+function setMenuOpen(mobileMenu: HTMLElement | null, btn: HTMLElement | null, open: boolean) {
+  mobileMenu?.classList.toggle("nav-open", open);
+  btn?.setAttribute("aria-expanded", open ? "true" : "false");
+  document.body.classList.toggle("nav-menu-open", open);
+}
+
 function initNavbar() {
   dispose?.();
   dispose = null;
@@ -25,6 +31,7 @@ function initNavbar() {
   };
 
   updateThemeIcons();
+  setMenuOpen(mobileMenu, mobileMenuBtn, false);
 
   themeToggle?.addEventListener(
     "click",
@@ -58,9 +65,11 @@ function initNavbar() {
 
   mobileMenuBtn?.addEventListener(
     "click",
-    () => {
+    (event) => {
+      event.preventDefault();
+      event.stopPropagation();
       isOpen = !isOpen;
-      mobileMenu?.classList.toggle("nav-open", isOpen);
+      setMenuOpen(mobileMenu, mobileMenuBtn, isOpen);
     },
     { signal },
   );
@@ -70,7 +79,7 @@ function initNavbar() {
       "click",
       () => {
         isOpen = false;
-        mobileMenu?.classList.remove("nav-open");
+        setMenuOpen(mobileMenu, mobileMenuBtn, false);
       },
       { signal },
     );
@@ -78,11 +87,15 @@ function initNavbar() {
 
   dispose = () => {
     ac.abort();
+    setMenuOpen(mobileMenu, mobileMenuBtn, false);
   };
 }
 
 export function bootNavbar() {
   if (booted) return;
   booted = true;
+  // Immediate init: relying only on astro:page-load left the burger dead
+  // when the first page-load fired before this module registered.
   document.addEventListener("astro:page-load", initNavbar);
+  initNavbar();
 }

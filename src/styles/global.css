@@ -523,8 +523,4 @@ html.light::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* Mobile nav open */
-.nav-open {
-  transform: translateX(0) !important;
-  opacity: 1 !important;
-}
+/* Mobile nav open state lives in Navbar.astro (.mobile-drawer.nav-open) */
