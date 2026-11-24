@@ -7,17 +7,42 @@ const locale = "it" as const;
 
 const homeLinkClass =
   "glass hover-glow mt-6 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold text-text-primary transition-all hover:bg-white/10";
+
+const orbits = [
+  { r: "max(18rem, 42vmin)", d: "32s", delay: "-4s", size: "2.4rem", dir: "normal", tone: "cyan" },
+  { r: "max(20rem, 48vmin)", d: "44s", delay: "-18s", size: "1.35rem", dir: "reverse", tone: "magenta" },
+  { r: "max(23rem, 54vmin)", d: "52s", delay: "-9s", size: "1.8rem", dir: "normal", tone: "cyan" },
+  { r: "max(21rem, 46vmin)", d: "38s", delay: "-27s", size: "1.1rem", dir: "reverse", tone: "magenta" },
+  { r: "max(26rem, 58vmin)", d: "60s", delay: "-33s", size: "2rem", dir: "normal", tone: "magenta" },
+  { r: "max(19rem, 44vmin)", d: "36s", delay: "-14s", size: "1.5rem", dir: "reverse", tone: "cyan" },
+  { r: "max(24rem, 52vmin)", d: "48s", delay: "-41s", size: "1.15rem", dir: "normal", tone: "cyan" },
+  { r: "max(28rem, 62vmin)", d: "70s", delay: "-22s", size: "1.7rem", dir: "reverse", tone: "magenta" },
+];
 ---
 
 <Layout
   locale={locale}
   noindex
   title="Pagina non trovata · Page not found — Alessio Brunello"
-  description="Questa pagina non c'è. This page isn't here. Torna al portfolio di Alessio Brunello."
+  description="Nemmeno io so cosa cercavi, e vivo qui. I don't know what you were looking for either, and I live here."
 >
   <Navbar locale={locale} bilingual />
 
-  <main class="flex min-h-dvh items-center px-4 pb-20 pt-[calc(7rem+env(safe-area-inset-top))] sm:px-6">
+  <div class="lost-sky" aria-hidden="true">
+    <span class="lost-core">?</span>
+    {
+      orbits.map((mark) => (
+        <span
+          class:list={["lost-orbit", mark.tone === "magenta" && "is-magenta"]}
+          style={`--r: ${mark.r}; --d: ${mark.d}; --delay: ${mark.delay}; --s: ${mark.size}; --dir: ${mark.dir};`}
+        >
+          <span>?</span>
+        </span>
+      ))
+    }
+  </div>
+
+  <main class="relative z-10 flex min-h-dvh items-center px-4 pb-20 pt-[calc(7rem+env(safe-area-inset-top))] sm:px-6">
     <div class="mx-auto w-full max-w-3xl">
       <article class="glass card-surface rounded-3xl px-6 py-8 sm:px-10 sm:py-10">
         <p class="text-xs font-medium uppercase tracking-[0.18em] text-accent-soft">404</p>
@@ -25,12 +50,9 @@ const homeLinkClass =
         <div class="mt-6 grid gap-8 sm:grid-cols-2 sm:gap-0">
           <section lang="it" class="sm:pr-10">
             <h1 class="text-gradient text-balance text-3xl font-extrabold leading-tight sm:text-4xl">
-              Questa pagina non c'è
+              Nemmeno io so cosa cercavi, e vivo qui.
             </h1>
-            <p class="mt-4 text-base leading-relaxed text-text-secondary">
-              Il messaggio non è arrivato. Forse il link è vecchio, o l'ho spostato io.
-            </p>
-            <a href="/it/" class={homeLinkClass}>Torna all'inizio</a>
+            <a href="/it/" class={homeLinkClass} data-lost-home>Torna all'inizio</a>
           </section>
 
           <section
@@ -38,12 +60,9 @@ const homeLinkClass =
             class="border-t border-[color:var(--color-glass-border)] pt-8 sm:border-t-0 sm:border-l sm:pt-0 sm:pl-10"
           >
             <h2 class="text-gradient text-balance text-3xl font-extrabold leading-tight sm:text-4xl">
-              This page isn't here
+              I don't know what you were looking for either, and I live here.
             </h2>
-            <p class="mt-4 text-base leading-relaxed text-text-secondary">
-              The message didn't arrive. The link may be old, or I moved it.
-            </p>
-            <a href="/en/" class={homeLinkClass}>Back to the start</a>
+            <a href="/en/" class={homeLinkClass} data-lost-home>Back to the start</a>
           </section>
         </div>
       </article>
@@ -51,4 +70,223 @@ const homeLinkClass =
   </main>
 
   <Footer locale={locale} bothLocales />
+
+  <script>
+    import { gsap } from "gsap";
+    import { navigate } from "astro:transitions/client";
+
+    let pulling = false;
+
+    function bootLostExit() {
+      const sky = document.querySelector<HTMLElement>(".lost-sky");
+      if (!sky || sky.dataset.exitWired === "1") return;
+      sky.dataset.exitWired = "1";
+
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      document.querySelectorAll<HTMLAnchorElement>("[data-lost-home]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const href = link.getAttribute("href");
+          if (!href) return;
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+          if (pulling) {
+            event.preventDefault();
+            return;
+          }
+          if (reduced) return;
+
+          event.preventDefault();
+          pulling = true;
+
+          const target = link.getBoundingClientRect();
+          const cx = target.left + target.width / 2;
+          const cy = target.top + target.height / 2;
+
+          const glyphs = [
+            ...sky.querySelectorAll<HTMLElement>(".lost-orbit > span"),
+            ...sky.querySelectorAll<HTMLElement>(".lost-core"),
+          ];
+
+          const marks = glyphs
+            .map((el) => {
+              const rect = el.getBoundingClientRect();
+              const x = rect.left + rect.width / 2;
+              const y = rect.top + rect.height / 2;
+              return { el, x, y, dist: Math.hypot(x - cx, y - cy), core: el.classList.contains("lost-core") };
+            })
+            .sort((a, b) => b.dist - a.dist);
+
+          for (const mark of marks) {
+            const { el, x, y } = mark;
+            el.style.animation = "none";
+            el.style.position = "fixed";
+            el.style.left = `${x}px`;
+            el.style.top = `${y}px`;
+            el.style.margin = "0";
+            el.style.zIndex = mark.core ? "70" : "60";
+            el.style.pointerEvents = "none";
+            document.body.appendChild(el);
+            gsap.set(el, { xPercent: -50, yPercent: -50, scale: 1, transformOrigin: "50% 50%" });
+          }
+
+          gsap.fromTo(link, { scale: 1 }, { scale: 0.94, duration: 0.14, yoyo: true, repeat: 1, ease: "power1.out" });
+          gsap.to(sky, { opacity: 0, duration: 0.45, ease: "power2.in" });
+
+          const small = marks.filter((mark) => !mark.core).map((mark) => mark.el);
+          const core = marks.find((mark) => mark.core)?.el;
+          let pending = (small.length > 0 ? 1 : 0) + (core ? 1 : 0);
+          const done = () => {
+            pending -= 1;
+            if (pending > 0) return;
+            pulling = false;
+            navigate(href);
+          };
+
+          if (small.length > 0) {
+            gsap.to(small, {
+              left: cx,
+              top: cy,
+              scale: 0,
+              opacity: 0,
+              duration: 0.62,
+              ease: "power3.in",
+              stagger: 0.02,
+              onComplete: done,
+            });
+          }
+
+          if (core) {
+            gsap.to(core, {
+              left: cx,
+              top: cy,
+              scale: 0,
+              opacity: 0,
+              duration: 0.78,
+              ease: "power3.in",
+              onComplete: done,
+            });
+          }
+
+          if (pending === 0) {
+            pulling = false;
+            navigate(href);
+          }
+        });
+      });
+    }
+
+    document.addEventListener("astro:page-load", bootLostExit);
+    bootLostExit();
+  </script>
 </Layout>
+
+<style>
+  .lost-sky {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .lost-core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: clamp(22rem, 62vh, 48rem);
+    font-weight: 800;
+    line-height: 0.8;
+    letter-spacing: -0.06em;
+    color: rgba(125, 211, 252, 0.42);
+    filter: blur(0.5px);
+    animation: lost-pulse 5.2s ease-in-out infinite;
+  }
+
+  .lost-orbit {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    animation: lost-spin var(--d) linear infinite;
+    animation-delay: var(--delay);
+    animation-direction: var(--dir);
+  }
+
+  .lost-orbit span {
+    position: absolute;
+    left: var(--r);
+    top: 0;
+    font-size: var(--s);
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(125, 211, 252, 0.72);
+    animation: lost-face var(--d) linear infinite;
+    animation-delay: var(--delay);
+    animation-direction: var(--dir);
+  }
+
+  .lost-orbit.is-magenta span {
+    color: rgba(244, 114, 182, 0.66);
+  }
+
+  :global(html.light) .lost-core {
+    color: rgba(2, 132, 199, 0.16);
+  }
+
+  :global(html.light) .lost-orbit span {
+    color: rgba(3, 105, 161, 0.55);
+  }
+
+  :global(html.light) .lost-orbit.is-magenta span {
+    color: rgba(162, 28, 175, 0.5);
+  }
+
+  @keyframes lost-pulse {
+    0%,
+    100% {
+      transform: translate(-50%, -50%) scale(0.9);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.08);
+      opacity: 1;
+    }
+  }
+
+  @keyframes lost-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes lost-face {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(-360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lost-core,
+    .lost-orbit,
+    .lost-orbit span {
+      animation: none;
+    }
+
+    .lost-core {
+      transform: translate(-50%, -50%);
+      opacity: 0.7;
+    }
+
+    .lost-orbit span {
+      transform: translate(-50%, -50%);
+    }
+  }
+</style>
