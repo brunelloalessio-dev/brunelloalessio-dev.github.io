@@ -13,55 +13,53 @@ const exp = i18n.experience.bludata;
 
 <section id="experience" class="relative py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <!-- Section header -->
     <div class="fade-in mb-16 text-center">
       <h2 class="text-gradient mb-4 text-3xl font-bold sm:text-4xl">{i18n.experience.title}</h2>
       <p class="text-text-secondary">{i18n.experience.subtitle}</p>
       <div class="mx-auto mt-4 h-1 w-20 rounded-full bg-accent-soft"></div>
     </div>
 
-    <!-- Timeline -->
-    <div class="relative mx-auto max-w-4xl">
-      <!-- Timeline line -->
+    <div class="mx-auto max-w-4xl">
+      <div class="fade-in mb-10 text-center md:text-left md:pl-20">
+        <h3 class="text-xl font-bold text-text-primary">{exp.company}</h3>
+        <p class="mt-2 text-sm leading-relaxed text-text-secondary sm:text-base">{exp.context}</p>
+        <p class="mt-1 text-xs text-text-secondary">{exp.location}</p>
+      </div>
+
+      <div class="relative">
       <div class="absolute left-4 top-0 hidden h-full w-0.5 sm:left-8 md:block">
         <div data-timeline-line class="timeline-line h-full w-full rounded-full"></div>
       </div>
 
-      <!-- Timeline card -->
-      <div class="experience-card relative md:pl-20">
-        <!-- Timeline dot -->
-        <div
-          data-timeline-dot
-          class="absolute left-2.5 top-8 hidden h-4 w-4 rounded-full border-2 border-accent bg-bg-primary sm:left-6.5 md:block"
-        >
-          <div class="absolute inset-0 animate-ping rounded-full bg-accent/20"></div>
-        </div>
-
-        <div class="glass card-surface rounded-2xl p-6 sm:p-8">
-          <!-- Header -->
-          <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 class="text-xl font-bold text-text-primary">{exp.company}</h3>
-              <div class="mt-1 inline-block rounded-lg bg-accent/10 px-3 py-1 text-sm font-semibold text-accent">
-                {exp.role}
+      <div class="flex flex-col gap-6">
+        {
+          exp.roles.map((role, index) => (
+            <article class="experience-card relative md:pl-20">
+              <div
+                data-timeline-dot
+                class="absolute left-2.5 top-8 hidden h-4 w-4 rounded-full border-2 border-accent bg-bg-primary sm:left-6.5 md:block"
+              >
+                {index === 0 && <div class="absolute inset-0 animate-ping rounded-full bg-accent/20"></div>}
               </div>
-            </div>
-            <div class="text-right">
-              <div class="text-sm font-medium text-accent-soft">{exp.period}</div>
-              <div class="text-xs text-text-secondary">{exp.location}</div>
-            </div>
-          </div>
 
-          <!-- Points -->
-          <ul class="space-y-3">
-            {exp.points.map((point) => (
-              <li class="flex gap-3 text-sm leading-relaxed text-text-secondary sm:text-base">
-                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-soft"></span>
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+              <div class="glass card-surface rounded-2xl p-6 sm:p-8">
+                <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+                  <h4 class="text-lg font-bold text-text-primary">{role.title}</h4>
+                  <p class="text-sm font-medium text-accent-soft">{role.period}</p>
+                </div>
+                <ul class="space-y-3">
+                  {role.points.map((point) => (
+                    <li class="flex gap-3 text-sm leading-relaxed text-text-secondary sm:text-base">
+                      <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-soft"></span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
       </div>
     </div>
   </div>

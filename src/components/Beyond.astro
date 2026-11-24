@@ -10,7 +10,7 @@ const { locale } = Astro.props;
 const i18n = t(locale);
 const items = i18n.beyond.items;
 
-type BeyondIcon = "tech" | "devices" | "ev" | "finance" | "sport" | "family";
+type BeyondIcon = "tech" | "sport" | "family";
 ---
 
 <section id="beyond" class="relative py-24 sm:py-32">
@@ -50,50 +50,6 @@ type BeyondIcon = "tech" | "devices" | "ev" | "finance" | "sport" | "family";
                     <g class="beyond-spark beyond-spark--b">
                       <path d="M18 18l4 4M42 18l-4 4M42 42l-4-4M18 42l4-4" stroke-width="2" stroke-linecap="round" />
                     </g>
-                  </svg>
-                )}
-
-                {icon === "devices" && (
-                  <svg class="beyond-svg" viewBox="0 0 64 64" fill="none">
-                    <circle class="beyond-aura" cx="32" cy="32" r="22" />
-                    <rect class="beyond-body beyond-float-slow" x="24" y="14" width="16" height="28" rx="4" />
-                    <rect class="beyond-shine" x="28" y="18" width="8" height="16" rx="1.5" opacity="0.55" />
-                    <circle class="beyond-dot" cx="32" cy="38" r="1.6" />
-                    <rect class="beyond-accent-shape beyond-float" x="14" y="40" width="14" height="10" rx="2.5" />
-                    <circle class="beyond-accent-shape beyond-float-rev" cx="46" cy="44" r="6" />
-                    <circle class="beyond-dot" cx="46" cy="44" r="2" />
-                  </svg>
-                )}
-
-                {icon === "ev" && (
-                  <svg class="beyond-svg" viewBox="0 0 64 64" fill="none">
-                    <circle class="beyond-aura" cx="32" cy="32" r="22" />
-                    <path
-                      class="beyond-body"
-                      d="M14 36h36l-3.2-10.2A4 4 0 0043 23H21a4 4 0 00-3.8 2.8L14 36z"
-                    />
-                    <path class="beyond-body" d="M12 36h40v4.5a2.5 2.5 0 01-2.5 2.5h-35A2.5 2.5 0 0112 40.5V36z" />
-                    <circle class="beyond-dot" cx="22" cy="44" r="3" />
-                    <circle class="beyond-dot" cx="42" cy="44" r="3" />
-                    <path
-                      class="beyond-bolt"
-                      d="M34 14L25 29h7l-1 12 10-16h-7l1-11z"
-                    />
-                  </svg>
-                )}
-
-                {icon === "finance" && (
-                  <svg class="beyond-svg" viewBox="0 0 64 64" fill="none">
-                    <circle class="beyond-aura" cx="32" cy="32" r="22" />
-                    <path class="beyond-body" d="M16 44V20h4v24H16zm12 0V26h4v18h-4zm12 0V16h4v28h-4z" />
-                    <path
-                      class="beyond-trend"
-                      d="M17 37l10-9 7 5 12-13"
-                      stroke-width="2.4"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <circle class="beyond-dot beyond-pulse" cx="46" cy="20" r="2.5" />
                   </svg>
                 )}
 

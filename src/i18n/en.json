@@ -30,9 +30,9 @@
   },
   "about": {
     "title": "About Me",
-    "description": "I'm a Frontend Tech Lead with over 10 years of experience on enterprise web and mobile products. At Bludata I own roughly 80% of the frontend: UI architecture, a shared design system in a monorepo, and accessibility (especially keyboard navigation). I'm also starting to contribute on the backend.",
-    "description2": "I work daily with React and TypeScript. I treat AI as an engineering multiplier: Claude Code in agentic mode, shared skills and methods in the monorepo, code review, and automated tests (including Playwright e2e) so quality stays high while the team moves faster.",
-    "description3": "I'm deeply passionate about artificial intelligence and stay relentlessly up to date: I follow the latest releases, try them immediately, and bring them into real delivery — beyond the hype, with concrete results. Open to networking and interesting opportunities.",
+    "description": "I'm a Frontend Tech Lead with 10+ years on enterprise web and mobile products. At Bludata I own about 80% of the frontend: UI architecture, a shared design system in a monorepo, and keyboard accessibility. I'm also starting to contribute on the backend.",
+    "description2": "Day to day the work is React and TypeScript, with code review and automated tests holding the quality bar.",
+    "description3": "Open to networking and interesting opportunities.",
     "stats": {
       "years": "10+",
       "years_label": "Years of Experience",
@@ -42,32 +42,60 @@
   },
   "skills": {
     "title": "Skills",
-    "subtitle": "Technologies and tools I work with daily",
-    "categories": {
-      "core": "Core",
-      "styling": "Styling",
-      "frameworks": "Frameworks",
-      "mobile": "Mobile",
-      "dataviz": "Data Visualization",
-      "ai": "AI & Tooling",
-      "tools": "Tools & Methodologies"
-    }
+    "subtitle": "What I use now, and the stack I started from",
+    "groups": [
+      {
+        "label": "Now",
+        "items": ["React", "TypeScript", "Design system", "Tailwind CSS", "React Native", "Flutter", "Playwright"]
+      },
+      {
+        "label": "At the start",
+        "items": ["ExtJS", "AngularJS", "Vue.js"]
+      }
+    ]
   },
   "experience": {
     "title": "Experience",
     "subtitle": "My professional journey",
     "bludata": {
       "company": "Bludata S.r.l.",
-      "role": "Frontend Tech Lead · AI-augmented delivery",
-      "period": "December 2015 — Present",
+      "context": "Cloud ERP for specialized retail, 5000+ clients in Italy. Same company since 2015: internship, then the roles below.",
       "location": "Paese (TV), Veneto, Italy",
-      "points": [
-        "Leading a frontend team of 2–3 developers; owning roughly 80% of the frontend across web and mobile products, focused on quality, performance, and delivery",
-        "Technical lead for the cloud management platform in specialized retail (Bludata, 5000+ clients in Italy)",
-        "Legacy → cloud migration: started ~3 years ago on ExtJS, moved to React in under a year (pre-AI), then accelerated with AI; ~3–4 MB of compressed code; improvements in UX, cycle time, errors, and adoption (from 600+ legacy users)",
-        "Shared design system and monorepo with custom components; ~30% test coverage on a very large ERP; keyboard accessibility; production releases every 3 weeks and production-bug hotfixes by the next day",
-        "AI-augmented delivery: agentic Claude Code, shared skills and methods, internal training; ~2× stories/tasks closed per sprint for nearly the whole team, with review plus automated tests (AI-assisted + Playwright e2e) and faster prototypes",
-        "Agile cross-functional collaboration; junior onboarding productive in about a month, then paired growth; early backend contributions"
+      "roles": [
+        {
+          "title": "Frontend Tech Lead",
+          "period": "2023 — Present",
+          "points": [
+            "Leading a team of 2–3 on web and mobile products",
+            "Design system and monorepo; production releases every 3 weeks",
+            "Keyboard accessibility and early backend contributions"
+          ]
+        },
+        {
+          "title": "Senior Frontend Developer",
+          "period": "2020 — 2023",
+          "points": [
+            "React and TypeScript architecture, and the start of the ExtJS migration",
+            "Mobile apps with React Native and Flutter",
+            "Mentorship: a junior productive in about a month"
+          ]
+        },
+        {
+          "title": "Mid Frontend Developer",
+          "period": "2018 — 2020",
+          "points": [
+            "Features on enterprise products and reusable UI components",
+            "Early quality practices on the stack we were modernizing"
+          ]
+        },
+        {
+          "title": "Junior Frontend Developer",
+          "period": "2015 — 2018",
+          "points": [
+            "Joined through an internship and apprenticeship, after graduation",
+            "HTML, CSS, JavaScript, and legacy maintenance on ExtJS and AngularJS"
+          ]
+        }
       ]
     }
   },
@@ -95,7 +123,7 @@
   "teaching": {
     "title": "Teaching & Sharing",
     "subtitle": "I turn AI novelty into skills people can use — and I share them with the team",
-    "intro": "Beyond building products, I transfer know-how. I've already run internal company courses on AI, and at the end of every sprint we share what we learned (~10 people, 1–2 hours). Public courses I've completed are listed on my profile.",
+    "intro": "I run internal courses and, at the end of each sprint, an hour or two of sharing with about ten people. The point is to make AI usable in the work, not a side experiment.",
     "tracks": [
       {
         "level": "Internal",
@@ -111,44 +139,29 @@
   },
   "beyond": {
     "title": "Beyond code",
-    "subtitle": "Things that light me up when I'm not building software",
-    "intro": "Work is an important part of my life, but not the only one. Outside of code there are curiosities, habits, and people who keep me grounded — and looking ahead.",
+    "subtitle": "Three things that matter when I'm not building software",
+    "intro": "Work is a large part of my life, not the only one.",
     "items": [
-      {
-        "icon": "tech",
-        "title": "Technology & gadgets",
-        "description": "I'm passionate about technology in general: I like understanding how things work, trying new gadgets, and bringing them into everyday life in a useful way — not just collecting them."
-      },
-      {
-        "icon": "devices",
-        "title": "Apple ecosystem",
-        "description": "I love the Apple platform and use it end to end every day: iPhone, Mac, Apple Watch, Apple TV, and iPad — at home, for photos, and for work."
-      },
-      {
-        "icon": "ev",
-        "title": "Electric mobility",
-        "description": "I've been driving a Tesla Model 3 for four years and I support electric mobility. No preaching: when people ask, I simply share my experiences — without hate and without pressure."
-      },
-      {
-        "icon": "finance",
-        "title": "Finance",
-        "description": "I study finance in my spare time out of passion and personal interest: a way to understand the world better, not a second job."
-      },
-      {
-        "icon": "sport",
-        "title": "Sports",
-        "description": "I enjoy fishing and play airsoft on a team: two different ways to be outdoors, stay focused, and have fun with others."
-      },
       {
         "icon": "family",
         "title": "Family",
-        "description": "I have a wonderful family: I live with an extraordinary wife and a little daughter who is already much smarter than I am."
+        "description": "I live with an extraordinary wife and a little daughter who is already much smarter than I am."
+      },
+      {
+        "icon": "sport",
+        "title": "Outdoors",
+        "description": "Fishing and team airsoft: two ways to be outside, stay focused, and be with other people."
+      },
+      {
+        "icon": "tech",
+        "title": "Curiosity",
+        "description": "I like understanding how things work and trying them when they're useful, not collecting them."
       }
     ]
   },
   "certifications": {
     "title": "Selected Certifications",
-    "subtitle": "A curated selection across AI engineering, delivery, and frontend specialization.",
+    "subtitle": "Two credentials that show up in the work. MCP, React, UX, and the other courses are on the LinkedIn profile.",
     "view_all": "View the full LinkedIn profile",
     "items": [
       {
@@ -158,46 +171,10 @@
         "description": "Hands-on certification focused on Claude Code for agentic development, automation, and productive workflows."
       },
       {
-        "name": "Introduction to Model Context Protocol",
-        "issuer": "Anthropic",
-        "issuedAt": "Apr 2026",
-        "description": "Introduction to Model Context Protocol for connecting tools, context, and agents inside AI workflows."
-      },
-      {
-        "name": "Introduction to agent skills",
-        "issuer": "Anthropic",
-        "issuedAt": "Apr 2026",
-        "description": "Foundations for designing reusable, specialized skills in Claude-based ecosystems."
-      },
-      {
-        "name": "Introduction to subagents",
-        "issuer": "Anthropic",
-        "issuedAt": "Apr 2026",
-        "description": "Using subagents to delegate tasks, explore codebases, and structure multi-step AI workflows."
-      },
-      {
         "name": "Google Project Management",
         "issuer": "Google",
         "issuedAt": "Mar 2025",
         "description": "Google program covering planning, execution, and project coordination in Agile environments."
-      },
-      {
-        "name": "OpenAI API (ChatGPT, Whisper, DALL-E) - Complete Course",
-        "issuer": "Udemy",
-        "issuedAt": "Jun 2024",
-        "description": "Practical use of OpenAI APIs, prompt design, and LLM capability integration in real applications."
-      },
-      {
-        "name": "React - The Complete Guide (incl Hooks, React Router, Redux)",
-        "issuer": "Udemy",
-        "issuedAt": "Feb 2022",
-        "description": "Advanced track on modern React, Hooks, routing, and state management for complex applications."
-      },
-      {
-        "name": "Start the UX Design Process: Empathize, Define, and Ideate",
-        "issuer": "Google",
-        "issuedAt": "Aug 2021",
-        "description": "UX process focused on research, problem framing, and ideation for digital product work."
       }
     ]
   },
@@ -207,7 +184,8 @@
     "email": {
       "label": "Email",
       "value": "orecchia.mobiletto.0h@icloud.com",
-      "cta": "Copy email",
+      "display": "Private address",
+      "cta": "Copy and write",
       "copied": "✓ Copied!"
     },
     "linkedin": {

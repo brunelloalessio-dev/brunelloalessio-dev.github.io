@@ -9,115 +9,19 @@ interface Props {
 const { locale } = Astro.props;
 const i18n = t(locale);
 
-const skillCategories = [
-  {
-    name: i18n.skills.categories.core,
-    color: "",
-    skills: [
-      {
-        name: "React",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      },
-      {
-        name: "TypeScript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "JavaScript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-      },
-      {
-        name: "HTML5",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-      },
-      {
-        name: "CSS3",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-      },
-    ],
-  },
-  {
-    name: i18n.skills.categories.styling,
-    color: "",
-    skills: [
-      {
-        name: "SCSS/SASS",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg",
-      },
-      {
-        name: "Tailwind CSS",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      },
-    ],
-  },
-  {
-    name: i18n.skills.categories.frameworks,
-    color: "",
-    skills: [
-      {
-        name: "Vue.js",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
-      },
-      {
-        name: "AngularJS",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
-      },
-      { name: "ExtJS", icon: "" },
-    ],
-  },
-  {
-    name: i18n.skills.categories.mobile,
-    color: "",
-    skills: [
-      {
-        name: "Flutter",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
-      },
-      {
-        name: "React Native",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      },
-    ],
-  },
-  {
-    name: i18n.skills.categories.dataviz,
-    color: "",
-    skills: [
-      {
-        name: "D3.js",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg",
-      },
-    ],
-  },
-  {
-    name: i18n.skills.categories.ai,
-    color: "",
-    skills: [
-      { name: "Cursor", icon: "" },
-      { name: "Claude Code", icon: "" },
-      { name: "Grok", icon: "" },
-      { name: "MCP & Agents", icon: "" },
-      { name: "Prompt Eng.", icon: "" },
-      { name: "OpenAI API", icon: "" },
-    ],
-  },
-  {
-    name: i18n.skills.categories.tools,
-    color: "",
-    skills: [
-      {
-        name: "Git",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-      },
-      { name: "Agile/Scrum", icon: "" },
-    ],
-  },
-];
+const icons: Record<string, string> = {
+  React: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  TypeScript: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  "Tailwind CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+  "React Native": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  Flutter: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+  AngularJS: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+  "Vue.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+};
 ---
 
 <section id="skills" class="relative py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <!-- Section header -->
     <div class="fade-in mb-16 text-center">
       <h2 class="text-gradient mb-4 text-3xl font-bold sm:text-4xl">
         {i18n.skills.title}
@@ -126,30 +30,24 @@ const skillCategories = [
       <div class="mx-auto mt-4 h-1 w-20 rounded-full bg-accent-soft"></div>
     </div>
 
-    <!-- Skills grid -->
-    <div class="stagger-grid pack-grid pack-grid--4">
+    <div class="mx-auto flex max-w-4xl flex-col gap-10">
       {
-        skillCategories.map((category) => (
-          <div class="stagger-item glass card-surface rounded-2xl p-6">
-            <div class="mb-4 inline-block rounded-lg bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent">
-              {category.name}
-            </div>
+        i18n.skills.groups.map((group, index) => (
+          <div class:list={["fade-in", index === 1 && "opacity-80"]}>
+            <h3 class="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-accent-soft">
+              {group.label}
+            </h3>
             <div class="flex flex-wrap gap-3">
-              {category.skills.map((skill) => (
+              {group.items.map((name) => (
                 <div class="skill-chip glass flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-text-secondary">
-                  {skill.icon ? (
-                    <img
-                      src={skill.icon}
-                      alt={skill.name}
-                      class="h-5 w-5"
-                      loading="lazy"
-                    />
+                  {icons[name] ? (
+                    <img src={icons[name]} alt="" class="h-5 w-5" loading="lazy" />
                   ) : (
                     <span class="flex h-5 w-5 items-center justify-center rounded bg-accent/10 text-[10px] font-bold text-accent">
-                      {skill.name.charAt(0)}
+                      {name.charAt(0)}
                     </span>
                   )}
-                  <span>{skill.name}</span>
+                  <span>{name}</span>
                 </div>
               ))}
             </div>

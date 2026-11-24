@@ -145,8 +145,7 @@ export function initScrollMotion() {
     );
   }
 
-  const experienceCard = document.querySelector<HTMLElement>(".experience-card");
-  if (experienceCard) {
+  document.querySelectorAll<HTMLElement>(".experience-card").forEach((experienceCard) => {
     gsap.fromTo(
       experienceCard,
       { opacity: 0, y: isMobile ? 18 : 0, x: isMobile ? 0 : 16 },
@@ -165,10 +164,9 @@ export function initScrollMotion() {
         },
       },
     );
-  }
+  });
 
-  const experienceDot = document.querySelector<HTMLElement>("[data-timeline-dot]");
-  if (experienceDot) {
+  document.querySelectorAll<HTMLElement>("[data-timeline-dot]").forEach((experienceDot) => {
     gsap.fromTo(
       experienceDot,
       { scale: 0.6, opacity: 0 },
@@ -185,5 +183,5 @@ export function initScrollMotion() {
         },
       },
     );
-  }
+  });
 }
