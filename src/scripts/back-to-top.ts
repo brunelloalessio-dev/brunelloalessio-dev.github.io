@@ -248,8 +248,8 @@ export function initBackToTop() {
     }
 
     activeTween?.kill();
-    hyperspace.start();
     hyperspace.root.classList.add("is-active");
+    hyperspace.start();
 
     const root = document.documentElement;
     const previousBehavior = root.style.scrollBehavior;
@@ -265,6 +265,7 @@ export function initBackToTop() {
     });
 
     activeTween
+      .set(hyperspace.root, { opacity: 0 })
       .set(hyperspace.flash, { opacity: 0 })
       .to(hyperspace.root, { opacity: 1, duration: 0.18, ease: "power1.out" }, 0)
       .to(

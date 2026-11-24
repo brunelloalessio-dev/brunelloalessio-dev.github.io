@@ -54,10 +54,38 @@ html.light {
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
-  background-color: transparent;
+  /* Solid root paint: Safari 26 samples html/body (and fixed edges) for toolbar tint.
+     Transparent body falls back to pure black/white and looks like a dead chrome bar. */
+  background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
+}
+
+/* Full-bleed layer Safari can sample at the bottom edge (Liquid Glass toolbar). */
+.site-backdrop {
+  background-color: var(--color-bg-primary);
+}
+
+/* Dedicated bottom/top probes — no backdrop-filter, full width, always visible to WebKit. */
+.safari-toolbar-tint {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 1;
+  background-color: var(--color-bg-primary);
+}
+
+.safari-toolbar-tint--top {
+  top: 0;
+  height: max(12px, env(safe-area-inset-top));
+}
+
+.safari-toolbar-tint--bottom {
+  bottom: 0;
+  height: max(12px, env(safe-area-inset-bottom));
 }
 
 /* Glassmorphism utility */

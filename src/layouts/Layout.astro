@@ -148,6 +148,9 @@ const ogImageAlt = "Alessio Brunello — Frontend Tech Lead";
   </head>
   <body class="relative text-text-primary antialiased">
     <SiteBackdrop />
+    <!-- Safari 26+ toolbar tint probes (ignored by older Safari; theme-color still helps there) -->
+    <div class="safari-toolbar-tint safari-toolbar-tint--top" aria-hidden="true"></div>
+    <div class="safari-toolbar-tint safari-toolbar-tint--bottom" aria-hidden="true"></div>
     <div class="relative z-10">
       <slot />
     </div>

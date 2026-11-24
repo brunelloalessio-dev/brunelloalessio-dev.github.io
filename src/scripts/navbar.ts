@@ -40,13 +40,9 @@ function initNavbar() {
     { signal },
   );
 
-  const syncNavbarGlass = () => {
+  const syncNavbarScroll = () => {
     navScrollTicking = false;
-    if (window.scrollY > 50) {
-      navbar.classList.add("glass");
-    } else {
-      navbar.classList.remove("glass");
-    }
+    navbar.classList.toggle("is-scrolled", window.scrollY > 50);
   };
 
   window.addEventListener(
@@ -54,11 +50,11 @@ function initNavbar() {
     () => {
       if (navScrollTicking) return;
       navScrollTicking = true;
-      window.requestAnimationFrame(syncNavbarGlass);
+      window.requestAnimationFrame(syncNavbarScroll);
     },
     { passive: true, signal },
   );
-  syncNavbarGlass();
+  syncNavbarScroll();
 
   mobileMenuBtn?.addEventListener(
     "click",

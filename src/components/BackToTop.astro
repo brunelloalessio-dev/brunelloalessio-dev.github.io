@@ -308,11 +308,12 @@ const tooltip = elevator.tooltip;
     z-index: 60;
     pointer-events: none;
     opacity: 0;
-    visibility: hidden;
+    /* display:none when idle — opacity:0 fixed layers can still tint Safari’s toolbar */
+    display: none;
   }
 
   .hyperspace.is-active {
-    visibility: visible;
+    display: block;
   }
 
   .hyperspace__canvas {
