@@ -1,0 +1,12 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import CvDocument from "@/components/CvDocument.astro";
+import { t } from "@/i18n/utils";
+
+const locale = "it" as const;
+const cv = t(locale).cv;
+---
+
+<Layout locale={locale} title={cv.meta_title} description={cv.meta_description}>
+  <CvDocument locale={locale} />
+</Layout>

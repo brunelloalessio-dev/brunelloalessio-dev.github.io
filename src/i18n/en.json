@@ -185,7 +185,134 @@
       "value": "brunelloalessio-dev",
       "url": "https://github.com/brunelloalessio-dev",
       "cta": "Open profile"
+    },
+    "cv": {
+      "label": "Resume",
+      "value": "EN · printable PDF",
+      "cta": "Open CV",
+      "url": "/en/cv/"
     }
+  },
+  "cv": {
+    "meta_title": "Resume — Alessio Brunello",
+    "meta_description": "Resume of Alessio Brunello, Frontend Tech Lead. React, TypeScript, UI architecture, and AI-assisted delivery.",
+    "back": "Back to portfolio",
+    "print": "Print / Save PDF",
+    "lang_switch": "IT",
+    "role": "Frontend Tech Lead",
+    "location": "Treviso, Italy",
+    "portfolio_label": "Portfolio",
+    "portfolio_url": "https://brunelloalessio-dev.github.io/en/",
+    "email": "orecchia.mobiletto.0h@icloud.com",
+    "linkedin_url": "https://www.linkedin.com/in/alessio-brunello-dev",
+    "github_url": "https://github.com/brunelloalessio-dev",
+    "summary_title": "Profile",
+    "summary": "Frontend Tech Lead with 10+ years at Bludata. I design scalable web and mobile systems, lead a small high-impact team, and bring Cursor, Claude Code, Grok, and agentic workflows into everyday delivery — beyond the hype, with concrete results.",
+    "experience_title": "Experience",
+    "company": "Bludata S.r.l.",
+    "company_period": "December 2015 — Present",
+    "company_location": "Treviso, Italy",
+    "company_intro": "Cloud management platform for specialized retail (5000+ clients in Italy). Internal path from internship/apprenticeship to Frontend Tech Lead.",
+    "roles": [
+      {
+        "title": "Frontend Tech Lead",
+        "period": "2023 — Present",
+        "points": [
+          "Leading a frontend team of 2–3 developers on web and mobile products, focused on quality, performance, and delivery",
+          "Technical owner of the enterprise cloud platform and UI architecture decisions",
+          "Rolled out AI-assisted development (Cursor, Claude Code, Grok, MCP, agents) with internal training and code review",
+          "Agile cross-functional collaboration with product, backend, and design"
+        ]
+      },
+      {
+        "title": "Senior Frontend Developer",
+        "period": "2020 — 2023",
+        "points": [
+          "Enterprise frontend architecture and development with React and TypeScript",
+          "Cross-platform mobile apps with React Native and Flutter",
+          "Real-time dashboards, PWAs, and GDPR-compliant delivery",
+          "Mentorship and systematic code review to grow the team"
+        ]
+      },
+      {
+        "title": "Mid Frontend Developer",
+        "period": "2018 — 2020",
+        "points": [
+          "Feature development on enterprise web products and reusable UI components",
+          "Contributed to stack modernization and code-quality practices"
+        ]
+      },
+      {
+        "title": "Junior Frontend Developer — Internship & Apprenticeship",
+        "period": "2015 — 2018",
+        "points": [
+          "Joined through internship and apprenticeship right after graduating",
+          "Built strong foundations in HTML, CSS, JavaScript, and legacy web apps (ExtJS / AngularJS)"
+        ]
+      }
+    ],
+    "skills_title": "Skills",
+    "skills": [
+      {
+        "label": "Core",
+        "items": "React, TypeScript, JavaScript, HTML5, CSS3"
+      },
+      {
+        "label": "UI & Styling",
+        "items": "SCSS/SASS, Tailwind CSS, design systems, UI architecture"
+      },
+      {
+        "label": "Mobile & Data",
+        "items": "React Native, Flutter, D3.js, PWA"
+      },
+      {
+        "label": "AI & Tooling",
+        "items": "Cursor, Claude Code, Grok, MCP, agentic workflows, Prompt Engineering"
+      },
+      {
+        "label": "Methods",
+        "items": "Agile/Scrum, code review, mentorship, Git"
+      }
+    ],
+    "education_title": "Education",
+    "education": [
+      {
+        "title": "Technical Diploma in Computer Science",
+        "place": "ITIS Max Planck — Lancenigo (Villorba)",
+        "period": "2015"
+      }
+    ],
+    "training_title": "Continuous learning",
+    "training": [
+      {
+        "title": "AI Engineering (Anthropic)",
+        "detail": "Claude Code in Action, MCP, Agent Skills, Subagents",
+        "period": "2026"
+      },
+      {
+        "title": "Google Project Management",
+        "detail": "Planning, execution, and coordination in Agile contexts",
+        "period": "2025"
+      },
+      {
+        "title": "OpenAI API & LLM integration",
+        "detail": "ChatGPT, Whisper, DALL·E — Udemy",
+        "period": "2024"
+      },
+      {
+        "title": "React — The Complete Guide",
+        "detail": "Hooks, Router, Redux — Udemy",
+        "period": "2022"
+      },
+      {
+        "title": "UX Design Process (Google)",
+        "detail": "Empathize, Define, Ideate",
+        "period": "2021"
+      }
+    ],
+    "teaching_title": "Teaching & sharing",
+    "teaching": "I design and run beginner and advanced courses on using AI — from everyday productivity to development workflows with Cursor, Claude Code, Grok, and MCP.",
+    "footnote": "Web version · use “Print / Save PDF” to download the resume."
   },
   "footer": {
     "rights": "All rights reserved."
