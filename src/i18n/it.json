@@ -93,26 +93,32 @@
     "intro": "Il lavoro è una parte importante della mia vita, ma non l'unica. Fuori dal codice ci sono curiosità, abitudini e persone che mi tengono con i piedi per terra — e lo sguardo sul futuro.",
     "items": [
       {
+        "icon": "tech",
         "title": "Tecnologia & gadget",
         "description": "Sono appassionato di tecnologia in generale: mi piace capire come funzionano le cose, provare nuovi gadget e portarli nella quotidianità in modo utile, non solo per collezionarli."
       },
       {
+        "icon": "devices",
         "title": "Ecosistema Apple",
         "description": "Amo la piattaforma Apple e la uso in modo completo ogni giorno: iPhone, Mac, Apple Watch, Apple TV e iPad, sia a casa e per le foto, sia al lavoro."
       },
       {
+        "icon": "ev",
         "title": "Mobilità elettrica",
         "description": "Guido una Tesla Model 3 da quattro anni e sono sostenitore della mobilità elettrica. Non faccio prediche: quando me lo chiedono, racconto semplicemente le mie esperienze, senza odio e senza insistenza."
       },
       {
+        "icon": "finance",
         "title": "Finanza",
         "description": "Studio finanza a tempo perso per passione e interesse personale: è un modo per capire meglio il mondo, non un secondo lavoro."
       },
       {
+        "icon": "sport",
         "title": "Sport",
         "description": "Mi piace la pesca e pratico softair in squadra: due modi diversi di stare all'aria aperta, concentrarmi e divertirmi con gli altri."
       },
       {
+        "icon": "family",
         "title": "Famiglia",
         "description": "Ho una famiglia meravigliosa: vivo con una moglie straordinaria e una piccola bimba che è già molto più intelligente di me."
       }

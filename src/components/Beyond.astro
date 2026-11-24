@@ -9,6 +9,8 @@ interface Props {
 const { locale } = Astro.props;
 const i18n = t(locale);
 const items = i18n.beyond.items;
+
+type BeyondIcon = "tech" | "devices" | "ev" | "finance" | "sport" | "family";
 ---
 
 <section id="beyond" class="relative py-24 sm:py-32">
@@ -29,15 +31,332 @@ const items = i18n.beyond.items;
 
     <div class="stagger-grid mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
-        items.map((item) => (
-          <article class="stagger-item glass card-surface rounded-2xl p-6 sm:p-7">
-            <h3 class="mb-3 text-lg font-bold text-text-primary">{item.title}</h3>
-            <p class="text-sm leading-relaxed text-text-secondary sm:text-base">
-              {item.description}
-            </p>
-          </article>
-        ))
+        items.map((item, index) => {
+          const icon = item.icon as BeyondIcon;
+          return (
+            <article
+              class="beyond-card stagger-item glass card-surface rounded-2xl p-6 sm:p-7"
+              style={`--beyond-delay: ${index * 0.35}s`}
+            >
+              <div class="beyond-illu" aria-hidden="true">
+                {icon === "tech" && (
+                  <svg class="beyond-svg" viewBox="0 0 64 64" fill="none">
+                    <circle class="beyond-aura" cx="32" cy="32" r="22" />
+                    <rect class="beyond-body" x="20" y="20" width="24" height="24" rx="6" />
+                    <rect class="beyond-shine" x="26" y="26" width="12" height="12" rx="3" />
+                    <g class="beyond-spark beyond-spark--a">
+                      <path d="M32 12v6M12 32h6M46 32h6M32 46v6" stroke-width="2.2" stroke-linecap="round" />
+                    </g>
+                    <g class="beyond-spark beyond-spark--b">
+                      <path d="M18 18l4 4M42 18l-4 4M42 42l-4-4M18 42l4-4" stroke-width="2" stroke-linecap="round" />
+                    </g>
+                  </svg>
+                )}
+
+                {icon === "devices" && (
+                  <svg class="beyond-svg" viewBox="0 0 64 64" fill="none">
+                    <circle class="beyond-aura" cx="32" cy="32" r="22" />
+                    <rect class="beyond-body beyond-float-slow" x="24" y="14" width="16" height="28" rx="4" />
+                    <rect class="beyond-shine" x="28" y="18" width="8" height="16" rx="1.5" opacity="0.55" />
+                    <circle class="beyond-dot" cx="32" cy="38" r="1.6" />
+                    <rect class="beyond-accent-shape beyond-float" x="14" y="40" width="14" height="10" rx="2.5" />
+                    <circle class="beyond-accent-shape beyond-float-rev" cx="46" cy="44" r="6" />
+                    <circle class="beyond-dot" cx="46" cy="44" r="2" />
+                  </svg>
+                )}
+
+                {icon === "ev" && (
+                  <svg class="beyond-svg" viewBox="0 0 64 64" fill="none">
+                    <circle class="beyond-aura" cx="32" cy="32" r="22" />
+                    <path
+                      class="beyond-body"
+                      d="M14 36h36l-3.2-10.2A4 4 0 0043 23H21a4 4 0 00-3.8 2.8L14 36z"
+                    />
+                    <path class="beyond-body" d="M12 36h40v4.5a2.5 2.5 0 01-2.5 2.5h-35A2.5 2.5 0 0112 40.5V36z" />
+                    <circle class="beyond-dot" cx="22" cy="44" r="3" />
+                    <circle class="beyond-dot" cx="42" cy="44" r="3" />
+                    <path
+                      class="beyond-bolt"
+                      d="M34 14L25 29h7l-1 12 10-16h-7l1-11z"
+                    />
+                  </svg>
+                )}
+
+                {icon === "finance" && (
+                  <svg class="beyond-svg" viewBox="0 0 64 64" fill="none">
+                    <circle class="beyond-aura" cx="32" cy="32" r="22" />
+                    <path class="beyond-body" d="M16 44V20h4v24H16zm12 0V26h4v18h-4zm12 0V16h4v28h-4z" />
+                    <path
+                      class="beyond-trend"
+                      d="M17 37l10-9 7 5 12-13"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <circle class="beyond-dot beyond-pulse" cx="46" cy="20" r="2.5" />
+                  </svg>
+                )}
+
+                {icon === "sport" && (
+                  <svg class="beyond-svg" viewBox="0 0 64 64" fill="none">
+                    <circle class="beyond-aura" cx="32" cy="32" r="22" />
+                    <g class="beyond-float">
+                      <path
+                        class="beyond-body"
+                        d="M38 14c5 0 9 4 9 9 0 7-9 14-9 14s-9-7-9-14c0-5 4-9 9-9z"
+                      />
+                      <circle class="beyond-shine" cx="38" cy="23" r="3.2" />
+                      <path class="beyond-trend" d="M24 48c3-8 8-14 14-18" stroke-width="2.3" stroke-linecap="round" />
+                    </g>
+                    <g class="beyond-float-rev">
+                      <circle class="beyond-accent-shape" cx="20" cy="22" r="8" />
+                      <circle class="beyond-body" cx="20" cy="22" r="4.5" opacity="0.35" />
+                      <circle class="beyond-dot" cx="20" cy="22" r="1.8" />
+                    </g>
+                  </svg>
+                )}
+
+                {icon === "family" && (
+                  <svg class="beyond-svg" viewBox="0 0 64 64" fill="none">
+                    <circle class="beyond-aura" cx="32" cy="32" r="22" />
+                    <circle class="beyond-body" cx="22" cy="24" r="6" />
+                    <path class="beyond-body" d="M12 44c1.4-8 5-12 10-12s8.6 4 10 12" />
+                    <circle class="beyond-body" cx="42" cy="24" r="6" />
+                    <path class="beyond-body" d="M32 44c1.4-8 5-12 10-12s8.6 4 10 12" />
+                    <circle class="beyond-accent-shape beyond-float" cx="32" cy="30" r="4.5" />
+                    <path
+                      class="beyond-bolt beyond-beat"
+                      d="M32 18.5c0-1.7 1.2-2.9 2.4-2.9 1 0 1.7.6 2 1.1.3-.5 1-1.1 2-1.1 1.2 0 2.4 1.2 2.4 2.9 0 3-4.4 5.5-4.4 5.5s-4.4-2.5-4.4-5.5z"
+                    />
+                  </svg>
+                )}
+              </div>
+
+              <h3 class="mb-3 text-lg font-bold text-text-primary">{item.title}</h3>
+              <p class="text-sm leading-relaxed text-text-secondary sm:text-base">
+                {item.description}
+              </p>
+            </article>
+          );
+        })
       }
     </div>
   </div>
 </section>
+
+<style>
+  .beyond-illu {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+
+  .beyond-svg {
+    width: 4.25rem;
+    height: 4.25rem;
+    overflow: visible;
+    animation: beyond-drift 5.5s ease-in-out infinite;
+    animation-delay: var(--beyond-delay, 0s);
+  }
+
+  .beyond-aura {
+    fill: color-mix(in oklab, rgba(56, 189, 248, 0.16) 70%, transparent);
+  }
+
+  .beyond-body {
+    fill: color-mix(in oklab, var(--color-text-primary) 72%, transparent);
+  }
+
+  .beyond-shine {
+    fill: color-mix(in oklab, rgba(125, 211, 252, 0.75) 65%, white);
+  }
+
+  .beyond-accent-shape {
+    fill: color-mix(in oklab, rgba(56, 189, 248, 0.88) 80%, transparent);
+  }
+
+  .beyond-dot {
+    fill: rgba(217, 70, 239, 0.9);
+  }
+
+  .beyond-spark {
+    stroke: rgba(56, 189, 248, 0.9);
+    fill: none;
+  }
+
+  .beyond-trend {
+    stroke: rgba(56, 189, 248, 0.95);
+    fill: none;
+  }
+
+  .beyond-bolt {
+    fill: rgba(56, 189, 248, 0.95);
+    stroke: none;
+  }
+
+  :global(html.light) .beyond-aura {
+    fill: color-mix(in oklab, rgba(14, 165, 233, 0.14) 75%, transparent);
+  }
+
+  :global(html.light) .beyond-body {
+    fill: color-mix(in oklab, var(--color-text-primary) 78%, transparent);
+  }
+
+  :global(html.light) .beyond-accent-shape,
+  :global(html.light) .beyond-bolt {
+    fill: rgba(2, 132, 199, 0.9);
+  }
+
+  :global(html.light) .beyond-spark,
+  :global(html.light) .beyond-trend {
+    stroke: rgba(2, 132, 199, 0.95);
+  }
+
+  :global(html.light) .beyond-dot {
+    fill: rgba(192, 38, 211, 0.85);
+  }
+
+  .beyond-float {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: beyond-float 3.4s ease-in-out infinite;
+  }
+
+  .beyond-float-slow {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: beyond-float 4.6s ease-in-out infinite;
+  }
+
+  .beyond-float-rev {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: beyond-float-rev 3.8s ease-in-out infinite;
+  }
+
+  .beyond-spark--a {
+    animation: beyond-twinkle 2.2s ease-in-out infinite;
+  }
+
+  .beyond-spark--b {
+    animation: beyond-twinkle 2.2s ease-in-out infinite 0.4s;
+  }
+
+  .beyond-bolt,
+  .beyond-beat {
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  .beyond-bolt {
+    animation: beyond-zap 1.5s ease-in-out infinite;
+  }
+
+  .beyond-beat {
+    animation: beyond-heart 1.35s ease-in-out infinite;
+  }
+
+  .beyond-pulse {
+    animation: beyond-twinkle 1.8s ease-in-out infinite;
+  }
+
+  @keyframes beyond-drift {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  @keyframes beyond-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-2.5px);
+    }
+  }
+
+  @keyframes beyond-float-rev {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(2px) rotate(-4deg);
+    }
+  }
+
+  @keyframes beyond-twinkle {
+    0%,
+    100% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes beyond-zap {
+    0%,
+    100% {
+      transform: scale(0.92);
+      opacity: 0.8;
+    }
+    40% {
+      transform: scale(1.08);
+      opacity: 1;
+    }
+    55% {
+      transform: scale(0.96);
+    }
+  }
+
+  @keyframes beyond-heart {
+    0%,
+    100% {
+      transform: scale(0.94);
+    }
+    28% {
+      transform: scale(1.1);
+    }
+    42% {
+      transform: scale(0.96);
+    }
+    58% {
+      transform: scale(1.06);
+    }
+  }
+
+  @media (hover: hover) {
+    .beyond-card:hover .beyond-svg {
+      animation-play-state: paused;
+      transform: translateY(-2px) scale(1.04);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .beyond-card:hover .beyond-aura {
+      fill: color-mix(in oklab, rgba(217, 70, 239, 0.18) 70%, rgba(56, 189, 248, 0.12));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .beyond-svg,
+    .beyond-float,
+    .beyond-float-slow,
+    .beyond-float-rev,
+    .beyond-spark--a,
+    .beyond-spark--b,
+    .beyond-bolt,
+    .beyond-beat,
+    .beyond-pulse {
+      animation: none !important;
+    }
+
+    .beyond-card:hover .beyond-svg {
+      transform: none;
+    }
+  }
+</style>

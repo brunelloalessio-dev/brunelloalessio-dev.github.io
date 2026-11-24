@@ -93,26 +93,32 @@
     "intro": "Work is an important part of my life, but not the only one. Outside of code there are curiosities, habits, and people who keep me grounded — and looking ahead.",
     "items": [
       {
+        "icon": "tech",
         "title": "Technology & gadgets",
         "description": "I'm passionate about technology in general: I like understanding how things work, trying new gadgets, and bringing them into everyday life in a useful way — not just collecting them."
       },
       {
+        "icon": "devices",
         "title": "Apple ecosystem",
         "description": "I love the Apple platform and use it end to end every day: iPhone, Mac, Apple Watch, Apple TV, and iPad — at home, for photos, and for work."
       },
       {
+        "icon": "ev",
         "title": "Electric mobility",
         "description": "I've been driving a Tesla Model 3 for four years and I support electric mobility. No preaching: when people ask, I simply share my experiences — without hate and without pressure."
       },
       {
+        "icon": "finance",
         "title": "Finance",
         "description": "I study finance in my spare time out of passion and personal interest: a way to understand the world better, not a second job."
       },
       {
+        "icon": "sport",
         "title": "Sports",
         "description": "I enjoy fishing and play airsoft on a team: two different ways to be outdoors, stay focused, and have fun with others."
       },
       {
+        "icon": "family",
         "title": "Family",
         "description": "I have a wonderful family: I live with an extraordinary wife and a little daughter who is already much smarter than I am."
       }
