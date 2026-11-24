@@ -325,6 +325,47 @@ body {
     0 0 18px rgba(2, 132, 199, 0.12);
 }
 
+/*
+  Pack grid: flex wrap that grows last-row orphans to fill the row
+  (avoids empty column holes when count % columns !== 0).
+*/
+.pack-grid {
+  --pack-gap: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pack-gap);
+  align-items: stretch;
+}
+
+.pack-grid > * {
+  box-sizing: border-box;
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .pack-grid {
+    --pack-gap: 2rem;
+  }
+
+  .pack-grid > * {
+    flex-basis: calc((100% - var(--pack-gap)) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pack-grid--3 > *,
+  .pack-grid--4 > * {
+    flex-basis: calc((100% - (2 * var(--pack-gap))) / 3);
+  }
+}
+
+@media (min-width: 1280px) {
+  .pack-grid--4 > * {
+    flex-basis: calc((100% - (3 * var(--pack-gap))) / 4);
+  }
+}
+
 /* Section / card motion targets (GSAP) */
 .fade-in,
 .stagger-item,

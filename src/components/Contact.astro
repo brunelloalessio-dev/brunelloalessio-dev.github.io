@@ -21,7 +21,7 @@ const shareUrl = new URL(`/${locale}/`, Astro.site).href;
     </div>
 
     <!-- Contact cards -->
-    <div class="stagger-grid mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="stagger-grid pack-grid pack-grid--3 mx-auto max-w-5xl">
       <!-- Email -->
       <button
         id="copy-email"
@@ -96,7 +96,7 @@ const shareUrl = new URL(`/${locale}/`, Astro.site).href;
       <button
         id="share-site"
         type="button"
-        class="stagger-item glass card-action group flex min-h-[11rem] flex-col items-center rounded-2xl p-8 text-center sm:col-span-2 lg:col-span-1"
+        class="stagger-item glass card-action group flex min-h-[11rem] flex-col items-center rounded-2xl p-8 text-center"
         data-share-title={i18n.contact.share.title}
         data-share-text={i18n.contact.share.text}
         data-share-url={shareUrl}

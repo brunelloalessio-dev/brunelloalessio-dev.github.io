@@ -60,7 +60,7 @@ const issuerLogoMap: Record<string, { src: string; alt: string }> = {
     </div>
 
     <!-- Certifications grid -->
-    <div class="stagger-grid grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+    <div class="stagger-grid pack-grid pack-grid--4">
       {
         i18n.certifications.items.map((cert) => {
           const issuerLogo = issuerLogoMap[cert.issuer];
