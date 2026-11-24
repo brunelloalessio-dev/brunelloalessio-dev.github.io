@@ -15,193 +15,122 @@
         margin: 0;
         padding: 0;
       }
+      html,
       body {
-        background: #111;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #09090b;
         font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        color: #fafafa;
+        -webkit-font-smoothing: antialiased;
       }
       .card {
         width: 1200px;
         height: 630px;
-        position: relative;
-        overflow: hidden;
-        background: #09090b;
-        color: #fafafa;
-      }
-      .glow-a {
-        position: absolute;
-        width: 520px;
-        height: 520px;
-        left: -120px;
-        top: -160px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.07);
-        filter: blur(80px);
-      }
-      .glow-b {
-        position: absolute;
-        width: 480px;
-        height: 480px;
-        right: -80px;
-        bottom: -180px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.05);
-        filter: blur(90px);
-      }
-      .grid {
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        background-size: 48px 48px;
-        mask-image: radial-gradient(ellipse at 40% 50%, black 20%, transparent 70%);
-        opacity: 0.5;
-      }
-      .content {
-        position: relative;
-        z-index: 1;
-        height: 100%;
         display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
-        padding: 64px 72px;
-        gap: 40px;
-        align-items: center;
-      }
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 28px;
-      }
-      .mark {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        background: #18181b;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        display: grid;
-        place-items: center;
-        font-weight: 700;
-        font-size: 16px;
-        letter-spacing: -0.02em;
-      }
-      .brand-name {
-        font-size: 18px;
-        font-weight: 500;
-        color: #a1a1aa;
-        letter-spacing: 0.01em;
-      }
-      h1 {
-        font-size: 64px;
-        line-height: 1.05;
-        font-weight: 800;
-        letter-spacing: -0.04em;
-        margin-bottom: 18px;
-      }
-      .role {
-        font-size: 28px;
-        font-weight: 500;
-        color: #d4d4d8;
-        letter-spacing: -0.02em;
-        margin-bottom: 28px;
-      }
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      .tag {
-        font-size: 15px;
-        color: #a1a1aa;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.04);
-        border-radius: 999px;
-        padding: 8px 14px;
-      }
-      .photo-wrap {
-        justify-self: end;
-        align-self: center;
-        position: relative;
-        /* Same aspect as photo.jpg (644×1220) so nothing is cropped */
-        width: 264px;
-        height: 500px;
-      }
-      .photo-ring {
-        position: absolute;
-        inset: -10px;
-        border-radius: 36px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-      }
-      .photo-aura {
-        position: absolute;
-        inset: -24px;
-        border-radius: 48px;
-        background: rgba(255, 255, 255, 0.08);
-        filter: blur(28px);
-      }
-      .photo-frame {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        border-radius: 28px;
-        border: 2px solid rgba(255, 255, 255, 0.14);
+        grid-template-columns: 470px 1fr;
         background: #09090b;
+        overflow: hidden;
       }
       .photo {
-        display: block;
+        position: relative;
+        overflow: hidden;
+      }
+      .photo img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center center;
+        object-position: center 22%;
+        display: block;
+      }
+      .photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent 55%, #09090b 98%);
+      }
+      .copy {
+        position: relative;
+        padding: 58px 60px 48px 36px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .eyebrow {
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #a1a1aa;
+      }
+      h1 {
+        margin-top: 16px;
+        font-size: 64px;
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+        font-weight: 800;
+      }
+      .role {
+        margin-top: 18px;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+      .role span {
+        display: block;
+        margin-top: 4px;
+        font-weight: 500;
+        color: #a1a1aa;
+        font-size: 18px;
+      }
+      ul {
+        list-style: none;
+        margin-top: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      li {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        font-size: 17px;
+        color: #d4d4d8;
+      }
+      li b {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        min-width: 64px;
       }
       .url {
-        position: absolute;
-        left: 72px;
-        bottom: 48px;
-        z-index: 1;
-        font-size: 16px;
+        margin-top: 32px;
+        font-size: 15px;
         color: #71717a;
-        letter-spacing: 0.01em;
       }
     </style>
   </head>
   <body>
     <div class="card" id="og-card">
-      <div class="glow-a"></div>
-      <div class="glow-b"></div>
-      <div class="grid"></div>
-      <div class="content">
-        <div>
-          <div class="brand">
-            <div class="mark">AB</div>
-            <div class="brand-name">Portfolio</div>
-          </div>
-          <h1>Alessio Brunello</h1>
-          <p class="role">Frontend Tech Lead</p>
-          <div class="tags">
-            <span class="tag">React</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">UI Architecture</span>
-            <span class="tag">AI Engineering</span>
-          </div>
-        </div>
-        <div class="photo-wrap">
-          <div class="photo-aura"></div>
-          <div class="photo-ring"></div>
-          <div class="photo-frame">
-            <img
-              class="photo"
-              src="../public/photo.jpg"
-              alt="Alessio Brunello"
-            />
-          </div>
-        </div>
+      <div class="photo">
+        <img src="../public/photo.jpg" alt="Alessio Brunello" />
       </div>
-      <div class="url">brunelloalessio-dev.github.io</div>
+      <div class="copy">
+        <div class="eyebrow">Portfolio · Bludata</div>
+        <h1>Alessio<br />Brunello</h1>
+        <p class="role">
+          Frontend Tech Lead
+          <span>AI-augmented delivery</span>
+        </p>
+        <ul>
+          <li><b>10+</b> anni su prodotti web e mobile</li>
+          <li><b>~80%</b> del frontend, design system</li>
+          <li><b>2×</b> delivery, qualità tenuta alta</li>
+        </ul>
+        <div class="url">brunelloalessio-dev.github.io</div>
+      </div>
     </div>
   </body>
 </html>
