@@ -7,7 +7,9 @@ export function initScrollMotion() {
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+  const lite = document.documentElement.classList.contains("fx-lite");
+  const isMobile = lite || window.matchMedia("(max-width: 767px)").matches;
+  const promote = !lite;
 
   if (reduceMotion) {
     gsap.set([".fade-in", ".stagger-item", ".about-stat", ".experience-card"], {
@@ -32,7 +34,7 @@ export function initScrollMotion() {
       gsap.to(el, {
         y: speed * 120,
         ease: "none",
-        force3D: true,
+        force3D: promote,
         scrollTrigger: {
           trigger: document.documentElement,
           start: "top top",
@@ -47,7 +49,7 @@ export function initScrollMotion() {
       gsap.to(el, {
         y: speed * 70,
         ease: "none",
-        force3D: true,
+        force3D: promote,
         scrollTrigger: {
           trigger: "#hero",
           start: "top top",
@@ -68,7 +70,7 @@ export function initScrollMotion() {
         y: 0,
         duration: 0.65,
         ease: "power2.out",
-        force3D: true,
+        force3D: promote,
         scrollTrigger: {
           trigger: el,
           start: "top 90%",
@@ -92,7 +94,7 @@ export function initScrollMotion() {
         duration: 0.55,
         stagger: 0.05,
         ease: "power2.out",
-        force3D: true,
+        force3D: promote,
         scrollTrigger: {
           trigger: grid,
           start: "top 88%",
@@ -114,7 +116,7 @@ export function initScrollMotion() {
         duration: 0.5,
         stagger: 0.08,
         ease: "power2.out",
-        force3D: true,
+        force3D: promote,
         scrollTrigger: {
           trigger: "#about .about-card",
           start: "top 72%",
@@ -155,7 +157,7 @@ export function initScrollMotion() {
         y: 0,
         duration: 0.7,
         ease: "power2.out",
-        force3D: true,
+        force3D: promote,
         scrollTrigger: {
           trigger: experienceCard,
           start: "top 88%",

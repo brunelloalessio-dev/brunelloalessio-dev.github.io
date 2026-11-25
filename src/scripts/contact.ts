@@ -114,38 +114,15 @@ function initContact() {
   dispose?.();
   dispose = null;
 
-  const copyBtn = document.getElementById("copy-email");
-  const copyText = document.getElementById("copy-email-text");
   const shareBtn = document.getElementById("share-site");
   const shareText = document.getElementById("share-site-text");
-  if (!copyBtn && !shareBtn) return;
+  if (!shareBtn) return;
 
   const ac = new AbortController();
   const { signal } = ac;
-  const originalCopy = copyText?.textContent ?? "";
   const originalShare = shareText?.textContent ?? "";
 
-  copyBtn?.addEventListener(
-    "click",
-    async () => {
-      const email = copyBtn.getAttribute("data-email");
-      if (!email) return;
-      try {
-        await navigator.clipboard.writeText(email);
-        flashLabel(
-          copyText,
-          copyText?.getAttribute("data-copied") || "✓ Copied!",
-          originalCopy,
-        );
-        void playActionBurst(copyBtn);
-      } catch {
-        // Clipboard may be blocked; ignore quietly
-      }
-    },
-    { signal },
-  );
-
-  shareBtn?.addEventListener(
+  shareBtn.addEventListener(
     "click",
     async () => {
       const title = shareBtn.getAttribute("data-share-title") || document.title;

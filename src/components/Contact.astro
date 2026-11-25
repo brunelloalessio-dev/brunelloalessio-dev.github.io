@@ -23,11 +23,9 @@ const shareUrl = new URL(`/${locale}/`, Astro.site).href;
     <!-- Contact cards -->
     <div class="stagger-grid pack-grid pack-grid--3 mx-auto max-w-5xl">
       <!-- Email -->
-      <button
-        id="copy-email"
-        type="button"
+      <a
+        href={`mailto:${i18n.contact.email.value}`}
         class="stagger-item glass card-action group flex min-h-[11rem] flex-col items-center rounded-2xl p-8 text-center"
-        data-email={i18n.contact.email.value}
       >
         <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 transition-colors group-hover:bg-accent/20">
           <svg class="h-8 w-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
@@ -36,12 +34,8 @@ const shareUrl = new URL(`/${locale}/`, Astro.site).href;
         </div>
         <h3 class="mb-1 text-lg font-semibold text-text-primary">{i18n.contact.email.label}</h3>
         <p class="mb-3 text-sm text-text-secondary">{i18n.contact.email.display}</p>
-        <span
-          id="copy-email-text"
-          class="text-xs font-medium text-accent"
-          data-copied={i18n.contact.email.copied}
-        >{i18n.contact.email.cta}</span>
-      </button>
+        <span class="text-xs font-medium text-accent">{i18n.contact.email.cta} →</span>
+      </a>
 
       <!-- CV -->
       <a

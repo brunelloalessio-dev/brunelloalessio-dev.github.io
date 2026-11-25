@@ -189,8 +189,7 @@
       "label": "Email",
       "value": "orecchia.mobiletto.0h@icloud.com",
       "display": "Private address",
-      "cta": "Copy and write",
-      "copied": "✓ Copied!"
+      "cta": "Email me"
     },
     "linkedin": {
       "label": "LinkedIn",

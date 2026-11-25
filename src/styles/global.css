@@ -106,7 +106,9 @@ html.light {
 
 body {
   min-height: 100dvh;
-  overflow-x: hidden;
+  /* clip, not hidden: hidden makes body a scroll container and iOS Safari
+     crashes while finger-scrolling pages full of filters and backdrop-filter. */
+  overflow-x: clip;
   /* Solid root paint: Safari 26 samples html/body (and fixed edges) for toolbar tint.
      Transparent body falls back to pure black/white and looks like a dead chrome bar. */
   background-color: var(--color-bg-primary);
@@ -389,7 +391,7 @@ body {
 }
 
 .hero-photo-frame {
-  will-change: transform, filter, border-radius, width, height;
+  will-change: transform;
 }
 
 .chat-caret {
@@ -561,6 +563,67 @@ html.light .hero-photo-aura {
 @keyframes hero-aura-spin {
   from { transform: rotate(0deg) scale(1); }
   to { transform: rotate(360deg) scale(1); }
+}
+
+/*
+  Same neon glass, smaller rasters on iPhone/iPad. Full-size blur + blend +
+  a backdrop sample per card is what makes Safari kill the tab while the
+  finger moves the toolbar. The look stays; the buffers shrink.
+*/
+html.fx-lite .site-orb,
+html.fx-lite.light .site-orb {
+  will-change: auto;
+}
+
+html.fx-lite .site-orb__glow {
+  filter: blur(24px);
+}
+
+html.fx-lite .site-orb__core {
+  filter: blur(12px);
+}
+
+html.fx-lite.light .site-orb__glow {
+  filter: blur(28px);
+}
+
+html.fx-lite.light .site-orb__core {
+  filter: blur(14px);
+}
+
+html.fx-lite .hero-photo-aura,
+html.fx-lite.light .hero-photo-aura {
+  filter: blur(16px);
+}
+
+html.fx-lite .hero-photo-halo {
+  filter: blur(20px);
+}
+
+html.fx-lite .hero-photo-float,
+html.fx-lite .hero-photo-frame {
+  will-change: transform;
+}
+
+html.fx-lite .glass {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+html.fx-lite .glass-strong {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* A chip is ~32px tall: the frost is invisible, the extra backdrop sample is not. */
+html.fx-lite .skill-chip.glass {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: color-mix(in oklab, var(--color-bg-card) 88%, transparent);
+}
+
+html.is-scrolling .hero-photo-aura {
+  animation-play-state: paused;
 }
 
 /* Timeline glow line */

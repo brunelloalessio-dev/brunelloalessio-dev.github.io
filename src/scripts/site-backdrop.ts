@@ -30,6 +30,8 @@ export function initSiteBackdrop() {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) return;
 
+  const lite = () => document.documentElement.classList.contains("fx-lite");
+
   const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-orb]"));
   const grid = document.querySelector<HTMLElement>("[data-site-grid]");
   if (!nodes.length) return;
@@ -118,16 +120,23 @@ export function initSiteBackdrop() {
     "scroll",
     () => {
       scrolling = true;
+      if (lite()) document.documentElement.classList.add("is-scrolling");
       window.clearTimeout(scrollIdleTimer);
       scrollIdleTimer = window.setTimeout(() => {
         scrolling = false;
-      }, 120);
+        document.documentElement.classList.remove("is-scrolling");
+      }, lite() ? 200 : 120);
     },
     { passive: true, signal },
   );
 
   const tick = (time: number) => {
-    // Cap backdrop work while scrolling to keep wheel/trackpad smooth
+    // On touch, frozen orbs during the gesture. Moving a blurred layer while
+    // Safari resizes the toolbar is what kills the tab. Desktop just throttles.
+    if (scrolling && lite()) {
+      rafId = window.requestAnimationFrame(tick);
+      return;
+    }
     if (scrolling && time - lastTick < 32) {
       rafId = window.requestAnimationFrame(tick);
       return;
@@ -143,7 +152,7 @@ export function initSiteBackdrop() {
     currentY += (targetY - currentY) * ease;
     currentAttract += (attractStrength - currentAttract) * (scrolling ? 0.04 : 0.08);
 
-    const motionScale = scrolling ? 0.55 : 1;
+    const motionScale = scrolling ? 0.55 : lite() ? 0.85 : 1;
 
     for (const orb of orbs) {
       const floatX = Math.sin(t * orb.speed + orb.phase) * orb.amp * motionScale;
@@ -173,6 +182,7 @@ export function initSiteBackdrop() {
     ac.abort();
     window.cancelAnimationFrame(rafId);
     window.clearTimeout(scrollIdleTimer);
+    document.documentElement.classList.remove("is-scrolling");
     dispose = null;
   };
 }

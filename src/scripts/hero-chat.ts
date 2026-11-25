@@ -213,7 +213,16 @@ export async function initHeroChat() {
     gsap.fromTo(
       photoFrame,
       { filter: "blur(12px)", scale: 1.06 },
-      { filter: "blur(0px)", scale: 1, duration: 1, ease: "power2.out", delay: 0.05 },
+      {
+        filter: "blur(0px)",
+        scale: 1,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.05,
+        onComplete: () => {
+          gsap.set(photoFrame, { clearProps: "filter" });
+        },
+      },
     );
   }
 
